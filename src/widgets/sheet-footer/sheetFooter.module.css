@@ -1,0 +1,6 @@
+@import 'shared/styles/variables';
+
+.footer {
+  background-color: var(--color-blue);
+  height: var(--sheet-footer-height);
+}

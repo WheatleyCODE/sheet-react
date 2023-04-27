@@ -1,20 +1,20 @@
-import { useState } from 'react';
+import { FC } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { routes } from './routes/routes';
+import { Provider } from 'react-redux';
+import { store } from './store';
 import './global.css';
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  const a = 10;
-
+export const App: FC = () => {
   return (
-    <div>
-      <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-      <h1>hhello</h1>
-      <p>
-        Edit <code>src/App.tsx</code> and save to test HMR
-      </p>
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          {routes.map(({ path, Page }) => (
+            <Route key={path} path={path} element={<Page />} />
+          ))}
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
-}
-
-export default App;
+};

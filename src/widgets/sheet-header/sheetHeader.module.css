@@ -1,0 +1,6 @@
+@import 'shared/styles/variables';
+
+.header {
+  background-color: var(--color-green);
+  height: var(--sheet-header-height);
+}

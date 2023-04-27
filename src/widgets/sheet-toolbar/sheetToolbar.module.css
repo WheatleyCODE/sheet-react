@@ -1,0 +1,6 @@
+@import 'shared/styles/variables';
+
+.toolbar {
+  background-color: var(--color-light-blue);
+  height: var(--sheet-toolbar-height);
+}

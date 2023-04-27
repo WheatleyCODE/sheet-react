@@ -1,0 +1,11 @@
+:root {
+  --color-blue: #235ad1;
+  --color-light-blue: #6189dd;
+  --color-green: #63d123;
+  --color-white: #ffffff;
+
+  --sheet-header-height: 40px;
+  --sheet-toolbar-height: 60px;
+  --sheet-footer-height: 40px;
+}
+
