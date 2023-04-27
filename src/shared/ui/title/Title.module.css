@@ -1,0 +1,10 @@
+@import 'shared/styles/variables.css';
+
+.title {
+
+}
+
+.title_text {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
