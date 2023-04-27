@@ -10,6 +10,7 @@ export default defineConfig({
       features: '/src/features',
       entities: '/src/features',
       shared: '/src/shared',
+      ui: '/src/shared/ui',
     },
   },
   plugins: [react()],

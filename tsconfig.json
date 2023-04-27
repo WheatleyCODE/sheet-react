@@ -26,6 +26,7 @@
       "features/*": ["features/*"],
       "entities/*": ["entities/*"],
       "shared/*": ["shared/*"],
+      "ui/*": ["shared/ui/*"],
     }
   },
   "include": ["src"],
