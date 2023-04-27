@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styles from './sheetFooter.module.css';
+import styles from './SheetFooter.module.css';
 
 export const SheetFooter: FC = () => {
   return <div className={styles.footer}>SheetFooter</div>;
