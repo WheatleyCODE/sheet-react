@@ -8,7 +8,7 @@ export default defineConfig({
       pages: '/src/pages',
       widgets: '/src/widgets',
       features: '/src/features',
-      entities: '/src/features',
+      entities: '/src/entities',
       shared: '/src/shared',
       ui: '/src/shared/ui',
     },
