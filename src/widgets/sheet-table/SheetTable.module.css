@@ -1,4 +1,4 @@
 .table {
-  height: calc(100% - var(--sheet-header-height) - var(--sheet-toolbar-height) - var(--sheet-footer-height));
-  background-color: violet;
+  height: calc(100% - var(--sheet-toolbar-height) - var(--sheet-footer-height));
+  background-color: rgb(224, 224, 224);
 }

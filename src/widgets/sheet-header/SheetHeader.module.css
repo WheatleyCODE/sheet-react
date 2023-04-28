@@ -1,6 +1,15 @@
 @import 'shared/styles/variables';
 
 .header {
-  background-color: var(--color-green);
+  padding: 0 calc(var(--sheet-padding) * 2);
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
   height: var(--sheet-header-height);
+}
+
+.settings {
+  display: flex;
+  width: 100%;
+  padding-left: calc(var(--sheet-padding) * 2);
 }

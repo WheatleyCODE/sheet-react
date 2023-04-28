@@ -1,6 +1,7 @@
 @import 'shared/styles/variables';
 
 .footer {
-  background-color: var(--color-blue);
+  display: flex;
   height: var(--sheet-footer-height);
+  padding: 0 calc(var(--sheet-padding) * 4);
 }

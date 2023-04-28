@@ -5,8 +5,22 @@
   --color-white: #ffffff;
   --color-black: #242424;
 
-  --sheet-header-height: 40px;
-  --sheet-toolbar-height: 60px;
+  --color-light-grey: #d3d3d3;
+  --color-toolbar-blue: #e9f3ff;
+
+  --sheet-header-height: 55px;
+  --sheet-toolbar-height: 40px;
   --sheet-footer-height: 40px;
+
+  --sheet-padding: 10px;
+
+  --font-big: 1.1rem;
+  --font-big2: 1.2rem;
+  --font-normal: 1rem;
+  --font-normal2: 0.9rem;
+  --font-small: 0.8rem;
+  --font-small2: 0.7rem;
+
+  --border-radius: 4px;
 }
 
