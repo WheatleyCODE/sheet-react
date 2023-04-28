@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { routes } from './routes/routes';
 import { Provider } from 'react-redux';
-import { store } from './store';
+import { store } from './redux/store';
 import './global.css';
 
 export const App: FC = () => {

@@ -21,6 +21,10 @@
     "react-router-dom": "^6.10.0",
     "redux": "^4.2.1"
   },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 120
+  },
   "devDependencies": {
     "@types/node": "^18.16.1",
     "@types/react": "^18.0.28",
