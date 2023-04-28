@@ -14,8 +14,10 @@
 }
 
 .input_textfild {
+  transition: outline var(--animation-duration);
   padding-left: 15px;
   height: 100%;
+  width: 100%;
   border-radius: var(--border-radius);
   border: 1px solid var(--color-light-grey);
 }
