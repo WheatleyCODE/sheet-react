@@ -3,5 +3,11 @@
 .footer {
   display: flex;
   height: var(--sheet-footer-height);
-  padding: 0 calc(var(--sheet-padding) * 4);
+  padding-left: calc(var(--sheet-padding) * 4);
+  padding-right: calc(var(--sheet-padding) * 2);
+}
+
+.left {
+  display: flex;
+  width: 100%;
 }

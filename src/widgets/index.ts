@@ -6,3 +6,4 @@ export { SheetAside } from './sheet-aside/SheetAside';
 
 export { tableActions, tableSlice } from './tableSlice';
 export { toolbarActions, toolbarSlice } from './toolbarSlice';
+export { asideActions, asideSlice } from './asideSlice';

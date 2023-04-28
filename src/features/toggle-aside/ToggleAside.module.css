@@ -1,0 +1,13 @@
+.toggle_aside {
+  
+}
+
+.toggle_aside_button {
+  transition: all var(--animation-duration);
+  border-radius: 50%;
+}
+
+.close {
+  transform: rotate(-180deg) translateY(20px);
+  padding-top: 13px;
+}
