@@ -15,7 +15,7 @@ export interface IInputProps extends React.HTMLAttributes<HTMLInputElement> {
 }
 
 export const Input: FC<IInputProps> = memo((props) => {
-  const { Icon, isError, isActive, validError, placeholder, value, type, ...anotherProps } = props;
+  const { Icon, isError, isActive, validError, placeholder, value, type, className, ...anotherProps } = props;
 
   const ref = useRef<null | HTMLInputElement>(null);
   const placeholderControls = useAnimation();
@@ -37,7 +37,7 @@ export const Input: FC<IInputProps> = memo((props) => {
   }, [isActive, isErrorActive, placeholderControls, value]);
 
   return (
-    <div className={`${styles.input} ${isIcon && styles.icon} ${isErrorActive && styles.error} `}>
+    <div className={`${styles.input} ${isIcon && styles.icon} ${isErrorActive && styles.error} ${className}`}>
       {isIcon && (
         <div aria-hidden onClick={focusOnInput} className={styles.input_icon}>
           <MemoIcon />
@@ -67,8 +67,8 @@ export const Input: FC<IInputProps> = memo((props) => {
           transition={{ duration: 0.1 }}
           variants={{
             active: isIcon
-              ? { translateY: -23, translateX: -27, scale: 0.9 }
-              : { translateY: -23, translateX: -10, scale: 0.9 },
+              ? { translateY: -20, translateX: -27, scale: 0.85 }
+              : { translateY: -20, translateX: -10, scale: 0.85 },
             default: { translateY: 0, translateX: 0, scale: 1 },
           }}
         >

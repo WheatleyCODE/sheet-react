@@ -1,3 +1,43 @@
 .input {
-  
+  position: relative;
+  height: 40px;
+  min-width: 260px;
+}
+
+.input_icon {
+  cursor: text;
+  position: absolute;
+  height: 45px;
+  padding-left: 15px;
+  font-size: 1.5rem;
+  color: var(--color-black);
+}
+
+.input_textfild {
+  padding-left: 15px;
+  height: 100%;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-light-grey);
+}
+
+.input_placeholder, .input_valid-error {
+  padding: 0 5px;
+  position: absolute;
+  background-color: var(--color-white);
+}
+
+.input_placeholder {
+  font-size: var(--font-normal2);
+  border-radius: 10px;
+  top: 11px;
+  left: 12px;
+  color: black;
+}
+
+.input:hover .input_textfild {
+  outline: 1px solid var(--color-blue);
+}
+
+.input_textfild:focus {
+  outline: 1px solid var(--color-blue);
 }

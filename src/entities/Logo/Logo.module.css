@@ -1,0 +1,6 @@
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 40px;
+}
