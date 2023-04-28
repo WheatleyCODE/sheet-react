@@ -2,6 +2,7 @@ import React, { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { IconType } from 'react-icons';
 import styles from './Input.module.css';
+import { ANIMATION_DURATION } from 'shared/consts/animate';
 
 export interface IInputProps extends React.HTMLAttributes<HTMLInputElement> {
   value: string;
@@ -52,7 +53,7 @@ export const Input: FC<IInputProps> = memo((props) => {
           className={styles.input_valid_error}
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
-          transition={{ duration: 0.1 }}
+          transition={{ duration: ANIMATION_DURATION }}
         >
           {validError}
         </motion.div>
@@ -64,7 +65,7 @@ export const Input: FC<IInputProps> = memo((props) => {
           animate={placeholderControls}
           className={styles.input_placeholder}
           initial="default"
-          transition={{ duration: 0.1 }}
+          transition={{ duration: ANIMATION_DURATION }}
           variants={{
             active: isIcon
               ? { translateY: -20, translateX: -27, scale: 0.85 }
