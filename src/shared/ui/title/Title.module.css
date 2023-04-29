@@ -1,6 +1,7 @@
 @import 'shared/styles/variables.css';
 
 .title {
+  display: inline-block;
   position: relative;
 }
 

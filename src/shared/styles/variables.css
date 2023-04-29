@@ -1,15 +1,15 @@
 :root {
-  --color-blue: #235ad1;
+  --color-blue: #3067dd;
   --color-light-blue: #6189dd;
-  --color-green: #63d123;
+  --color-green: #4f9923;
   --color-white: #ffffff;
   --color-black: #242424;
+  --color-black2: #444444;
 
-  --color-light-grey: #d3d3d3;
-  --color-toolbar-blue: #e9f3ff;
+  --color-light-grey: #e4e4e4;
 
   --sheet-header-height: 55px;
-  --sheet-toolbar-height: 40px;
+  --sheet-toolbar-height: 65px;
   --sheet-footer-height: 40px;
 
   --sheet-padding: 10px;

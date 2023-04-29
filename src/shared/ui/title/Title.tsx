@@ -31,7 +31,7 @@ export const Title: FC<TitleProps> = ({ children, text }) => {
     const titleRect = $title.getBoundingClientRect();
     const textRect = $text.getBoundingClientRect();
     const objStyles: ObjStyles = {};
-    const TEXT_MARGIN = 5;
+    const TEXT_MARGIN = 8;
 
     objStyles.top = objStyles.top = titleRect.height + TEXT_MARGIN;
 

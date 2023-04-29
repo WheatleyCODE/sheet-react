@@ -15,14 +15,16 @@ export const Button: FC<IButtonProps> = memo((props) => {
 
   return (
     <button
-      className={`${styles.button} ${disable && styles.disable} ${disable && styles.disable} ${className}`}
+      className={`${styles.button} ${disable && styles.disable} ${disable && styles.disable} ${className} ${
+        Icon && styles.icon
+      }`}
       type="button"
       disabled={disable}
       {...otherProps}
     >
       {MemoIcon && (
-        <div aria-hidden className={styles.button_icon}>
-          <MemoIcon />
+        <div className={styles.button_icon_container}>
+          <MemoIcon className={styles.button_icon} />
         </div>
       )}
       {text}
