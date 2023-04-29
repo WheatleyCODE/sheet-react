@@ -9,19 +9,21 @@ export const SheetFooter: FC = () => {
     <div className={styles.footer}>
       <div className={styles.left}>
         <Title text="Добавить лист">
-          <Button Icon={MdAdd} />
+          <Button className={styles.button} Icon={MdAdd} />
         </Title>
 
         <Title text="Все листы">
-          <Button Icon={MdFormatListBulleted} />
+          <Button className={styles.button} Icon={MdFormatListBulleted} />
         </Title>
 
         <Title text="Перейти на Лист 1">
-          <Button text="Лист 1" />
+          <Button className={styles.button} text="Лист 1" />
         </Title>
       </div>
 
-      <ToggleAside />
+      <div className={styles.right}>
+        <ToggleAside />
+      </div>
     </div>
   );
 };

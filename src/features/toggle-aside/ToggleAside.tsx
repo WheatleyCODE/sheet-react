@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { MdKeyboardDoubleArrowLeft } from 'react-icons/md';
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-icons/md';
 import { Button, Title } from 'shared/ui';
 import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
 import { useTypedDispatch } from 'shared/lib/hooks/redux/useTypedDispatch';
@@ -20,7 +20,7 @@ export const ToggleAside: FC = () => {
         <Button
           onClick={toggleAside}
           className={`${styles.toggle_aside_button} ${isShow ? styles.close : styles.open}`}
-          Icon={MdKeyboardDoubleArrowLeft}
+          Icon={isShow ? MdKeyboardDoubleArrowRight : MdKeyboardDoubleArrowLeft}
         />
       </Title>
     </div>

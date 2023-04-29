@@ -32,7 +32,7 @@ export const SheetHeader: FC = () => {
       </div>
 
       <div className={styles.user}>
-        <Title text="Аккаунт">
+        <Title text="Аккаунт Google">
           <Button text="Google" />
         </Title>
       </div>

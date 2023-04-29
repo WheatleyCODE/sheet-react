@@ -9,8 +9,22 @@
 }
 
 .main {
+  padding-top: calc(var(--sheet-padding) / 2);
   width: 100%;
   height: 100%;
-  border-radius: 50px;
-  background-color: var(--color-toolbar-blue);
+}
+
+.space {
+  margin: 0 5px;
+  display: inline-block;
+}
+
+.button {
+  margin-right: 1px;
+  width: 40px;
+  height: 40px;
+}
+
+.button_select svg {
+  margin-right: 5px;
 }

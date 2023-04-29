@@ -10,4 +10,13 @@
 .left {
   display: flex;
   width: 100%;
+  transform: translateY(-4px);
+}
+
+.right {
+  transform: translateY(-4px);
+}
+
+.button {
+  margin-right: 1px;
 }

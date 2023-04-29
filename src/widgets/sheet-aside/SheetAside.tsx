@@ -11,8 +11,6 @@ export const SheetAside: FC = () => {
       animate={{ width: 300, opacity: 1 }}
       exit={{ width: 0, opacity: 1 }}
       className={styles.aside}
-    >
-      SheetAside
-    </motion.div>
+    ></motion.div>
   );
 };
