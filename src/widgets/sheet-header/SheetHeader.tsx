@@ -25,8 +25,6 @@ export const SheetHeader: FC = () => {
             isError={input.isError}
             validError={input.validError}
             isActive={input.isActive}
-            changeFocus={input.changeFocus}
-            changeActive={input.changeActive}
           />
         </Title>
       </div>

@@ -11,8 +11,6 @@ export interface IInputProps extends React.HTMLAttributes<HTMLInputElement> {
   isError: boolean;
   isActive: boolean;
   validError: string | null;
-  changeFocus: (boolean: boolean) => void;
-  changeActive: (boolean: boolean) => void;
 }
 
 export const Input: FC<IInputProps> = memo((props) => {
