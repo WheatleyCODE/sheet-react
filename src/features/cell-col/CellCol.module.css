@@ -1,0 +1,52 @@
+.cell_col {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--cell-width);
+  height: var(--cell-col-height);
+  border: 1px solid var(--color-grey);
+  border-left: none;
+}
+
+.resize {
+  opacity: 0;
+  transition: all var(--animation-duration);
+  cursor: col-resize;
+  position: absolute;
+  top: 0;
+  right: -3px;
+  box-shadow: 0px 0px 4px 0 var(--color-green2);
+  width: 6px;
+  height: 100%;
+  background-color: var(--color-green);
+  border-radius: 1px;
+  z-index: 20;
+}
+
+.resize:hover {
+  opacity: 1;
+}
+
+.actions {
+  transform: all var(--animation-duration);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  right: 10px;
+}
+
+.actions svg {
+  font-size: var(--font-big2);
+}
+
+.actions:hover {
+  background-color: var(--color-light-grey);
+}

@@ -1,16 +1,24 @@
 :root {
   --color-blue: #3067dd;
   --color-light-blue: #6189dd;
-  --color-green: #4f9923;
+  --color-green: #4ca31a;
+  --color-green2: #50c010;
   --color-white: #ffffff;
   --color-black: #242424;
   --color-black2: #444444;
 
   --color-light-grey: #e4e4e4;
+  --color-grey: #d1d1d1;
 
   --sheet-header-height: 55px;
   --sheet-toolbar-height: 65px;
+  --sheet-formula-height: 35px;
   --sheet-footer-height: 45px;
+
+  --cell-height: 25px;
+  --cell-width: 140px;
+  --cell-row-width: 40px;
+  --cell-col-height: 30px;
 
   --sheet-padding: 10px;
 

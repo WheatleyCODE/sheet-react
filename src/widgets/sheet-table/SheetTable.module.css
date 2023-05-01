@@ -1,5 +1,11 @@
 .table {
-  border: 1px solid var(--color-light-grey);
-  border-right: none;
-  height: calc(100% - var(--sheet-toolbar-height) - var(--sheet-footer-height));
+  width: 100%;
+  overflow: auto;
+  height: calc(100% - var(--sheet-toolbar-height) - var(--sheet-footer-height) - var(--sheet-formula-height));
+}
+
+.table_row {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
 }

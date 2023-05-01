@@ -2,6 +2,7 @@
 
 .footer {
   display: flex;
+  border-top: 1px solid var(--color-light-grey);
   height: var(--sheet-footer-height);
   padding-left: calc(var(--sheet-padding) * 4);
   padding-right: calc(var(--sheet-padding) * 2);

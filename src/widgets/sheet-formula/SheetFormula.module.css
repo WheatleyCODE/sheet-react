@@ -1,0 +1,7 @@
+@import 'shared/styles/variables.css';
+
+.formula {
+  height: var(--sheet-formula-height);
+  border-top: 1px solid var(--color-light-grey);
+  padding: 0 calc(var(--sheet-padding) * 2);
+}

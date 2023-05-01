@@ -1,0 +1,9 @@
+@import 'shared/styles/variables.css';
+
+.selector {
+  flex-shrink: 0;
+  width: var(--cell-row-width);
+  height: var(--cell-col-height);
+  border: 1px solid var(--color-grey);
+  border-left: none;
+}

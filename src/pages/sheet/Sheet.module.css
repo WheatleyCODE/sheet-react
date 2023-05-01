@@ -1,10 +1,10 @@
 .sheet {
   height: 100vh;
-  overflow: hidden;
 }
 
 .main {
   width: 100%;
+  overflow: hidden;
 }
 
 .row {
