@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-types
-export const compose = <F extends Function>(...funcs: F[]) => {
-  return (x: any) => {
-    return funcs.reduceRight((acc, func) => func(acc), x);
+export const compose = <T>(...fns: Function[]): ((arg: T) => T) => {
+  return (arg: T): T => {
+    return fns.reduceRight((result, fn) => fn(result), arg);
   };
 };
