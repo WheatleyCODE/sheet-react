@@ -2,10 +2,6 @@
   transition: all var(--animation-duration);
 }
 
-.close {
-  transform: translateY(-4px);
-}
-
 .close svg {
   color: var(--color-green);
 }

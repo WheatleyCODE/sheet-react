@@ -9,12 +9,12 @@
 
 .left {
   display: flex;
+  height: 100%;
   width: 100%;
-  transform: translateY(-4px);
 }
 
 .right {
-  transform: translateY(-4px);
+  height: 100%;
 }
 
 .button {
