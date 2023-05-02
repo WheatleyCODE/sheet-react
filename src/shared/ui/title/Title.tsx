@@ -6,6 +6,7 @@ import styles from './Title.module.css';
 export interface TitleProps {
   children: React.ReactNode;
   text: string;
+  isStopShow?: boolean;
 }
 
 type ObjStyles = {
@@ -16,7 +17,7 @@ type ObjStyles = {
   marginLeft?: string;
 };
 
-export const Title: FC<TitleProps> = ({ children, text }) => {
+export const Title: FC<TitleProps> = ({ children, text, isStopShow = false }) => {
   const { isShow, onMouseEnter, onMouseLeave, onMouseMove } = useDelayHover(false, 200);
   const [objStyles, setObjStyles] = useState<ObjStyles>({});
   const titleRef = useRef<HTMLDivElement | null>(null);
@@ -71,7 +72,7 @@ export const Title: FC<TitleProps> = ({ children, text }) => {
       {children}
 
       <AnimatePresence>
-        {isShow && (
+        {isShow && !isStopShow && (
           <motion.div
             style={objStyles}
             ref={titleTextRef}
