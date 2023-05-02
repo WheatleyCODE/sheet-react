@@ -10,3 +10,7 @@
   width: 150px;
   padding: var(--sheet-padding);
 }
+
+.button svg {
+  margin-right: 5px;
+}

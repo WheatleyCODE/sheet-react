@@ -12,7 +12,7 @@ export const FontFamily: FC = () => {
   return (
     <div className={styles.font_family}>
       <Title isStopShow={isShow} text="Изменить шрифт">
-        <Button onClick={toggleDropdown} text="Шрифт" Icon={MdArrowDropDown} />
+        <Button className={styles.button} onClick={toggleDropdown} text="Шрифт" Icon={MdArrowDropDown} />
       </Title>
 
       <AnimatePresence>
