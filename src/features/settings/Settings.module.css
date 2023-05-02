@@ -1,0 +1,14 @@
+.settings {
+  position: relative;
+}
+
+.menu {
+  padding: 20px;
+  width: 300px;
+  height: 600px;
+}
+
+.dropdown {
+  right: 0;
+  margin-top: 5px;
+}

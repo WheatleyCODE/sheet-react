@@ -8,7 +8,7 @@
   height: var(--sheet-header-height);
 }
 
-.settings {
+.name {
   display: flex;
   width: 100%;
   padding-left: calc(var(--sheet-padding) * 2);

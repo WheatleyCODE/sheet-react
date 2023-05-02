@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { Logo } from 'entities/Logo/Logo';
-import { Button, Input, Title } from 'shared/ui';
+import { Input, Title } from 'shared/ui';
 import { useValidInput } from 'shared/lib/hooks/useValidInput';
+import { Settings } from 'features';
 import styles from './SheetHeader.module.css';
 
 export const SheetHeader: FC = () => {
@@ -13,7 +14,7 @@ export const SheetHeader: FC = () => {
         <Logo />
       </Title>
 
-      <div className={styles.settings}>
+      <div className={styles.name}>
         <Title text="Переименовать">
           <Input
             value={input.value}
@@ -29,10 +30,8 @@ export const SheetHeader: FC = () => {
         </Title>
       </div>
 
-      <div className={styles.user}>
-        <Title text="Аккаунт Google">
-          <Button text="Google" />
-        </Title>
+      <div className={styles.settings}>
+        <Settings />
       </div>
     </div>
   );

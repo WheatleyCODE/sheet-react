@@ -20,8 +20,8 @@ import {
   MdOutlineTextRotationNone,
   MdOutlineFilterAlt,
   MdFunctions,
-  MdArrowDropDown,
 } from 'react-icons/md';
+import { FontFamily } from 'features';
 
 export const SheetToolbar: FC = () => {
   return (
@@ -44,7 +44,7 @@ export const SheetToolbar: FC = () => {
 
         <div className={styles.space} />
 
-        <Button text="Шрифт" className={styles.button_select} Icon={MdArrowDropDown} />
+        <FontFamily />
 
         <div className={styles.space} />
 
