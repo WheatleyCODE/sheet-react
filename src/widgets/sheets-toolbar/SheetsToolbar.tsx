@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import styles from './SheetToolbar.module.css';
 import { Button, Title } from 'shared/ui';
 import {
   MdRedo,
@@ -22,8 +21,9 @@ import {
   MdFunctions,
 } from 'react-icons/md';
 import { FontFamily } from 'features';
+import styles from './SheetsToolbar.module.css';
 
-export const SheetToolbar: FC = () => {
+export const SheetsToolbar: FC = () => {
   return (
     <div className={styles.toolbar}>
       {/* ! TEMPLATE */}

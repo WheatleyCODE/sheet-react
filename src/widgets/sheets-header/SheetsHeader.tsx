@@ -3,9 +3,9 @@ import { Logo } from 'entities/Logo/Logo';
 import { Input, Title } from 'shared/ui';
 import { useValidInput } from 'shared/lib/hooks/useValidInput';
 import { Settings } from 'features';
-import styles from './SheetHeader.module.css';
+import styles from './SheetsHeader.module.css';
 
-export const SheetHeader: FC = () => {
+export const SheetsHeader: FC = () => {
   const input = useValidInput('Новая таблица');
 
   return (

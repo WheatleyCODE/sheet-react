@@ -8,7 +8,7 @@
 
 .menu {
   width: 150px;
-  padding: var(--sheet-padding);
+  padding: var(--sheets-padding);
 }
 
 .button svg {

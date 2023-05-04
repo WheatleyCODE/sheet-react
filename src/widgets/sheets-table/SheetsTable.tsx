@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import styles from './SheetTable.module.css';
+import styles from './SheetsTable.module.css';
 import { Cell, CellCol, CellRow, CellAllSelector } from 'features';
 
-export const SheetTable: FC = () => {
+export const SheetsTable: FC = () => {
   return (
     <div className={styles.table}>
       <div className={styles.table_row}>

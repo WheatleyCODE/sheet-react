@@ -1,4 +1,4 @@
-.sheet {
+.sheets {
   height: 100vh;
 }
 
@@ -9,5 +9,5 @@
 
 .row {
   display: flex;
-  height: calc(100% - var(--sheet-header-height));
+  height: calc(100% - var(--sheets-header-height));
 }

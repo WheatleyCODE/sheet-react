@@ -34,12 +34,12 @@
 }
 
 .header {
-  padding: 0 calc(var(--sheet-padding) * 2);
+  padding: 0 calc(var(--sheets-padding) * 2);
   padding-top: 10px;
   display: flex;
   align-items: center;
   min-height: 60px;
-  padding-bottom: calc(var(--sheet-padding) / 2);
+  padding-bottom: calc(var(--sheets-padding) / 2);
   background-color: white;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .sheets {
-  padding: calc(var(--sheet-padding) * 2) 0;
+  padding: calc(var(--sheets-padding) * 2) 0;
   width: 1100px;
   height: 100%;
 }

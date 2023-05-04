@@ -10,17 +10,17 @@
   --color-light-grey: #e4e4e4;
   --color-grey: #d1d1d1;
 
-  --sheet-header-height: 55px;
-  --sheet-toolbar-height: 65px;
-  --sheet-formula-height: 35px;
-  --sheet-footer-height: 45px;
+  --sheets-header-height: 55px;
+  --sheets-toolbar-height: 65px;
+  --sheets-formula-height: 35px;
+  --sheets-footer-height: 45px;
 
   --cell-height: 25px;
   --cell-width: 140px;
   --cell-row-width: 40px;
   --cell-col-height: 30px;
 
-  --sheet-padding: 10px;
+  --sheets-padding: 10px;
 
   --font-big: 1.1rem;
   --font-big2: 1.2rem;

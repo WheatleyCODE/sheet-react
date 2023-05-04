@@ -2,9 +2,9 @@ import { FC } from 'react';
 import { MdAdd, MdFormatListBulleted } from 'react-icons/md';
 import { Button, Title } from 'shared/ui';
 import { ToggleAside } from 'features';
-import styles from './SheetFooter.module.css';
+import styles from './SheetsFooter.module.css';
 
-export const SheetFooter: FC = () => {
+export const SheetsFooter: FC = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.left}>

@@ -1,9 +1,9 @@
-export { SheetFooter } from './sheet-footer/SheetFooter';
-export { SheetHeader } from './sheet-header/SheetHeader';
-export { SheetTable } from './sheet-table/SheetTable';
-export { SheetToolbar } from './sheet-toolbar/SheetToolbar';
-export { SheetAside } from './sheet-aside/SheetAside';
-export { SheetFormula } from './sheet-formula/SheetFormula';
+export { SheetsFooter } from './sheets-footer/SheetsFooter';
+export { SheetsHeader } from './sheets-header/SheetsHeader';
+export { SheetsTable } from './sheets-table/SheetsTable';
+export { SheetsToolbar } from './sheets-toolbar/SheetsToolbar';
+export { SheetsAside } from './sheets-aside/SheetsAside';
+export { SheetsFormula } from './sheets-formula/SheetsFormula';
 
 export { tableActions, tableSlice } from './tableSlice';
 export { toolbarActions, toolbarSlice } from './toolbarSlice';

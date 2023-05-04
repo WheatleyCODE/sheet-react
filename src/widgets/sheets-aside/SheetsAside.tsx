@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
-import styles from './SheetAside.module.css';
+import styles from './SheetsAside.module.css';
 
-export const SheetAside: FC = () => {
+export const SheetsAside: FC = () => {
   return (
     <motion.div
       transition={{ duration: ANIMATION_DURATION }}
