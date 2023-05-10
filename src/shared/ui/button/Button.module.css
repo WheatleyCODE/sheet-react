@@ -24,6 +24,7 @@
 .button:hover {
   box-shadow: rgba(70, 67, 73, 0.4) 0 3px 6px, rgba(70, 67, 73, 0.3) 0 7px 13px -3px, #d8d8e2 0 -3px 0 inset;
   transform: translateY(-2px);
+  z-index: 20;
 }
 
 .button:active {

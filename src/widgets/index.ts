@@ -8,6 +8,7 @@ export { SheetsFormula } from './sheets/sheets-formula/SheetsFormula';
 export { CreateSheetsHeader } from './create-sheets/create-sheets-header/CreateSheetsHeader';
 export { CreateSheetsTemplates } from './create-sheets/create-sheets-templates/CreateSheetsTemplates';
 export { CreateSheetsLists } from './create-sheets/create-sheets-lists/CreateSheetsLists';
+export { CreateSheetsFilters } from './create-sheets/create-sheets-filters/CreateSheetsFilters';
 
 export { tableActions, tableSlice } from './tableSlice';
 export { toolbarActions, toolbarSlice } from './toolbarSlice';

@@ -1,0 +1,43 @@
+.filters {
+  width: 100%;
+  padding: calc(var(--sheets-padding)) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  padding: 0 calc(var(--sheets-padding) * 2);
+  width: 1000px;
+  height: 40px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 220px 120px;
+}
+
+.buttons, .name, .filter_name {
+  display: flex;
+  align-items: center;
+}
+
+.buttons svg {
+  font-size: 1.2rem;
+}
+
+.filter_name svg {
+  font-size: 1.5rem;
+}
+
+.button {
+  transition: all var(--animation-duration);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 1px;
+}
+
+.icon:hover {
+  background-color: rgb(0, 0, 0, 0.1);
+}

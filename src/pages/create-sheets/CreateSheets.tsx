@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { CreateSheetsHeader, CreateSheetsLists, CreateSheetsTemplates } from 'widgets';
+import { CreateSheetsFilters, CreateSheetsHeader, CreateSheetsLists, CreateSheetsTemplates } from 'widgets';
 import styles from './CreateSheets.module.css';
 
 export const CreateSheets: FC = () => {
@@ -7,6 +7,7 @@ export const CreateSheets: FC = () => {
     <div className={styles.create_sheets}>
       <CreateSheetsHeader />
       <CreateSheetsTemplates />
+      <CreateSheetsFilters />
       <CreateSheetsLists />
     </div>
   );
