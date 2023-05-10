@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import styles from './TemplateCard.module.css';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
+import styles from './TemplateCard.module.css';
 
 export interface ITemplateCardProps {
   text: string;
@@ -27,7 +27,7 @@ export const TemplateCard: FC<ITemplateCardProps> = ({ text, src, noAnimate = fa
               height: 'auto',
             }}
             whileTap={{ scale: 1, transition: { duration: ANIMATION_DURATION } }}
-            transition={{ duration: ANIMATION_DURATION * 2 }}
+            transition={{ duration: ANIMATION_DURATION * 1.5 }}
             className={styles.image}
           >
             <img src={src} alt="Картинка" />

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { AiOutlineTable } from 'react-icons/ai';
-import { MdMoreVert } from 'react-icons/md';
+import { MdDeleteOutline } from 'react-icons/md';
 import { useDropdown } from 'shared/lib/hooks/useDropdown';
 import { MActionWindow } from 'shared/ui/action-window/ActionWindow';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
@@ -27,7 +27,7 @@ export const SheetsCard: FC<SheetsCardProps> = ({ name, date }) => {
       <div className={styles.date}>{date}</div>
 
       <div onClick={toggleDropdown} className={styles.actions}>
-        <MdMoreVert />
+        <MdDeleteOutline />
 
         <AnimatePresence>
           {isShow && (
@@ -36,12 +36,15 @@ export const SheetsCard: FC<SheetsCardProps> = ({ name, date }) => {
               exit={{ height: 0, width: 0, opacity: 0 }}
               animate={{ height: 'auto', width: 'auto', opacity: 1 }}
               initial={{ height: 0, width: 0, opacity: 0 }}
-              actionName="Сделать что-то"
+              actionName="Удаление"
               className={styles.action}
               onClose={closeDropdown}
               onSuccess={closeDropdown}
             >
-              <h1>Hello World</h1>
+              <div className={styles.alert}>
+                Вы действительно хотите удалить таблицу
+                <div className={styles.alert_name}>{name}?</div>
+              </div>
             </MActionWindow>
           )}
         </AnimatePresence>
