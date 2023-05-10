@@ -1,0 +1,35 @@
+.card, .card_def {
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  height: 135px;
+  border-radius: 3px;
+}
+
+.card_def:hover {
+  transition: var(--animation-duration);
+  outline: 2px solid rgb(0, 255, 98);
+}
+
+.image {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background-color: white;
+  box-shadow: rgba(70, 67, 73, 0.4) 0 1px 1px, rgba(70, 67, 73, 0.3) 0 7px 13px -3px, #d8d8e2 0 -3px 0 inset;
+  height: 135px;
+}
+
+.card:hover .text {
+  color: var(--color-black);
+}
+
+.image img {
+  width: 100%;
+}
+
+.text {
+  margin-top: 5px;
+  font-weight: 400;
+  color: var(--color-white);
+}

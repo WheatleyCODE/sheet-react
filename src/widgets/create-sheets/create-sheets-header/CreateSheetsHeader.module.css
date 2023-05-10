@@ -1,0 +1,9 @@
+.header {
+  padding: 0 calc(var(--sheets-padding) * 2);
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+  padding-bottom: calc(var(--sheets-padding) / 2);
+  background-color: white;
+}

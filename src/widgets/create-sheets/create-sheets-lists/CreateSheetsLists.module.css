@@ -1,0 +1,11 @@
+.lists {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.list {
+  padding: calc(var(--sheets-padding) * 2) 0;
+  width: 1000px;
+  height: 100%;
+}

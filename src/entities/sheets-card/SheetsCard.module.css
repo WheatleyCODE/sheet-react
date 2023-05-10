@@ -1,0 +1,35 @@
+.card {
+  transition: all var(--animation-duration);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  padding: 0 calc(var(--sheets-padding) * 2);
+  height: 45px;
+  width: 100%;
+}
+
+.card:hover {
+  background-color: rgb(220, 255, 232);
+}
+
+.icon, .actions, .name, .sheets {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.icon {
+  margin-right: 20px;
+}
+
+.icon svg {
+  color: var(--color-green);
+}
+
+.icon svg, .actions svg {
+  font-size: 1.4rem;
+}
