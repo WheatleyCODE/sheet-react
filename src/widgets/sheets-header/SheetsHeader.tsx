@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Logo } from 'entities/Logo/Logo';
+import { Logo } from 'entities/logo/Logo';
 import { Input, Title } from 'shared/ui';
 import { useValidInput } from 'shared/lib/hooks/useValidInput';
 import { Settings } from 'features';

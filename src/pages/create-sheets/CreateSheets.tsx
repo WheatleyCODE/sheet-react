@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Button } from 'shared/ui';
-import { Logo } from 'entities/Logo/Logo';
+import { Logo } from 'entities';
 import { Link } from 'react-router-dom';
 import styles from './CreateSheets.module.css';
 
