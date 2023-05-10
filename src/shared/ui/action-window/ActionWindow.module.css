@@ -1,0 +1,28 @@
+.window {
+  overflow: hidden;
+  z-index: 20;
+  position: absolute;
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+  box-shadow: 0 0 3px 0px rgb(141, 141, 141);
+}
+
+.buttons {
+  padding-top: var(--sheets-padding);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main {
+  padding: calc(var(--sheets-padding) * 2);
+  min-width: 300px;
+}
+
+.buttons button:first-child {
+  margin-right: 10px;
+}
+
+.name {
+  padding-bottom: var(--sheets-padding);
+}

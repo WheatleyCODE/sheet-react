@@ -12,7 +12,7 @@
 }
 
 .card:hover {
-  background-color: rgb(220, 255, 232);
+  background-color: rgb(220, 255, 225);
 }
 
 .icon, .actions, .name, .sheets {
@@ -30,6 +30,27 @@
   color: var(--color-green);
 }
 
-.icon svg, .actions svg {
-  font-size: 1.4rem;
+.icon svg{
+  font-size: 1.6rem;
+}
+
+.actions svg {
+  font-size: 1.5rem;
+}
+
+.actions {
+  transition: all var(--animation-duration);
+  position: relative;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+
+.actions:hover {
+  background-color: rgb(0, 0, 0, 0.1);
+}
+
+.action {
+  top: 0;
+  right: 0;
 }

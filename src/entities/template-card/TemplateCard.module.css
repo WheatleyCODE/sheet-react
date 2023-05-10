@@ -1,4 +1,6 @@
 .card, .card_def {
+  position: relative;
+  z-index: 21;
   border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
@@ -15,13 +17,14 @@
 .image {
   border-radius: var(--border-radius);
   overflow: hidden;
-  background-color: white;
+  background-color: var(--color-white);
   box-shadow: rgba(70, 67, 73, 0.4) 0 1px 1px, rgba(70, 67, 73, 0.3) 0 7px 13px -3px, #d8d8e2 0 -3px 0 inset;
   height: 135px;
 }
 
 .card:hover .text {
   color: var(--color-black);
+  background-color: var(--color-white);
 }
 
 .image img {
@@ -29,7 +32,7 @@
 }
 
 .text {
-  margin-top: 5px;
+  padding-top: 6px;
   font-weight: 400;
   color: var(--color-white);
 }

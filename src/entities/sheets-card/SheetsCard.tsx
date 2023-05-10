@@ -1,6 +1,10 @@
 import { FC } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { AiOutlineTable } from 'react-icons/ai';
 import { MdMoreVert } from 'react-icons/md';
+import { useDropdown } from 'shared/lib/hooks/useDropdown';
+import { MActionWindow } from 'shared/ui/action-window/ActionWindow';
+import { ANIMATION_DURATION } from 'shared/consts/animate';
 import styles from './SheetsCard.module.css';
 
 interface SheetsCardProps {
@@ -9,6 +13,8 @@ interface SheetsCardProps {
 }
 
 export const SheetsCard: FC<SheetsCardProps> = ({ name, date }) => {
+  const { isShow, closeDropdown, toggleDropdown } = useDropdown();
+
   return (
     <div className={styles.card}>
       <div className={styles.sheets}>
@@ -17,9 +23,28 @@ export const SheetsCard: FC<SheetsCardProps> = ({ name, date }) => {
         </div>
         <div className={styles.name}>{name}</div>
       </div>
+
       <div className={styles.date}>{date}</div>
-      <div className={styles.actions}>
+
+      <div onClick={toggleDropdown} className={styles.actions}>
         <MdMoreVert />
+
+        <AnimatePresence>
+          {isShow && (
+            <MActionWindow
+              transition={{ duration: ANIMATION_DURATION }}
+              exit={{ height: 0, width: 0, opacity: 0 }}
+              animate={{ height: 'auto', width: 'auto', opacity: 1 }}
+              initial={{ height: 0, width: 0, opacity: 0 }}
+              actionName="Сделать что-то"
+              className={styles.action}
+              onClose={closeDropdown}
+              onSuccess={closeDropdown}
+            >
+              <h1>Hello World</h1>
+            </MActionWindow>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
