@@ -33,8 +33,8 @@ export const TemplateCard: FC<ITemplateCardProps> = ({ text, src, noAnimate = fa
             <img src={src} alt="Картинка" />
           </motion.div>
         )}
+        <div className={styles.text}>{text}</div>
       </Link>
-      <div className={styles.text}>{text}</div>
     </div>
   );
 };

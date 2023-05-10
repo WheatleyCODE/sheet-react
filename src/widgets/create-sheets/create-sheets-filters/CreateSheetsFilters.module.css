@@ -11,7 +11,7 @@
   height: 40px;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 1fr 220px 120px;
+  grid-template-columns: 1fr 205px 135px;
 }
 
 .buttons, .name, .filter_name {
@@ -25,17 +25,6 @@
 
 .filter_name svg {
   font-size: 1.5rem;
-}
-
-.button {
-  transition: all var(--animation-duration);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  margin-left: 1px;
 }
 
 .icon:hover {

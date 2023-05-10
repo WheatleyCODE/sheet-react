@@ -32,8 +32,8 @@
   transform: translateY(2px);
 }
 
-.button.icon {
-  font-size: var(--font-big2);
+.button_icon {
+  font-size: 1.1rem;
   color: var(--color-black2);
 }
 
