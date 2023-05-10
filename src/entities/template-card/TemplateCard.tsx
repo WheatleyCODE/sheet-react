@@ -23,7 +23,7 @@ export const TemplateCard: FC<ITemplateCardProps> = ({ text, src, noAnimate = fa
             initial={{ height: 135 }}
             whileHover={{
               scale: 1.05,
-              translateY: -10,
+              translateY: -6,
               height: 'auto',
             }}
             whileTap={{ scale: 1, transition: { duration: ANIMATION_DURATION } }}

@@ -25,6 +25,7 @@
 .card:hover .text {
   color: var(--color-black);
   background-color: var(--color-white);
+  padding-top: 10px;
 }
 
 .image img {
