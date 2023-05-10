@@ -13,3 +13,4 @@ export { CreateSheetsFilters } from './create-sheets/create-sheets-filters/Creat
 export { tableActions, tableSlice } from './tableSlice';
 export { toolbarActions, toolbarSlice } from './toolbarSlice';
 export { asideActions, asideSlice } from './asideSlice';
+export { createSheetsActions, createSheetsSlice } from './createSheetsSlice';
