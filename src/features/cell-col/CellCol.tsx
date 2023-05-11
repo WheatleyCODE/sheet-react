@@ -1,14 +1,25 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { MdArrowDropDown } from 'react-icons/md';
 import { useDelayHover } from 'shared/lib/hooks/useDelayHover';
 import styles from './CellCol.module.css';
 
-export const CellCol: FC = () => {
+interface ICellColProps {
+  value: string;
+  width: number;
+}
+
+export const CellCol: FC<ICellColProps> = memo(({ value, width }) => {
   const { isShow, onMouseEnter, onMouseLeave, onMouseMove } = useDelayHover(false, 300, 0);
 
   return (
-    <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove} className={styles.cell_col}>
-      A <div className={styles.resize}></div>
+    <div
+      style={{ width }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onMouseMove={onMouseMove}
+      className={styles.cell_col}
+    >
+      {value} <div className={styles.resize}></div>
       {isShow && (
         <div className={styles.actions}>
           <MdArrowDropDown />
@@ -16,4 +27,4 @@ export const CellCol: FC = () => {
       )}
     </div>
   );
-};
+});

@@ -15,8 +15,7 @@
 }
 
 .cell.active {
-  box-shadow: 0px 0px 4px 2px var(--color-green2);
-  outline: 2px solid var(--color-green);
+  box-shadow: -0.3px 0px 0px 2px var(--color-green), -0.5px 0px 5px 1px var(--color-green2);
   z-index: 20;
 }
 

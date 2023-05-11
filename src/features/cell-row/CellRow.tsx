@@ -1,10 +1,15 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import styles from './CellRow.module.css';
 
-export const CellRow: FC = () => {
+export interface ICellRowProps {
+  value: string;
+  height: number;
+}
+
+export const CellRow: FC<ICellRowProps> = memo(({ value, height }) => {
   return (
-    <div className={styles.cell_row}>
-      1 <div className={styles.resize}></div>
+    <div style={{ height }} className={styles.cell_row}>
+      {value} <div className={styles.resize}></div>
     </div>
   );
-};
+});
