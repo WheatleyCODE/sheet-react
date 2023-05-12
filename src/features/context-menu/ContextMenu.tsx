@@ -17,8 +17,6 @@ export const ContextMenu: FC<ContextMenuProps> = memo(() => {
 
   useClickOutside(ref, closeContextMenu, ['click', 'contextmenu']);
 
-  console.log(coords);
-
   return (
     <motion.div
       ref={ref}

@@ -1,20 +1,19 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { ICell, ICol, IRow } from 'shared/types/table';
-import { createTable } from './sheets/helpers/createTable';
 
 export interface TableState {
+  id: string;
   cols: ICol[];
   rows: IRow[];
   cells: ICell[][];
   selectCells: ICell[];
 }
 
-const { cols, rows, cells } = createTable();
-
 export const initialState: TableState = {
-  cols,
-  rows,
-  cells,
+  id: '',
+  cols: [],
+  rows: [],
+  cells: [],
   selectCells: [],
 };
 
@@ -22,16 +21,13 @@ export const tableSlice = createSlice({
   name: 'table',
   initialState,
   reducers: {
-    initCols: (state, { payload }: PayloadAction<ICol[]>) => {
-      state.cols = payload;
-    },
+    initTable: (state, { payload }: PayloadAction<{ cols: ICol[]; rows: IRow[]; cells: ICell[][]; id: string }>) => {
+      const { id, cols, rows, cells } = payload;
 
-    initRows: (state, { payload }: PayloadAction<IRow[]>) => {
-      state.rows = payload;
-    },
-
-    initCels: (state, { payload }: PayloadAction<ICell[][]>) => {
-      state.cells = payload;
+      state.id = id;
+      state.cols = cols;
+      state.rows = rows;
+      state.cells = cells;
     },
 
     setSelectCells: (state, { payload }: PayloadAction<ICell[]>) => {

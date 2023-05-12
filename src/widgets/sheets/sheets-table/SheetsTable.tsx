@@ -7,13 +7,13 @@ import { ICell } from 'shared/types/table';
 import styles from './SheetsTable.module.css';
 
 export const SheetsTable: FC = () => {
-  const { cols, rows, cells, selectCells } = useTypedSelector((state) => state.table);
+  const { cols, rows, cells, selectCells, id } = useTypedSelector((state) => state.table);
   const dispatch = useTypedDispatch();
   const { openContextMenu } = useContextMenu();
 
   useEffect(() => {
-    dispatch(tableActions.setSelectCells([cells[0][0]]));
-  }, []);
+    dispatch(tableActions.setSelectCells([cells[0]?.[0]]));
+  }, [id]);
 
   const selectCell = useCallback((cell: ICell) => {
     dispatch(tableActions.setSelectCells([cell]));
@@ -40,7 +40,7 @@ export const SheetsTable: FC = () => {
           {cells[i].map((cell, j) => (
             <Cell
               selectCell={selectCell}
-              isActive={!!selectCells.find((el) => el.id === cell.id)}
+              isActive={!!selectCells.find((el) => el?.id === cell?.id)}
               key={cell.id}
               height={row.height}
               width={cols[j].width}

@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC, useEffect } from 'react';
 import { Logo } from 'entities/logo/Logo';
 import { Input, Title } from 'shared/ui';
 import { useValidInput } from 'shared/lib/hooks/useValidInput';
@@ -10,9 +10,14 @@ import { sheetsActions } from 'widgets/sheetsSlice';
 import styles from './SheetsHeader.module.css';
 
 export const SheetsHeader: FC = () => {
-  const { name } = useTypedSelector((state) => state.sheets);
+  const { name, id } = useTypedSelector((state) => state.sheets);
   const dispatch = useTypedDispatch();
-  const input = useValidInput(name);
+
+  const input = useValidInput('');
+
+  useEffect(() => {
+    input.changeValue(name);
+  }, [id]);
 
   const changeName = useDebounce((value: string) => {
     dispatch(sheetsActions.changeName(value));

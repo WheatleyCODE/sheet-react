@@ -4,7 +4,7 @@ import { asideSlice, toolbarSlice, tableSlice, createSheetsSlice, sheetsSlice } 
 
 export const rootReducer = combineReducers({
   [tableSlice.name]: tableSlice.reducer,
-  [toolbarSlice.name]: tableSlice.reducer,
+  [toolbarSlice.name]: toolbarSlice.reducer,
   [asideSlice.name]: asideSlice.reducer,
   [createSheetsSlice.name]: createSheetsSlice.reducer,
   [sheetsSlice.name]: sheetsSlice.reducer,

@@ -7,13 +7,14 @@ import styles from './TemplateCard.module.css';
 export interface ITemplateCardProps {
   text: string;
   src: string;
+  path: string;
   noAnimate?: boolean;
 }
 
-export const TemplateCard: FC<ITemplateCardProps> = ({ text, src, noAnimate = false }) => {
+export const TemplateCard: FC<ITemplateCardProps> = ({ text, src, path, noAnimate = false }) => {
   return (
     <div className={noAnimate ? styles.card_def : styles.card}>
-      <Link to="sheets/randomId">
+      <Link to={path}>
         {noAnimate ? (
           <div className={styles.image}>
             <img src={src} alt="Картинка" />

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, Fragment } from 'react';
 import { ListActions, ListsControllers, ToggleAside } from 'features';
 import styles from './SheetsFooter.module.css';
 import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
@@ -13,11 +13,11 @@ export const SheetsFooter: FC = () => {
 
         <div className={styles.margin5} />
 
-        {lists.map(({ name }) => (
-          <>
+        {lists.map(({ name }, i) => (
+          <Fragment key={i}>
             <ListActions name={name} isActive />
             <div className={styles.margin5} />
-          </>
+          </Fragment>
         ))}
       </div>
 
