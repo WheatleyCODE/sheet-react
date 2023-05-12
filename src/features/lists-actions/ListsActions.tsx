@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { MdContentCopy, MdDeleteOutline, MdDriveFileRenameOutline, MdOutlineSettings } from 'react-icons/md';
 import { Button, MDropdown, Title } from 'shared/ui';
-import { useDropdown } from 'shared/lib/hooks/useDropdown';
+import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
 import styles from './ListActions.module.css';
 

@@ -8,3 +8,7 @@ export { Settings } from './settings/Settings';
 export { ListFilter } from './list-filter/ListFilter';
 export { ListsControllers } from './lists-controllers/ListsControllers';
 export { ListActions } from './lists-actions/ListsActions';
+
+export { ContextMenu } from './context-menu/ContextMenu';
+export { contextMenuActions, contextMenuSlice } from './context-menu/contextMenuSlice';
+export { useContextMenu } from './context-menu/useContextMenu';

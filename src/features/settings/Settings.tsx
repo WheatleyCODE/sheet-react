@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
 import { Button, MDropdown, Title } from 'shared/ui';
-import { useDropdown } from 'shared/lib/hooks/useDropdown';
+import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import styles from './Settings.module.css';
 
 export const Settings: FC = () => {

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Button, MDropdown, Title } from 'shared/ui';
 import styles from './ListFilter.module.css';
 import { MdCheck, MdOutlineFilterAlt } from 'react-icons/md';
-import { useDropdown } from 'shared/lib/hooks/useDropdown';
+import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import { AnimatePresence } from 'framer-motion';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
 

@@ -3,7 +3,7 @@ import { MdArrowDropDown } from 'react-icons/md';
 import { AnimatePresence } from 'framer-motion';
 import { Button, MDropdown, Title } from 'shared/ui';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
-import { useDropdown } from 'shared/lib/hooks/useDropdown';
+import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import styles from './FontFamily.module.css';
 
 export const FontFamily: FC = () => {
@@ -20,7 +20,7 @@ export const FontFamily: FC = () => {
           <MDropdown
             className={styles.dropdown}
             closeDropdown={closeDropdown}
-            transition={{ duration: ANIMATION_DURATION }}
+            transition={{ duration: ANIMATION_DURATION * 1.5 }}
             exit={{ height: 0 }}
             animate={{ height: 'auto' }}
             initial={{ height: 0 }}

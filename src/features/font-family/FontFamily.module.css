@@ -8,6 +8,7 @@
 
 .menu {
   width: 150px;
+  height: 500px;
   padding: var(--sheets-padding);
 }
 

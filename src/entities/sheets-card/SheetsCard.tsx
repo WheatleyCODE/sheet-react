@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { AiOutlineTable } from 'react-icons/ai';
 import { MdDeleteOutline } from 'react-icons/md';
-import { useDropdown } from 'shared/lib/hooks/useDropdown';
+import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import { MActionWindow } from 'shared/ui/action-window/ActionWindow';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
 import styles from './SheetsCard.module.css';

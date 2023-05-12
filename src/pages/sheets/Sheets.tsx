@@ -2,13 +2,19 @@ import { FC } from 'react';
 import { SheetsHeader, SheetsToolbar, SheetsTable, SheetsFooter, SheetsAside, SheetsFormula } from 'widgets';
 import { AnimatePresence } from 'framer-motion';
 import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
+import { ContextMenu, useContextMenu } from 'features';
 import styles from './Sheets.module.css';
 
 export const Sheets: FC = () => {
-  const { isShow } = useTypedSelector((state) => state.aside);
+  const { isShow: isShowAside } = useTypedSelector((state) => state.aside);
+  const { isShow: isShowContext } = useContextMenu();
+
+  const onContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+  };
 
   return (
-    <div className={styles.sheets}>
+    <div onContextMenu={onContextMenu} className={styles.sheets}>
       <SheetsHeader />
 
       <div className={styles.row}>
@@ -19,8 +25,10 @@ export const Sheets: FC = () => {
           <SheetsFooter />
         </div>
 
-        <AnimatePresence>{isShow && <SheetsAside />}</AnimatePresence>
+        <AnimatePresence>{isShowAside && <SheetsAside />}</AnimatePresence>
       </div>
+
+      <AnimatePresence>{isShowContext && <ContextMenu />}</AnimatePresence>
     </div>
   );
 };

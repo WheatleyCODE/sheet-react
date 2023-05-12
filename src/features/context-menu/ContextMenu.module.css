@@ -1,0 +1,44 @@
+.menu {
+  overflow: hidden;
+  position: absolute;
+  z-index: 100;
+  top: 300px;
+  left: 300px;
+  background-color: var(--color-white);
+  box-shadow: 0 1px 3px 1px rgba(70, 67, 73, 0.4);
+  border-radius: var(--border-radius);
+}
+
+.list {
+  padding: var(--sheets-padding) 0;
+  width: 210px;
+}
+
+.li {
+  transition: all var(--animation-duration);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 35px;
+  font-size: var(--font-normal2);
+  padding-left: var(--sheets-padding);
+  font-weight: 400;
+}
+
+.li:hover {
+  background-color: var(--color-light-grey);
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: calc(var(--sheets-padding) / 2)
+}
+
+.icon svg {
+  color: var(--color-black2);
+  font-size: var(--font-big2);
+}

@@ -1,6 +1,6 @@
 import { FC, useRef, memo } from 'react';
-import styles from './Cell.module.css';
 import { ICell } from 'shared/types/table';
+import styles from './Cell.module.css';
 
 export interface ICellProps {
   isActive?: boolean;
