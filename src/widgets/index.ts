@@ -14,3 +14,4 @@ export { tableActions, tableSlice } from './tableSlice';
 export { toolbarActions, toolbarSlice } from './toolbarSlice';
 export { asideActions, asideSlice } from './asideSlice';
 export { createSheetsActions, createSheetsSlice } from './createSheetsSlice';
+export { sheetsActions, sheetsSlice } from './sheetsSlice';

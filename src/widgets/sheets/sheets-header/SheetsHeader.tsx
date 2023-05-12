@@ -1,12 +1,27 @@
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 import { Logo } from 'entities/logo/Logo';
 import { Input, Title } from 'shared/ui';
 import { useValidInput } from 'shared/lib/hooks/useValidInput';
 import { Settings } from 'features';
+import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
+import { useTypedDispatch } from 'shared/lib/hooks/redux/useTypedDispatch';
+import { useDebounce } from 'shared/lib/hooks/useDebounce';
+import { sheetsActions } from 'widgets/sheetsSlice';
 import styles from './SheetsHeader.module.css';
 
 export const SheetsHeader: FC = () => {
-  const input = useValidInput('Новая таблица');
+  const { name } = useTypedSelector((state) => state.sheets);
+  const dispatch = useTypedDispatch();
+  const input = useValidInput(name);
+
+  const changeName = useDebounce((value: string) => {
+    dispatch(sheetsActions.changeName(value));
+  }, 200);
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    input.onChange(e);
+    changeName(e.target.value);
+  };
 
   return (
     <div className={styles.header}>
@@ -20,7 +35,7 @@ export const SheetsHeader: FC = () => {
             value={input.value}
             type="text"
             placeholder="Название таблицы"
-            onChange={input.onChange}
+            onChange={onChange}
             onBlur={input.onBlur}
             onFocus={input.onFocus}
             isError={input.isError}

@@ -8,7 +8,7 @@ export const SheetsFormula: FC = () => {
 
   return (
     <div className={styles.formula}>
-      <div className={styles.coords}>{selectCells[0].id}</div>
+      <div className={styles.coords}>{selectCells[0]?.id}</div>
       <div className={styles.textfild}>
         <div className={styles.icon}>
           <MdFunctions />

@@ -1,24 +1,24 @@
 import { FC } from 'react';
-import { MdAdd, MdFormatListBulleted } from 'react-icons/md';
-import { Button, Title } from 'shared/ui';
-import { ToggleAside } from 'features';
+import { ListActions, ListsControllers, ToggleAside } from 'features';
 import styles from './SheetsFooter.module.css';
+import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
 
 export const SheetsFooter: FC = () => {
+  const { lists } = useTypedSelector((state) => state.sheets);
+
   return (
     <div className={styles.footer}>
       <div className={styles.left}>
-        <Title text="Добавить лист">
-          <Button className={styles.button} Icon={MdAdd} />
-        </Title>
+        <ListsControllers lists={lists} />
 
-        <Title text="Все листы">
-          <Button className={styles.button} Icon={MdFormatListBulleted} />
-        </Title>
+        <div className={styles.margin5} />
 
-        <Title text="Перейти на Лист 1">
-          <Button className={styles.button} text="Лист 1" />
-        </Title>
+        {lists.map(({ name }) => (
+          <>
+            <ListActions name={name} isActive />
+            <div className={styles.margin5} />
+          </>
+        ))}
       </div>
 
       <div className={styles.right}>

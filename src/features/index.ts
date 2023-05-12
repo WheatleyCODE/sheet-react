@@ -6,3 +6,5 @@ export { CellAllSelector } from './cell-all-selector/CellAllSelector';
 export { FontFamily } from './font-family/FontFamily';
 export { Settings } from './settings/Settings';
 export { ListFilter } from './list-filter/ListFilter';
+export { ListsControllers } from './lists-controllers/ListsControllers';
+export { ListActions } from './lists-actions/ListsActions';
