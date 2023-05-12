@@ -20,7 +20,7 @@ export const SheetsTable: FC = () => {
 
   return (
     <div className={styles.table}>
-      <div className={styles.table_row}>
+      <div className={`${styles.table_row_header}`}>
         <CellAllSelector />
 
         {cols.map((col) => (
