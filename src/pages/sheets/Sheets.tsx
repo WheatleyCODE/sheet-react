@@ -1,5 +1,6 @@
 import { FC, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { v4 } from 'uuid';
 import { useParams } from 'react-router-dom';
 import {
   SheetsHeader,
@@ -16,7 +17,6 @@ import { ContextMenu, useContextMenu } from 'features';
 import { createTable } from 'widgets/sheets/helpers/createTable';
 import { useTypedDispatch } from 'shared/lib/hooks/redux/useTypedDispatch';
 import { KVFactory, LocalStorageEngine } from 'shared/lib/kv-storage';
-import { generateId } from 'shared/lib/ids';
 import styles from './Sheets.module.css';
 
 export const Sheets: FC = () => {
@@ -38,8 +38,8 @@ export const Sheets: FC = () => {
       console.log(sheets);
 
       const { cols, rows, cells } = createTable(30, 30);
-      const newId = generateId();
-      const newId2 = 'randomId'; // ! fix
+      const newId = v4();
+      const newId2 = v4();
 
       dispatch(
         sheetsActions.initSheets({ name: 'Таблица', lists: [{ name: 'Лист 1', id: newId }], settings: {}, id: newId2 })
