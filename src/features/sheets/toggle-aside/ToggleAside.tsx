@@ -3,7 +3,7 @@ import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-ico
 import { Button, Title } from 'shared/ui';
 import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
 import { useTypedDispatch } from 'shared/lib/hooks/redux/useTypedDispatch';
-import { asideActions } from 'widgets/asideSlice';
+import { asideActions } from 'widgets/sheets/store/asideSlice';
 import styles from './ToggleAside.module.css';
 
 export const ToggleAside: FC = () => {

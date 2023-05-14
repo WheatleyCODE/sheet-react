@@ -4,14 +4,13 @@ export { SheetsTable } from './sheets/sheets-table/SheetsTable';
 export { SheetsToolbar } from './sheets/sheets-toolbar/SheetsToolbar';
 export { SheetsAside } from './sheets/sheets-aside/SheetsAside';
 export { SheetsFormula } from './sheets/sheets-formula/SheetsFormula';
+export { tableActions, tableSlice } from './sheets/store/tableSlice';
+export { toolbarActions, toolbarSlice } from './sheets/store/toolbarSlice';
+export { asideActions, asideSlice } from './sheets/store/asideSlice';
+export { sheetsActions, sheetsSlice } from './sheets/store/sheetsSlice';
 
 export { CreateSheetsHeader } from './create-sheets/create-sheets-header/CreateSheetsHeader';
 export { CreateSheetsTemplates } from './create-sheets/create-sheets-templates/CreateSheetsTemplates';
 export { CreateSheetsLists } from './create-sheets/create-sheets-lists/CreateSheetsLists';
 export { CreateSheetsFilters } from './create-sheets/create-sheets-filters/CreateSheetsFilters';
-
-export { tableActions, tableSlice } from './tableSlice';
-export { toolbarActions, toolbarSlice } from './toolbarSlice';
-export { asideActions, asideSlice } from './asideSlice';
-export { createSheetsActions, createSheetsSlice } from './createSheetsSlice';
-export { sheetsActions, sheetsSlice } from './sheetsSlice';
+export { createSheetsActions, createSheetsSlice } from './create-sheets/store/createSheetsSlice';

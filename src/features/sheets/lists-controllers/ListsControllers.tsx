@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { MdAdd, MdCheck, MdFormatListBulleted } from 'react-icons/md';
 import { Button, MDropdown, Title } from 'shared/ui';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
-import { IList } from 'widgets/sheetsSlice';
+import { IList } from 'widgets/sheets/store/sheetsSlice';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
 import styles from './ListsControllers.module.css';
 

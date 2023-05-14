@@ -6,7 +6,7 @@ import { Settings } from 'features';
 import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
 import { useTypedDispatch } from 'shared/lib/hooks/redux/useTypedDispatch';
 import { useDebounce } from 'shared/lib/hooks/useDebounce';
-import { sheetsActions } from 'widgets/sheetsSlice';
+import { sheetsActions } from 'widgets/sheets/store/sheetsSlice';
 import styles from './SheetsHeader.module.css';
 
 export const SheetsHeader: FC = () => {
