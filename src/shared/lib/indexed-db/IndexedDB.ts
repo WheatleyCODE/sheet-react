@@ -1,116 +1,146 @@
+export type IndexConstructor = (store: IDBObjectStore) => void;
 export class IndexedDB {
-  private databaseName: string;
-  private storeName: string;
-  private keyPath: string;
-  private db: IDBDatabase | null;
+  databaseName: string;
+  storeName: string;
+  keyPath: string;
+  #db: IDBDatabase | null;
   isOpen = false;
 
   constructor(databaseName: string, storeName: string, keyPath: string) {
     this.databaseName = databaseName;
     this.storeName = storeName;
     this.keyPath = keyPath;
-    this.db = null;
-
-    this.open();
+    this.#db = null;
   }
 
-  open(): Promise<void> {
-    return new Promise((resolve, reject) => {
+  open(constructor?: IndexConstructor): Promise<void> {
+    return new Promise((res, rej) => {
       const request = window.indexedDB.open(this.databaseName);
 
       request.onerror = () => {
-        reject(Error('Ошибка IndexedDB: невозможно открыть базу данных'));
+        rej(Error('Ошибка IndexedDB: невозможно открыть базу данных'));
+      };
+
+      request.onupgradeneeded = () => {
+        const db = request.result;
+        const store = db.createObjectStore(this.storeName, { keyPath: this.keyPath });
+
+        try {
+          constructor && constructor(store);
+        } catch {
+          rej(Error('Ошибка IndexedDB: ошибка при создании индексов'));
+        }
       };
 
       request.onsuccess = () => {
-        this.db = request.result;
+        this.#db = request.result;
         this.isOpen = true;
-        resolve();
-      };
-
-      request.onupgradeneeded = (event: any) => {
-        const db = event.target.result;
-        db.createObjectStore(this.storeName, { keyPath: this.keyPath });
+        res();
       };
     });
   }
 
-  set(data: any): Promise<void> {
-    return new Promise((resolve, reject) => {
-      const transaction = this.db!.transaction([this.storeName], 'readwrite');
+  put<T>(keyPathValue: string, value: T): Promise<void> {
+    return new Promise((res, rej) => {
+      if (!this.#db || !this.isOpen) {
+        rej(Error('Ошибка IndexedDB: базы данных нет или она не открыта'));
+        return;
+      }
+
+      const transaction = this.#db.transaction(this.storeName, 'readwrite');
       const store = transaction.objectStore(this.storeName);
-      const request = store.add(data);
+      const request = store.put({ [this.keyPath]: keyPathValue, ...value });
 
       request.onerror = () => {
-        reject(Error('Ошибка IndexedDB: невозможно добавить данные'));
+        rej(Error('Ошибка IndexedDB: невозможно обновить данные'));
       };
 
       request.onsuccess = () => {
-        resolve();
+        res();
       };
     });
   }
 
   get<T>(key: string): Promise<T> {
-    return new Promise((resolve, reject) => {
-      const transaction = this.db!.transaction([this.storeName], 'readonly');
+    return new Promise((res, rej) => {
+      if (!this.#db || !this.isOpen) {
+        rej(Error('Ошибка IndexedDB: базы данных нет или она не открыта'));
+        return;
+      }
+
+      const transaction = this.#db.transaction(this.storeName, 'readonly');
       const store = transaction.objectStore(this.storeName);
       const request = store.get(key);
 
       request.onerror = () => {
-        reject(Error('Ошибка IndexedDB: невозможно получить данные'));
+        rej(Error('Ошибка IndexedDB: невозможно получить данные'));
       };
 
       request.onsuccess = () => {
-        resolve(request.result);
+        res(request.result);
+      };
+    });
+  }
+
+  add<T>(data: T): Promise<void> {
+    return new Promise((res, rej) => {
+      if (!this.#db || !this.isOpen) {
+        rej(Error('Ошибка IndexedDB: базы данных нет или она не открыта'));
+        return;
+      }
+
+      const transaction = this.#db.transaction(this.storeName, 'readwrite');
+      const store = transaction.objectStore(this.storeName);
+      const request = store.add(data);
+
+      request.onerror = () => {
+        rej(Error('Ошибка IndexedDB: невозможно добавить данные'));
+      };
+
+      request.onsuccess = () => {
+        res();
       };
     });
   }
 
   getAll<T>(): Promise<T[]> {
-    return new Promise((resolve, reject) => {
-      const transaction = this.db!.transaction([this.storeName], 'readonly');
+    return new Promise((res, rej) => {
+      if (!this.#db || !this.isOpen) {
+        rej(Error('Ошибка IndexedDB: базы данных нет или она не открыта'));
+        return;
+      }
+
+      const transaction = this.#db.transaction([this.storeName], 'readonly');
       const store = transaction.objectStore(this.storeName);
       const request = store.getAll();
 
       request.onerror = () => {
-        reject(Error('Ошибка IndexedDB: невозможно получить данные'));
+        rej(Error('Ошибка IndexedDB: невозможно получить данные'));
       };
 
       request.onsuccess = () => {
-        resolve(request.result);
+        res(request.result);
       };
     });
   }
 
-  update(key: string, value: any): Promise<void> {
-    return new Promise((resolve, reject) => {
-      const transaction = this.db!.transaction([this.storeName], 'readwrite');
-      const store = transaction.objectStore(this.storeName);
-      const request = store.put({ key, value });
+  delete(key: string): Promise<void> {
+    return new Promise((res, rej) => {
+      if (!this.#db || !this.isOpen) {
+        rej(Error('Ошибка IndexedDB: базы данных нет или она не открыта'));
+        return;
+      }
 
-      request.onerror = () => {
-        reject(Error('Ошибка IndexedDB: невозможно обновить данные'));
-      };
-
-      request.onsuccess = () => {
-        resolve();
-      };
-    });
-  }
-
-  remove(key: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      const transaction = this.db!.transaction([this.storeName], 'readwrite');
+      const transaction = this.#db.transaction([this.storeName], 'readwrite');
       const store = transaction.objectStore(this.storeName);
       const request = store.delete(key);
 
       request.onerror = () => {
-        reject(Error('Ошибка IndexedDB: невозможно удалить данные'));
+        rej(Error('Ошибка IndexedDB: невозможно удалить данные'));
       };
 
       request.onsuccess = () => {
-        resolve();
+        res();
       };
     });
   }

@@ -30,7 +30,7 @@ export class IndexedDBEngine implements KVStorageEngine {
   set(key: string, value: string): Promise<void> {
     return new Promise((res, rej) => {
       if (this.#db.isOpen) {
-        this.#db.update(key, value).then(res).catch(rej);
+        this.#db.put(key, value).then(res).catch(rej);
       } else {
         rej();
       }
@@ -40,7 +40,7 @@ export class IndexedDBEngine implements KVStorageEngine {
   async remove(key: string): Promise<void> {
     return new Promise((res, rej) => {
       if (this.#db.isOpen) {
-        this.#db.remove(key).then(res).catch(rej);
+        this.#db.delete(key).then(res).catch(rej);
       } else {
         rej();
       }
