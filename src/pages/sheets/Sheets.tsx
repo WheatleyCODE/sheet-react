@@ -1,54 +1,20 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { v4 } from 'uuid';
-import { useParams } from 'react-router-dom';
-import {
-  SheetsHeader,
-  SheetsToolbar,
-  SheetsTable,
-  SheetsFooter,
-  SheetsAside,
-  SheetsFormula,
-  tableActions,
-  sheetsActions,
-} from 'widgets';
+import { SheetsHeader, SheetsToolbar, SheetsTable, SheetsFooter, SheetsAside, SheetsFormula } from 'widgets';
 import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
 import { ContextMenu, useContextMenu } from 'features';
-import { createTable } from 'widgets/sheets/helpers/createTable';
-import { useTypedDispatch } from 'shared/lib/hooks/redux/useTypedDispatch';
-import { KVFactory, LocalStorageEngine } from 'shared/lib/kv-storage';
+import { useInitSheets } from './useInitSheets';
 import styles from './Sheets.module.css';
 
 export const Sheets: FC = () => {
   const { isShow: isShowAside } = useTypedSelector((state) => state.aside);
   const { isShow: isShowContext } = useContextMenu();
-  const { id } = useParams();
-  const dispatch = useTypedDispatch();
+
+  useInitSheets();
 
   const onContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
   };
-
-  useEffect(() => {
-    const check = async () => {
-      if (!id) return;
-
-      const ls = KVFactory('sheets', new LocalStorageEngine());
-      const sheets = await ls.get(id);
-      console.log(sheets);
-
-      const { cols, rows, cells } = createTable(30, 30);
-      const newId = v4();
-      const newId2 = v4();
-
-      dispatch(
-        sheetsActions.initSheets({ name: 'Таблица', lists: [{ name: 'Лист 1', id: newId }], settings: {}, id: newId2 })
-      );
-      dispatch(tableActions.initTable({ cols, rows, cells, id: newId }));
-    };
-
-    check();
-  }, []);
 
   return (
     <div onContextMenu={onContextMenu} className={styles.sheets}>
