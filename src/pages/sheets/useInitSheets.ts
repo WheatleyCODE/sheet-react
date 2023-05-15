@@ -19,12 +19,10 @@ export const useInitSheets = () => {
       await db.open();
 
       const ls = KVFactory('sheets', new LocalStorageEngine());
-      const sheets = await ls.get<string>(id);
+      const sheets = await ls.get<any>(id);
 
       if (sheets) {
-        const sheetsData = JSON.parse(sheets);
         const allCells = await db.getAll<ICell>();
-
         const cells: ICell[][] = [];
 
         for (let i = 0; i < 20; i++) {
@@ -39,13 +37,12 @@ export const useInitSheets = () => {
           cells[row][col] = cell;
 
           if (row === 0 && col === 0) {
-            // ! Fix
             cells[row][col] = { ...cell, id: '99:99' } as ICell;
           }
         }
 
-        dispatch(sheetsActions.initSheets(sheetsData));
-        dispatch(tableActions.initTable({ cols: sheetsData.cols, rows: sheetsData.rows, cells, id: 'tableId' }));
+        dispatch(sheetsActions.initSheets(sheets));
+        dispatch(tableActions.initTable({ cols: sheets.cols, rows: sheets.rows, cells, id: sheets.currentList }));
         return;
       }
 
@@ -53,8 +50,9 @@ export const useInitSheets = () => {
       const tableId = v4();
       const sheetsData = {
         name: 'Таблица',
-        lists: [{ name: 'Лист 1', id: tableId }],
+        lists: [{ name: 'Лист 1', id: tableId, createDate: Date.now(), changeDate: Date.now(), openDate: Date.now() }],
         settings: {},
+        currentList: tableId,
         id,
       };
 
@@ -67,7 +65,7 @@ export const useInitSheets = () => {
         }
       }
 
-      await ls.set(id, JSON.stringify({ ...sheetsData, cols, rows }));
+      await ls.set(id, { ...sheetsData, cols, rows } as any);
     };
 
     initSheets();
