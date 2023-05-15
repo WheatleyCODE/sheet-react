@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import styles from './CreateSheetsLists.module.css';
-import { SheetsCard } from 'entities/index';
+import { SheetsCard } from 'features';
 import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
+import styles from './CreateSheetsLists.module.css';
 
 export interface ICreateSheetsListsProps {
   deleteSheets: (id: string) => Promise<void>;

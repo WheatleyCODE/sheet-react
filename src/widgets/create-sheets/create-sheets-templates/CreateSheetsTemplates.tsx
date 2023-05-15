@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { v4 } from 'uuid';
-import { TemplateCard } from 'entities';
+import { TemplateCard } from 'features';
 import styles from './CreateSheetsTemplates.module.css';
 
 export const CreateSheetsTemplates: FC = () => {

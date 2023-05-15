@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useEffect } from 'react';
 import { Logo } from 'entities/logo/Logo';
 import { Input, Title } from 'shared/ui';
-import { useValidInput } from 'shared/lib/hooks/useValidInput';
+import { useValidInput } from 'shared/ui/input/useValidInput';
 import { Settings } from 'features';
 import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
 import { useTypedDispatch } from 'shared/lib/hooks/redux/useTypedDispatch';

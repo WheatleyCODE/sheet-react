@@ -9,6 +9,8 @@ export { ContextMenu } from './table/context-menu/ContextMenu';
 export { FontFamily } from './toolbar/font-family/FontFamily';
 
 export { ListFilter } from './create-sheets/list-filter/ListFilter';
+export { SheetsCard } from './create-sheets/sheets-card/SheetsCard';
+export { TemplateCard } from './create-sheets/template-card/TemplateCard';
 
 export { Settings } from './sheets/settings/Settings';
 export { ListsControllers } from './sheets/lists-controllers/ListsControllers';
