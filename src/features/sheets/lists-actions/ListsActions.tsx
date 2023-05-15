@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { MdContentCopy, MdDeleteOutline, MdDriveFileRenameOutline, MdOutlineSettings } from 'react-icons/md';
 import { Button, MDropdown, Title } from 'shared/ui';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
+import { DropdownMenu, DropdownMenuItem } from 'entities';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
 import styles from './ListActions.module.css';
 
@@ -33,26 +34,11 @@ export const ListActions: FC<ListActionsProps> = ({ name, isActive }) => {
               className={styles.dropdown}
               closeDropdown={closeDropdown}
             >
-              <div className={styles.list}>
-                <div className={styles.li}>
-                  <div className={styles.icon}>
-                    <MdDeleteOutline />
-                  </div>
-                  Удалить
-                </div>
-                <div className={styles.li}>
-                  <div className={styles.icon}>
-                    <MdContentCopy />
-                  </div>
-                  Копировать
-                </div>
-                <div className={styles.li}>
-                  <div className={styles.icon}>
-                    <MdDriveFileRenameOutline />
-                  </div>
-                  Переименовать
-                </div>
-              </div>
+              <DropdownMenu>
+                <DropdownMenuItem onClick={closeDropdown} Icon={MdDeleteOutline} text="Удалить" />
+                <DropdownMenuItem onClick={closeDropdown} Icon={MdContentCopy} text="Копировать" />
+                <DropdownMenuItem onClick={closeDropdown} Icon={MdDriveFileRenameOutline} text="Переименовать" />
+              </DropdownMenu>
             </MDropdown>
           )}
         </AnimatePresence>

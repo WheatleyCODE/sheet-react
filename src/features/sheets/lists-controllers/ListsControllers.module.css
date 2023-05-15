@@ -11,30 +11,3 @@
 .button {
   margin-right: 1px;
 }
-
-.list {
-  padding: var(--sheets-padding) 0;
-  width: 130px;
-}
-
-.li {
-  transition: all var(--animation-duration);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  height: 35px;
-  padding-left: var(--sheets-padding);
-}
-
-.li:hover {
-  background-color: var(--color-light-grey);
-}
-
-.icon {
-  width: 35px;
-  padding-left: calc(var(--sheets-padding) / 2);
-}
-
-.icon svg {
-  color: var(--color-black2);
-}

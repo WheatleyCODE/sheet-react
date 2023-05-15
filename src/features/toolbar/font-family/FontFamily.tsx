@@ -1,10 +1,11 @@
 import { FC } from 'react';
-import { MdArrowDropDown } from 'react-icons/md';
+import { MdArrowDropDown, MdCheck } from 'react-icons/md';
 import { AnimatePresence } from 'framer-motion';
 import { Button, MDropdown, Title } from 'shared/ui';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import styles from './FontFamily.module.css';
+import { DropdownMenu, DropdownMenuItem } from 'entities/index';
 
 export const FontFamily: FC = () => {
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
@@ -25,9 +26,11 @@ export const FontFamily: FC = () => {
             animate={{ height: 'auto' }}
             initial={{ height: 0 }}
           >
-            <div className={styles.menu}>
-              <h1>ADD MENU</h1>
-            </div>
+            <DropdownMenu>
+              <DropdownMenuItem onClick={closeDropdown} Icon={MdCheck} text="Roboto" />
+              <DropdownMenuItem onClick={closeDropdown} Icon={MdCheck} text="Arial" />
+              <DropdownMenuItem onClick={closeDropdown} Icon={MdCheck} text="Sans serif" />
+            </DropdownMenu>
           </MDropdown>
         )}
       </AnimatePresence>

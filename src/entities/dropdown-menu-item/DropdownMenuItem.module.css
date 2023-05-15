@@ -1,0 +1,32 @@
+.item {
+  position: relative;
+  transition: all var(--animation-duration);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 35px;
+  padding-left: var(--sheets-padding);
+}
+
+.item:hover {
+  background-color: var(--color-light-grey);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  width: 35px;
+  padding-left: calc(var(--sheets-padding) / 2);
+}
+
+.icon svg {
+  color: var(--color-black2);
+}
+
+.sub_menu {
+  position: absolute;
+  left: -215px;
+  top: -10px;
+  border-top: 1px solid rgb(235, 235, 235);
+  box-shadow: rgba(70, 67, 73, 0.4) 0 1px 2px, rgba(70, 67, 73, 0.3) 0 7px 13px -3px;
+}

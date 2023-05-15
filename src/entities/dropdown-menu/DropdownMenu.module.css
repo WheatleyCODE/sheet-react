@@ -1,0 +1,5 @@
+.menu {
+  padding: var(--sheets-padding) 0;
+  width: 220px;
+  background-color: var(--color-white);
+}

@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { MdAdd, MdCheck, MdFormatListBulleted } from 'react-icons/md';
 import { Button, MDropdown, Title } from 'shared/ui';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
+import { DropdownMenu, DropdownMenuItem } from 'entities';
 import { IList } from 'widgets/sheets/store/sheetsSlice';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
 import styles from './ListsControllers.module.css';
@@ -33,16 +34,11 @@ export const ListsControllers: FC<IListsControllersProps> = ({ lists }) => {
               className={styles.dropdown}
               closeDropdown={closeDropdown}
             >
-              <div className={styles.list}>
+              <DropdownMenu>
                 {lists.map(({ name }) => (
-                  <div className={styles.li}>
-                    <div className={styles.icon}>
-                      <MdCheck />
-                    </div>
-                    {name}
-                  </div>
+                  <DropdownMenuItem onClick={closeDropdown} Icon={MdCheck} text={name} />
                 ))}
-              </div>
+              </DropdownMenu>
             </MDropdown>
           )}
         </AnimatePresence>

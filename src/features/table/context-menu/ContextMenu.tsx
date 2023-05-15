@@ -1,7 +1,15 @@
 import { FC, memo, useRef } from 'react';
 import { motion } from 'framer-motion';
+import {
+  MdCheck,
+  MdChevronLeft,
+  MdContentCopy,
+  MdContentCut,
+  MdContentPaste,
+  MdOutlineFilterAlt,
+} from 'react-icons/md';
+import { DropdownMenu, DropdownMenuItem } from 'entities';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
-import { MdContentCopy, MdContentCut, MdContentPaste, MdOutlineFilterAlt, MdTimeline } from 'react-icons/md';
 import { useClickOutside } from 'shared/lib/hooks/useClickOutsize';
 import { useContextMenu } from './useContextMenu';
 import styles from './ContextMenu.module.css';
@@ -11,6 +19,7 @@ interface ContextMenuProps {
   selectedCells?: [];
 }
 
+// ! FIX
 export const ContextMenu: FC<ContextMenuProps> = memo(() => {
   const ref = useRef<null | HTMLDivElement>(null);
   const { closeContextMenu, coords } = useContextMenu();
@@ -27,38 +36,19 @@ export const ContextMenu: FC<ContextMenuProps> = memo(() => {
       initial={{ height: 0, opacity: 0.5 }}
       className={styles.menu}
     >
-      <div onClick={closeContextMenu} className={styles.list}>
-        <div className={styles.li}>
-          <div className={styles.icon}>
-            <MdContentCut />
-          </div>
-          Вырезать
-        </div>
-        <div className={styles.li}>
-          <div className={styles.icon}>
-            <MdContentCopy />
-          </div>
-          Копировать
-        </div>
-        <div className={styles.li}>
-          <div className={styles.icon}>
-            <MdContentPaste />
-          </div>
-          Вставить
-        </div>
-        <div className={styles.li}>
-          <div className={styles.icon}>
-            <MdTimeline />
-          </div>
-          Вырезать
-        </div>
-        <div className={styles.li}>
-          <div className={styles.icon}>
-            <MdOutlineFilterAlt />
-          </div>
-          Добавить фильтр
-        </div>
-      </div>
+      <DropdownMenu>
+        <DropdownMenuItem onClick={closeContextMenu} Icon={MdContentCut} text="Вырезать" />
+        <DropdownMenuItem onClick={closeContextMenu} Icon={MdContentCopy} text="Копировать" />
+        <DropdownMenuItem onClick={closeContextMenu} Icon={MdContentPaste} text="Вставить" />
+        <DropdownMenuItem onClick={closeContextMenu} Icon={MdOutlineFilterAlt} text="Добавить фильтр" />
+        <DropdownMenuItem Icon={MdChevronLeft} text="Выбрать что-то">
+          <DropdownMenu>
+            <DropdownMenuItem onClick={closeContextMenu} Icon={MdCheck} text="По дате изменения" />
+            <DropdownMenuItem onClick={closeContextMenu} Icon={MdCheck} text="По дате просмотра" />
+            <DropdownMenuItem onClick={closeContextMenu} Icon={MdCheck} text="По дате создания" />
+          </DropdownMenu>
+        </DropdownMenuItem>
+      </DropdownMenu>
     </motion.div>
   );
 });
