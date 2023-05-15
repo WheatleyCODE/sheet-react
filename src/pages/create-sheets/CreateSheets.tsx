@@ -9,18 +9,20 @@ import {
 import { useTypedDispatch } from 'shared/lib/hooks/redux/useTypedDispatch';
 import styles from './CreateSheets.module.css';
 import { KVFactory, LocalStorageEngine } from 'shared/lib/kv-storage';
+import { ISheetsData } from 'widgets/create-sheets/store/createSheetsSlice';
+import { ISheetsState } from 'widgets/sheets/store/sheetsSlice';
 
 export const CreateSheets: FC = () => {
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
-    const sheets = [];
+    const sheets: ISheetsData[] = [];
 
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i) as string;
       const data = localStorage.getItem(key) as string;
-      const { name, lists, id } = JSON.parse(data);
-      sheets.push({ name, lists, id });
+      const { id, lists, name, createDate, changeDate, openDate }: ISheetsState = JSON.parse(data);
+      sheets.push({ name, listsCount: lists.length, id, changeDate, createDate, openDate });
     }
 
     dispatch(createSheetsActions.changeSheets(sheets));

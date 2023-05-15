@@ -1,25 +1,30 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-
+import { ICol, IRow } from 'shared/types/table';
 export interface IList {
   name: string;
   id: string;
-  createDate: number;
-  changeDate: number;
-  openDate: number;
+  cols: ICol[];
+  rows: IRow[];
 }
 
 export interface ISheetsState {
   id: string;
   name: string;
   lists: IList[];
-  currentList: string;
+  currentListId: string;
   settings: any;
+  createDate: number;
+  changeDate: number;
+  openDate: number;
 }
 
 export const initialState: ISheetsState = {
+  createDate: 0,
+  changeDate: 0,
+  openDate: 0,
   id: '',
-  name: 'de',
-  currentList: '',
+  name: '',
+  currentListId: '',
   lists: [],
   settings: {},
 };
@@ -33,13 +38,16 @@ export const sheetsSlice = createSlice({
     },
 
     initSheets: (state, { payload }: PayloadAction<ISheetsState>) => {
-      const { id, name, lists, settings, currentList } = payload;
+      const { id, name, lists, settings, currentListId, openDate, changeDate, createDate } = payload;
 
-      state.currentList = currentList;
+      state.currentListId = currentListId;
       state.id = id;
       state.name = name;
       state.lists = lists;
       state.settings = settings;
+      state.createDate = createDate;
+      state.changeDate = changeDate;
+      state.openDate = openDate;
     },
   },
 });
