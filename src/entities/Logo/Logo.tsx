@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './Logo.module.css';
 import { Link } from 'react-router-dom';
-import { PathRoutes } from 'app/types/routes.';
+import { PathRoutes } from 'shared/types/routes.';
 
 export const Logo: FC = () => {
   return (
