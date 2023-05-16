@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { forwardRef } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineTable } from 'react-icons/ai';
 import { MdDeleteOutline } from 'react-icons/md';
@@ -16,7 +16,7 @@ interface SheetsCardProps {
   deleteSheets: (id: string) => Promise<void>;
 }
 
-export const SheetsCard: FC<SheetsCardProps> = ({ name, date, id, deleteSheets }) => {
+export const SheetsCard = forwardRef<HTMLDivElement, SheetsCardProps>(({ name, date, id, deleteSheets }, ref) => {
   const { isShow, closeDropdown, toggleDropdown } = useDropdown();
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ export const SheetsCard: FC<SheetsCardProps> = ({ name, date, id, deleteSheets }
   };
 
   return (
-    <div aria-hidden onClick={openSheets} className={styles.card}>
+    <div ref={ref} aria-hidden onClick={openSheets} className={styles.card}>
       <div className={styles.sheets}>
         <div className={styles.icon}>
           <AiOutlineTable />
@@ -70,4 +70,6 @@ export const SheetsCard: FC<SheetsCardProps> = ({ name, date, id, deleteSheets }
       </div>
     </div>
   );
-};
+});
+
+export const MSheetsCard = motion(SheetsCard);

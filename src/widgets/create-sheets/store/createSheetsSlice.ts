@@ -21,7 +21,7 @@ export interface ICreateSheetsState {
 
 export const initialState: ICreateSheetsState = {
   sheets: [],
-  currentSorter: ListSorters.NAME,
+  currentSorter: ListSorters.OPEN_DATE,
 };
 
 export const createSheetsSlice = createSlice({
@@ -30,6 +30,10 @@ export const createSheetsSlice = createSlice({
   reducers: {
     changeSheets: (state, { payload }: PayloadAction<ISheetsData[]>) => {
       state.sheets = payload;
+    },
+
+    changeCurrentSorter: (state, { payload }: PayloadAction<ListSorters>) => {
+      state.currentSorter = payload;
     },
   },
 });

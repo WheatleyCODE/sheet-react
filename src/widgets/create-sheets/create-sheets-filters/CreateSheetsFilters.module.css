@@ -11,7 +11,7 @@
   height: 40px;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 1fr 205px 135px;
+  grid-template-columns: 1fr 265px 135px;
 }
 
 .buttons, .name, .filter_name {
@@ -20,11 +20,17 @@
 }
 
 .buttons svg {
-  font-size: 1.2rem;
+  font-size: var(--font-big2);
 }
 
-.filter_name svg {
-  font-size: 1.5rem;
+.filter_name {
+  font-size: var(--font-normal2);
+}
+
+.filter_name span {
+  font-weight: 400;
+  margin-left: 5px;
+  font-size: var(--font-normal2);
 }
 
 .icon:hover {

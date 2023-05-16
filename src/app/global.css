@@ -19,3 +19,7 @@ a {
   text-decoration: none;
   color: var(--color-black);
 }
+
+#root, body {
+  overflow: hidden;
+}

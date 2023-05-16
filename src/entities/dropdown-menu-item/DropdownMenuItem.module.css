@@ -15,7 +15,7 @@
 .icon {
   display: flex;
   align-items: center;
-  width: 35px;
+  width: 32px;
   padding-left: calc(var(--sheets-padding) / 2);
 }
 

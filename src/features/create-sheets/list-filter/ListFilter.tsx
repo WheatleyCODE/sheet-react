@@ -5,11 +5,23 @@ import { MdCheck, MdChevronLeft, MdOutlineFilterAlt } from 'react-icons/md';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import { ANIMATION_DURATION } from 'shared/consts';
 import { DropdownMenu, DropdownMenuItem } from 'entities';
+import { ListSorters, createSheetsActions } from 'widgets/create-sheets/store/createSheetsSlice';
+import { sheetsSortNames } from 'widgets';
+import { useTypedDispatch } from 'shared/lib/hooks/redux/useTypedDispatch';
 import styles from './ListFilter.module.css';
 
-export const ListFilter: FC = () => {
+export interface ListFilterProps {
+  currentSorter: ListSorters;
+}
+
+export const ListFilter: FC<ListFilterProps> = ({ currentSorter }) => {
   const { isShow, closeDropdown, toggleDropdown } = useDropdown();
   const [isHidden, setIsHidden] = useState(false);
+  const dispatch = useTypedDispatch();
+
+  const changeCurrentSorter = (sorter: ListSorters) => {
+    dispatch(createSheetsActions.changeCurrentSorter(sorter));
+  };
 
   const onMouseEnter = () => {
     setIsHidden(true);
@@ -18,6 +30,26 @@ export const ListFilter: FC = () => {
   const closeDropdownHandler = () => {
     setIsHidden(false);
     closeDropdown();
+  };
+
+  const setNameSorter = () => {
+    changeCurrentSorter(ListSorters.NAME);
+    closeDropdownHandler();
+  };
+
+  const setCreateDateSorter = () => {
+    changeCurrentSorter(ListSorters.CREATE_DATE);
+    closeDropdownHandler();
+  };
+
+  const setChangeDateSorter = () => {
+    changeCurrentSorter(ListSorters.CHANGE_DATE);
+    closeDropdownHandler();
+  };
+
+  const setOpenDateSorter = () => {
+    changeCurrentSorter(ListSorters.OPEN_DATE);
+    closeDropdownHandler();
   };
 
   return (
@@ -38,12 +70,28 @@ export const ListFilter: FC = () => {
             className={`${styles.dropdown} ${isHidden && styles.visible}`}
           >
             <DropdownMenu>
-              <DropdownMenuItem onClick={closeDropdownHandler} Icon={MdCheck} text="По названию"></DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={setNameSorter}
+                Icon={currentSorter === ListSorters.NAME ? MdCheck : 'NONE'}
+                text={sheetsSortNames[ListSorters.NAME]}
+              />
               <DropdownMenuItem Icon={MdChevronLeft} text="По дате">
                 <DropdownMenu>
-                  <DropdownMenuItem onClick={closeDropdownHandler} Icon={MdCheck} text="По дате изменения" />
-                  <DropdownMenuItem onClick={closeDropdownHandler} Icon={MdCheck} text="По дате просмотра" />
-                  <DropdownMenuItem onClick={closeDropdownHandler} Icon={MdCheck} text="По дате создания" />
+                  <DropdownMenuItem
+                    onClick={setCreateDateSorter}
+                    Icon={currentSorter === ListSorters.CREATE_DATE ? MdCheck : 'NONE'}
+                    text={sheetsSortNames[ListSorters.CREATE_DATE]}
+                  />
+                  <DropdownMenuItem
+                    onClick={setChangeDateSorter}
+                    Icon={currentSorter === ListSorters.CHANGE_DATE ? MdCheck : 'NONE'}
+                    text={sheetsSortNames[ListSorters.CHANGE_DATE]}
+                  />
+                  <DropdownMenuItem
+                    onClick={setOpenDateSorter}
+                    Icon={currentSorter === ListSorters.OPEN_DATE ? MdCheck : 'NONE'}
+                    text={sheetsSortNames[ListSorters.OPEN_DATE]}
+                  />
                 </DropdownMenu>
               </DropdownMenuItem>
             </DropdownMenu>

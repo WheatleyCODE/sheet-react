@@ -8,7 +8,7 @@
   width: 100%;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 1fr 294px 45px;
+  grid-template-columns: 1fr 354px 45px;
 }
 
 .card:hover {

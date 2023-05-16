@@ -9,7 +9,7 @@ import styles from './DropdownMenuItem.module.css';
 interface DropdownMenuItemProps {
   children?: ReactNode;
   text: string;
-  Icon: IconType;
+  Icon?: IconType | 'NONE';
   onClick?: () => void;
 }
 
@@ -21,6 +21,9 @@ export const DropdownMenuItem: FC<DropdownMenuItemProps> = ({ children, Icon, te
     if (onClick) onClick();
   };
 
+  const isNone = Icon === 'NONE';
+  const isIcon = typeof Icon === 'function';
+
   return (
     <div
       onClick={onClickHandler}
@@ -29,9 +32,14 @@ export const DropdownMenuItem: FC<DropdownMenuItemProps> = ({ children, Icon, te
       onMouseMove={onMouseMove}
       className={styles.item}
     >
-      <div className={styles.icon}>
-        <Icon />
-      </div>
+      {isNone && <div className={styles.icon} />}
+
+      {isIcon && (
+        <div className={styles.icon}>
+          <Icon />
+        </div>
+      )}
+
       <div className={styles.text}>{text}</div>
 
       <AnimatePresence>
