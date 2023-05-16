@@ -16,7 +16,7 @@ export { CreateSheetsFilters } from './create-sheets/create-sheets-filters/Creat
 export { createSheetsActions, createSheetsSlice } from './create-sheets/store/createSheetsSlice';
 export { sheetsSortFns, sheetsSortNames } from './create-sheets/consts/sheetsSorts';
 
-export { tableGenerator } from './sheets/helpers/tableGenerator';
+export { createTable } from './sheets/helpers/createTable';
 
 export { sheetsService } from './sheets/services/sheetsService';
 export { tableService } from './sheets/services/tableService';

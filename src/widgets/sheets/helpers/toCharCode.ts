@@ -1,4 +1,4 @@
-import { TABLE_MAX_LENGTH, CODES } from 'shared/consts/table';
+import { CHARS_MAX_LENGTH, CODES } from 'shared/consts/table';
 
 export const toCharCode = (): (() => string) => {
   let count = -1;
@@ -7,7 +7,7 @@ export const toCharCode = (): (() => string) => {
   return () => {
     count++;
 
-    if (count > TABLE_MAX_LENGTH) {
+    if (count > CHARS_MAX_LENGTH) {
       repeat++;
       count = 0;
     }

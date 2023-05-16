@@ -1,45 +1,6 @@
-import { CellFormats, Fonts, HorizontalAligns, ICell, ICol, IRow, TextWraps, VerticalAligns } from 'shared/types/table';
+import { ICell, ICol, IRow } from 'shared/types/table';
 import { toCharCode } from './toCharCode';
-import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from 'shared/consts/table';
-
-const createColData = (value: string, id: number): ICol => {
-  return {
-    id,
-    value,
-    width: DEFAULT_WIDTH,
-  };
-};
-
-const createRowData = (value: number): IRow => {
-  return {
-    value: String(value),
-    id: value,
-    height: DEFAULT_HEIGHT,
-  };
-};
-
-const createCellData = (id: string): ICell => {
-  return {
-    value: '',
-    id,
-    format: CellFormats.STRING,
-    font: Fonts.ROBOTO,
-    fontSize: 14,
-    isBold: false,
-    isItalic: false,
-    isStroke: false,
-    textColor: '#000',
-    backgroundColor: '#fafafa',
-    border: { value: '' },
-    verticalAlign: VerticalAligns.CENTER,
-    horizontalAlign: HorizontalAligns.CENTER,
-    textWrap: TextWraps.NO_WRAP,
-    merge: { value: '' },
-    link: null,
-    formula: null,
-    filter: { value: '' },
-  };
-};
+import { createCellData, createColData, createRowData } from './createCells';
 
 export const createCols = (colsCount: number): ICol[] => {
   const toChar = toCharCode();
@@ -51,17 +12,17 @@ export const createRows = (rowsCount: number): IRow[] => {
 };
 
 export const createCells = (rows: IRow[], colsCount: number): ICell[][] => {
-  const colls: ICell[][] = [];
+  const cells: ICell[][] = [];
 
   for (let i = 0; i < rows.length; i++) {
-    colls[i] = [];
+    cells[i] = [];
 
     for (let j = 0; j < colsCount; j++) {
-      colls[i].push(createCellData(`${i}:${j}`));
+      cells[i].push(createCellData(`${i}:${j}`));
     }
   }
 
-  return colls;
+  return cells;
 };
 
 export const createTable = (colsCount = 30, rowsCount = 50) => {
