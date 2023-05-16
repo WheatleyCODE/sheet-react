@@ -7,6 +7,7 @@ import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
 import { useTypedDispatch } from 'shared/lib/hooks/redux/useTypedDispatch';
 import { useDebounce } from 'shared/lib/hooks/useDebounce';
 import { sheetsActions } from 'widgets/sheets/store/sheetsSlice';
+import { sheetsService } from 'widgets';
 import styles from './SheetsHeader.module.css';
 
 export const SheetsHeader: FC = () => {
@@ -20,6 +21,7 @@ export const SheetsHeader: FC = () => {
   }, [id]);
 
   const changeName = useDebounce((value: string) => {
+    sheetsService.changeName(id, value);
     dispatch(sheetsActions.changeName(value));
   }, 200);
 

@@ -6,6 +6,7 @@ import { MdDeleteOutline } from 'react-icons/md';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import { MActionWindow } from 'shared/ui/action-window/ActionWindow';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
+import { sheetsService } from 'widgets';
 import styles from './SheetsCard.module.css';
 
 interface SheetsCardProps {
@@ -21,6 +22,7 @@ export const SheetsCard: FC<SheetsCardProps> = ({ name, date, id, deleteSheets }
 
   const openSheets = () => {
     navigate(`sheets/${id}`);
+    sheetsService.changeOpenDate(id);
   };
 
   const deleteSheetsHandler = () => {

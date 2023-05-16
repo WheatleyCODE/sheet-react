@@ -17,13 +17,14 @@ export const useInitSheets = () => {
   useEffect(() => {
     const initSheets = async () => {
       if (!id) return;
-      const db = new IndexedDB(id, 'table', 'id');
-      await db.open();
 
       const ls = KVFactory('sheets', new LocalStorageEngine());
       const sheets: ISheetsState = await ls.get<any>(id);
 
       if (sheets) {
+        const db = new IndexedDB(sheets.lists[0].id, 'table', 'id');
+        await db.open();
+
         const allCells = await db.getAll<ICell>();
         const cells: ICell[][] = [];
 
@@ -57,6 +58,10 @@ export const useInitSheets = () => {
 
       const { cols, rows, cells } = createTable(30, 20);
       const tableId = v4();
+
+      const db = new IndexedDB(tableId, 'table', 'id');
+      await db.open();
+
       const sheetsData: ISheetsState = {
         name: 'Таблица',
         lists: [{ name: 'Лист 1', id: tableId, cols, rows }],

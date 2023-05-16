@@ -4,38 +4,30 @@ import {
   CreateSheetsHeader,
   CreateSheetsLists,
   CreateSheetsTemplates,
+  sheetsService,
   createSheetsActions,
+  tableService,
 } from 'widgets';
 import { useTypedDispatch } from 'shared/lib/hooks/redux/useTypedDispatch';
 import styles from './CreateSheets.module.css';
-import { KVFactory, LocalStorageEngine } from 'shared/lib/kv-storage';
-import { ISheetsData } from 'widgets/create-sheets/store/createSheetsSlice';
-import { ISheetsState } from 'widgets/sheets/store/sheetsSlice';
 
 export const CreateSheets: FC = () => {
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
-    const sheets: ISheetsData[] = [];
-
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i) as string;
-      const data = localStorage.getItem(key) as string;
-      const { id, lists, name, createDate, changeDate, openDate }: ISheetsState = JSON.parse(data);
-      sheets.push({ name, listsCount: lists.length, id, changeDate, createDate, openDate });
-    }
-
-    dispatch(createSheetsActions.changeSheets(sheets));
+    dispatch(createSheetsActions.changeSheets(sheetsService.getAllSheetsDataLS()));
   }, []);
 
   const deleteSheets = async (id: string) => {
-    const ls = KVFactory('sheets', new LocalStorageEngine());
-    const data = await ls.get(id);
+    const data = await sheetsService.remove(id);
 
-    console.log(id, data);
+    if (data) {
+      data.lists.forEach((list) => {
+        tableService.deleteTable(list.id);
+      });
 
-    // ! Fix
-    // indexedDB.deleteDatabase(id);
+      dispatch(createSheetsActions.changeSheets(sheetsService.getAllSheetsDataLS()));
+    }
   };
 
   return (

@@ -1,16 +1,37 @@
 export type IndexConstructor = (store: IDBObjectStore) => void;
 export class IndexedDB {
-  databaseName: string;
-  storeName: string;
-  keyPath: string;
-  #db: IDBDatabase | null;
+  readonly databaseName: string;
+  readonly storeName: string;
+  readonly keyPath: string;
   isOpen = false;
+  #db: IDBDatabase | null;
 
   constructor(databaseName: string, storeName: string, keyPath: string) {
     this.databaseName = databaseName;
     this.storeName = storeName;
     this.keyPath = keyPath;
     this.#db = null;
+  }
+
+  static deleteDB(name: string): Promise<void> {
+    return new Promise((res, rej) => {
+      const req = indexedDB.deleteDatabase(name);
+
+      req.onsuccess = function () {
+        res();
+        console.log('Успешно удалено');
+      };
+
+      req.onerror = function () {
+        rej();
+        console.log('Ошибка при удалении');
+      };
+
+      req.onblocked = function () {
+        rej();
+        console.log('Ошибка при удалении, удаление заблокировано');
+      };
+    });
   }
 
   open(constructor?: IndexConstructor): Promise<void> {

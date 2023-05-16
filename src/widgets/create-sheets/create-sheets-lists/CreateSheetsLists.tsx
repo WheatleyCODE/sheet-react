@@ -14,13 +14,13 @@ export const CreateSheetsLists: FC<ICreateSheetsListsProps> = ({ deleteSheets })
     <div className={styles.lists}>
       <div className={styles.list}>
         <div className={styles.li}>
-          {sheets.map(({ name, id, createDate }) => (
+          {sheets.map(({ name, id, openDate }) => (
             <SheetsCard
               deleteSheets={deleteSheets}
               id={id}
               key={id}
               name={name}
-              date={new Date(createDate).toLocaleDateString()}
+              date={new Date(openDate).toLocaleDateString()}
             />
           ))}
         </div>

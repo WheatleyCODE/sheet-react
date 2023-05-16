@@ -14,3 +14,8 @@ export { CreateSheetsTemplates } from './create-sheets/create-sheets-templates/C
 export { CreateSheetsLists } from './create-sheets/create-sheets-lists/CreateSheetsLists';
 export { CreateSheetsFilters } from './create-sheets/create-sheets-filters/CreateSheetsFilters';
 export { createSheetsActions, createSheetsSlice } from './create-sheets/store/createSheetsSlice';
+
+export { tableGenerator } from './sheets/helpers/tableGenerator';
+
+export { sheetsService } from './sheets/services/sheetsService';
+export { tableService } from './sheets/services/tableService';
