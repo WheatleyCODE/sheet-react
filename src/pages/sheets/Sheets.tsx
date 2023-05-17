@@ -1,6 +1,14 @@
 import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { SheetsHeader, SheetsToolbar, SheetsTable, SheetsFooter, SheetsAside, SheetsFormula } from 'widgets';
+import {
+  SheetsHeader,
+  SheetsToolbar,
+  SheetsTable,
+  SheetsFooter,
+  SheetsAside,
+  SheetsFormula,
+  ModalController,
+} from 'widgets';
 import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
 import { ContextMenu, useContextMenu } from 'features';
 import { useInitSheets } from './useInitSheets';
@@ -32,6 +40,7 @@ export const Sheets: FC = () => {
       </div>
 
       <AnimatePresence>{isShowContext && <ContextMenu />}</AnimatePresence>
+      <ModalController />
     </div>
   );
 };

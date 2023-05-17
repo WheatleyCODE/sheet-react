@@ -1,0 +1,30 @@
+.modal {
+  position: relative;
+  max-width: 400px;
+  background-color: var(--color-white);
+  box-shadow: 0 0 4px 1px var(--color-black2);
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.close_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  color: var(--color-white);
+  transition: all var(--animation-duration);
+}
+
+.close_button svg {
+  font-size: 2rem;
+}
+
+.close_button:hover {
+  transform: rotate(90deg);
+}

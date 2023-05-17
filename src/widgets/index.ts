@@ -28,3 +28,5 @@ export { lastActionsService } from './sheets/services/lastActionsService';
 
 export { createSheetsState } from './sheets/utils/createSheetsState';
 export { toCharCode } from './sheets/utils/toCharCode';
+
+export { ModalController } from './modal-controller/ModalController';
