@@ -18,5 +18,13 @@ export { sheetsSortFns, sheetsSortNames } from './create-sheets/consts/sheetsSor
 
 export { createTable } from './sheets/helpers/createTable';
 
+export { SheetsLSService } from './sheets/model/sheetsLSService';
+export { TableDBService } from './sheets/model/tableDBService';
+export { LastActionsSSService } from './sheets/model/lastActionsSSService';
+
 export { sheetsService } from './sheets/services/sheetsService';
 export { tableService } from './sheets/services/tableService';
+export { lastActionsService } from './sheets/services/lastActionsService';
+
+export { createSheetsState } from './sheets/utils/createSheetsState';
+export { toCharCode } from './sheets/utils/toCharCode';

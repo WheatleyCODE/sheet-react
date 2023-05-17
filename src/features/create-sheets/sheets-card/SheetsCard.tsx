@@ -20,9 +20,9 @@ export const SheetsCard = forwardRef<HTMLDivElement, SheetsCardProps>(({ name, d
   const { isShow, closeDropdown, toggleDropdown } = useDropdown();
   const navigate = useNavigate();
 
-  const openSheets = () => {
+  const openSheets = async () => {
+    await sheetsService.changeOpenDate(id);
     navigate(`sheets/${id}`);
-    sheetsService.changeOpenDate(id);
   };
 
   const deleteSheetsHandler = () => {

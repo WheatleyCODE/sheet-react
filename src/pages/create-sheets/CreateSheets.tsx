@@ -15,7 +15,7 @@ export const CreateSheets: FC = () => {
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
-    dispatch(createSheetsActions.changeSheets(sheetsService.getAllSheetsDataLS()));
+    dispatch(createSheetsActions.changeSheets(sheetsService.getAllData()));
   }, []);
 
   const deleteSheets = async (id: string) => {
@@ -26,7 +26,7 @@ export const CreateSheets: FC = () => {
         tableService.deleteTable(list.id);
       });
 
-      dispatch(createSheetsActions.changeSheets(sheetsService.getAllSheetsDataLS()));
+      dispatch(createSheetsActions.changeSheets(sheetsService.getAllData()));
     }
   };
 

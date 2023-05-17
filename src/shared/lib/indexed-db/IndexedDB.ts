@@ -34,6 +34,13 @@ export class IndexedDB {
     });
   }
 
+  close() {
+    if (this.#db && this.isOpen) {
+      this.#db.close();
+      this.isOpen = false;
+    }
+  }
+
   open(constructor?: IndexConstructor): Promise<void> {
     return new Promise((res, rej) => {
       const request = window.indexedDB.open(this.databaseName);

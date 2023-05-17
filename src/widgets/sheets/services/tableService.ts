@@ -1,8 +1,23 @@
-import { IndexedDB } from 'shared/lib/indexed-db';
+import { TableDBService } from '../model/tableDBService';
+import { ICell } from 'shared/types/table';
 
 export class TableService {
+  tableDBService = new TableDBService();
+
+  getCell(tableId: string, id: string) {
+    this.tableDBService.getCell(tableId, id);
+  }
+
   deleteTable(id: string) {
-    IndexedDB.deleteDB(id);
+    this.tableDBService.deleteTable(id);
+  }
+
+  async createTable(tableId: string, cells: ICell[][]): Promise<ICell[]> {
+    return await this.tableDBService.createTable(tableId, cells);
+  }
+
+  async getTable(id: string): Promise<ICell[][]> {
+    return await this.tableDBService.getTable(id);
   }
 }
 

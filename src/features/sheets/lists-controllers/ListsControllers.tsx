@@ -15,6 +15,8 @@ interface IListsControllersProps {
 export const ListsControllers: FC<IListsControllersProps> = ({ lists }) => {
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
 
+  const createList = () => {};
+
   return (
     <div className={styles.controllers}>
       <Title text="Добавить лист">
@@ -35,8 +37,8 @@ export const ListsControllers: FC<IListsControllersProps> = ({ lists }) => {
               closeDropdown={closeDropdown}
             >
               <DropdownMenu>
-                {lists.map(({ name }) => (
-                  <DropdownMenuItem onClick={closeDropdown} Icon={MdCheck} text={name} />
+                {lists.map(({ name, id }) => (
+                  <DropdownMenuItem key={id} onClick={closeDropdown} Icon={MdCheck} text={name} />
                 ))}
               </DropdownMenu>
             </MDropdown>

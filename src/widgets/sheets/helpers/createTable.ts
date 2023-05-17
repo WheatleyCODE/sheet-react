@@ -1,5 +1,5 @@
 import { ICell, ICol, IRow } from 'shared/types/table';
-import { toCharCode } from './toCharCode';
+import { toCharCode } from '../utils/toCharCode';
 import { createCellData, createColData, createRowData } from './createCells';
 
 export const createCols = (colsCount: number): ICol[] => {

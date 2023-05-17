@@ -1,65 +1,37 @@
-import { KVFactory, LocalStorageEngine } from 'shared/lib/kv-storage';
 import { ISheetsState } from '../store/sheetsSlice';
 import { ISheetsData } from 'widgets/create-sheets/store/createSheetsSlice';
 import { ICol, IRow } from 'shared/types/table';
+import { SheetsLSService } from '../model/sheetsLSService';
 
 class SheetsService {
-  #localStorage = KVFactory('sheets', new LocalStorageEngine());
+  #sheetsLSService = new SheetsLSService();
 
-  // Todo: Проверки на ненайденные значения
+  async getSheets(id: string): Promise<ISheetsState> {
+    return await this.#sheetsLSService.get(id);
+  }
 
-  getAllSheetsDataLS(): ISheetsData[] {
-    const data: ISheetsData[] = [];
+  async setSheets(id: string, data: any): Promise<void> {
+    return await this.#sheetsLSService.set(id, data);
+  }
 
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i) as string;
-      const lsData = localStorage.getItem(key) as string;
-      const { id, lists, name, createDate, changeDate, openDate }: ISheetsState = JSON.parse(lsData);
-      data.push({ name, listsCount: lists.length, id, changeDate, createDate, openDate });
-    }
-
-    return data;
+  getAllData(): ISheetsData[] {
+    return this.#sheetsLSService.getAllData();
   }
 
   async addNewList(id: string, cols: ICol[], rows: IRow[]): Promise<ISheetsState> {
-    const data = (await this.#localStorage.get(id)) as unknown as ISheetsState;
-    data.changeDate = Date.now();
-    data.lists.push({ id, cols, rows, name: `Лист ${data.lists.length + 1}` });
-    data.currentListId = id;
-
-    await this.#localStorage.set(id, data as any);
-
-    return data;
+    return await this.#sheetsLSService.addNewList(id, cols, rows);
   }
 
   async changeName(id: string, newName: string): Promise<ISheetsState> {
-    const data = (await this.#localStorage.get(id)) as unknown as ISheetsState;
-    data.changeDate = Date.now();
-    data.name = newName;
-
-    await this.#localStorage.set(id, data as any);
-
-    return data;
+    return await this.#sheetsLSService.changeName(id, newName);
   }
 
   async changeOpenDate(id: string): Promise<ISheetsState> {
-    const data = (await this.#localStorage.get(id)) as unknown as ISheetsState;
-    data.openDate = Date.now();
-
-    await this.#localStorage.set(id, data as any);
-
-    return data;
+    return await this.#sheetsLSService.changeOpenDate(id);
   }
 
   async remove(id: string): Promise<ISheetsState | false> {
-    const data = (await this.#localStorage.get(id)) as unknown as ISheetsState;
-
-    if (data) {
-      await this.#localStorage.remove(id);
-      return data;
-    }
-
-    return false;
+    return await this.#sheetsLSService.remove(id);
   }
 }
 
