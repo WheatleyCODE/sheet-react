@@ -30,17 +30,23 @@ export class TableDBService {
 
     const db = await this.#openDB(tableId);
 
-    return await db.get<ICell>(id);
+    const data = await db.get<ICell>(id);
+    db.close();
+
+    return data;
   }
 
   async getTable(tableId: string): Promise<ICell[][]> {
     let allCells: ICell[] = [];
+    let db: IndexedDB;
 
     if (this.#dbs[tableId]?.isOpen) {
       allCells = await this.#dbs[tableId].getAll<ICell>();
+      db = this.#dbs[tableId];
     } else {
-      const db = await this.#openDB(tableId);
-      allCells = await db.getAll<ICell>();
+      const idb = await this.#openDB(tableId);
+      db = idb;
+      allCells = await idb.getAll<ICell>();
     }
 
     const cells: ICell[][] = [];
@@ -55,6 +61,8 @@ export class TableDBService {
       const col = Number(id[1]);
       cells[row][col] = cell;
     }
+
+    db.close();
 
     return cells;
   }

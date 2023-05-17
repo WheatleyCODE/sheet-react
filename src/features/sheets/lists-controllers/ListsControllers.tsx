@@ -10,17 +10,16 @@ import styles from './ListsControllers.module.css';
 
 interface IListsControllersProps {
   lists: IList[];
+  createList: () => void;
 }
 
-export const ListsControllers: FC<IListsControllersProps> = ({ lists }) => {
+export const ListsControllers: FC<IListsControllersProps> = ({ lists, createList }) => {
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
-
-  const createList = () => {};
 
   return (
     <div className={styles.controllers}>
       <Title text="Добавить лист">
-        <Button className={styles.button} Icon={MdAdd} />
+        <Button onClick={createList} className={styles.button} Icon={MdAdd} />
       </Title>
 
       <Title isStopShow={isShow} text="Все листы">

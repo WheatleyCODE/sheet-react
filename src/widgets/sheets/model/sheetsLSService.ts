@@ -1,6 +1,5 @@
 import { KVFactory, LocalStorageEngine } from 'shared/lib/kv-storage';
-import { ISheetsState } from '../store/sheetsSlice';
-import { ICol, IRow } from 'shared/types/table';
+import { IList, ISheetsState } from '../store/sheetsSlice';
 import { ISheetsData } from 'widgets/create-sheets/store/createSheetsSlice';
 
 export class SheetsLSService {
@@ -54,7 +53,7 @@ export class SheetsLSService {
     return data;
   }
 
-  async addNewList(id: string, cols: ICol[], rows: IRow[]): Promise<ISheetsState> {
+  async addList(id: string, tableId: string, list: IList): Promise<ISheetsState> {
     const data = (await this.#ls.get(id)) as unknown as ISheetsState;
 
     if (!data) {
@@ -62,8 +61,8 @@ export class SheetsLSService {
     }
 
     data.changeDate = Date.now();
-    data.lists.push({ id, cols, rows, name: `Лист ${data.lists.length + 1}` });
-    data.currentListId = id;
+    data.lists.push(list);
+    data.currentListId = tableId;
 
     await this.#ls.set(id, data as any);
 

@@ -10,15 +10,21 @@ import styles from './ListActions.module.css';
 interface ListActionsProps {
   name: string;
   isActive?: boolean;
+  id: string;
+  changeCurrentListId: (id: string) => void;
 }
 
-export const ListActions: FC<ListActionsProps> = ({ name, isActive }) => {
+export const ListActions: FC<ListActionsProps> = ({ name, isActive, changeCurrentListId, id }) => {
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
+
+  const onClick = () => {
+    changeCurrentListId(id);
+  };
 
   return (
     <div className={styles.actions}>
       <Title text={`Перейти на ${name}`}>
-        <Button className={`${styles.button} ${isActive && styles.active}`} text={name} />
+        <Button onClick={onClick} className={`${styles.button} ${isActive && styles.active}`} text={name} />
       </Title>
 
       <Title isStopShow={isShow} text={`Параметры ${name}`}>

@@ -1,6 +1,5 @@
-import { ISheetsState } from '../store/sheetsSlice';
+import { IList, ISheetsState } from '../store/sheetsSlice';
 import { ISheetsData } from 'widgets/create-sheets/store/createSheetsSlice';
-import { ICol, IRow } from 'shared/types/table';
 import { SheetsLSService } from '../model/sheetsLSService';
 
 class SheetsService {
@@ -14,12 +13,12 @@ class SheetsService {
     return await this.#sheetsLSService.set(id, data);
   }
 
-  getAllData(): ISheetsData[] {
-    return this.#sheetsLSService.getAllData();
+  async addList(id: string, tableId: string, list: IList): Promise<ISheetsState | false> {
+    return await this.#sheetsLSService.addList(id, tableId, list);
   }
 
-  async addNewList(id: string, cols: ICol[], rows: IRow[]): Promise<ISheetsState> {
-    return await this.#sheetsLSService.addNewList(id, cols, rows);
+  getAllData(): ISheetsData[] {
+    return this.#sheetsLSService.getAllData();
   }
 
   async changeName(id: string, newName: string): Promise<ISheetsState> {
