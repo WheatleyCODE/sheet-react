@@ -17,6 +17,10 @@ class SheetsService {
     return await this.#sheetsLSService.addList(id, tableId, list);
   }
 
+  async removeList(id: string, listId: string): Promise<ISheetsState | false> {
+    return await this.#sheetsLSService.removeList(id, listId);
+  }
+
   getAllData(): ISheetsData[] {
     return this.#sheetsLSService.getAllData();
   }

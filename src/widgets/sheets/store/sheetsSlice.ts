@@ -57,6 +57,10 @@ export const sheetsSlice = createSlice({
       state.currentListId = payload.id;
     },
 
+    removeList: (state, { payload }: PayloadAction<string>) => {
+      state.lists = [...state.lists].filter((list) => list.id !== payload);
+    },
+
     changeCurrentListId: (state, { payload }: PayloadAction<string>) => {
       state.currentListId = payload;
     },

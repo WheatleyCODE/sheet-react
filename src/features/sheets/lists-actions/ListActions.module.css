@@ -10,9 +10,14 @@
 
 .button {
   margin-right: 1px;
+  font-weight: 400;
 }
 
 .button.active {
   color: var(--color-green);
-  font-weight: 400;
 }
+
+.last, .last svg {
+  color: var(--color-dark-grey);
+}
+

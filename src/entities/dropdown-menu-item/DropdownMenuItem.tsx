@@ -8,12 +8,13 @@ import styles from './DropdownMenuItem.module.css';
 
 interface DropdownMenuItemProps {
   children?: ReactNode;
+  className?: string;
   text: string;
   Icon?: IconType | 'NONE';
   onClick?: () => void;
 }
 
-export const DropdownMenuItem: FC<DropdownMenuItemProps> = ({ children, Icon, text, onClick }) => {
+export const DropdownMenuItem: FC<DropdownMenuItemProps> = ({ children, Icon, text, onClick, className }) => {
   const { isShow, onMouseEnter, onMouseLeave, onMouseMove } = useDelayHover(false, 400, 0);
 
   const onClickHandler = (e: React.MouseEvent) => {
@@ -30,7 +31,7 @@ export const DropdownMenuItem: FC<DropdownMenuItemProps> = ({ children, Icon, te
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onMouseMove={onMouseMove}
-      className={styles.item}
+      className={`${styles.item} ${className && className}`}
     >
       {isNone && <div className={styles.icon} />}
 

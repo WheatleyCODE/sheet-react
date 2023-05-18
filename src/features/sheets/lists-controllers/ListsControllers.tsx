@@ -11,10 +11,18 @@ import styles from './ListsControllers.module.css';
 interface IListsControllersProps {
   lists: IList[];
   createList: () => void;
+  currentListId: string;
+  changeCurrentListId: (ids: string) => Promise<void>;
 }
 
-export const ListsControllers: FC<IListsControllersProps> = ({ lists, createList }) => {
+export const ListsControllers: FC<IListsControllersProps> = (props) => {
+  const { lists, createList, currentListId, changeCurrentListId } = props;
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
+
+  const changeCurrentListIdHandler = async (id: string) => {
+    await changeCurrentListId(id);
+    closeDropdown();
+  };
 
   return (
     <div className={styles.controllers}>
@@ -37,7 +45,12 @@ export const ListsControllers: FC<IListsControllersProps> = ({ lists, createList
             >
               <DropdownMenu>
                 {lists.map(({ name, id }) => (
-                  <DropdownMenuItem key={id} onClick={closeDropdown} Icon={MdCheck} text={name} />
+                  <DropdownMenuItem
+                    key={id}
+                    onClick={() => changeCurrentListIdHandler(id)}
+                    Icon={currentListId === id ? MdCheck : 'NONE'}
+                    text={name}
+                  />
                 ))}
               </DropdownMenu>
             </MDropdown>

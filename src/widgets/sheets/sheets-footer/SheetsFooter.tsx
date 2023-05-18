@@ -34,10 +34,10 @@ export const SheetsFooter: FC = () => {
     await sheetsService.addList(id, tableId, newList);
   };
 
-  const changeCurrentListId = async (ids: string) => {
-    dispatch(sheetsActions.changeCurrentListId(ids));
+  const changeCurrentListId = async (listId: string) => {
+    dispatch(sheetsActions.changeCurrentListId(listId));
 
-    const currentList = lists.find((list) => list.id === ids);
+    const currentList = lists.find((list) => list.id === listId);
     if (!currentList) return;
 
     const cells = await tableService.getTable(currentList.id);
@@ -47,15 +47,42 @@ export const SheetsFooter: FC = () => {
         cols: currentList.cols,
         rows: currentList.rows,
         cells,
-        id: ids,
+        id: listId,
       })
     );
+  };
+
+  const deleteList = async (listId: string) => {
+    if (!id) return;
+
+    if (listId === currentListId) {
+      await changeCurrentListId(lists[0].id);
+    }
+
+    tableService.deleteTable(listId);
+
+    dispatch(sheetsActions.removeList(listId));
+
+    await sheetsService.removeList(id, listId);
+  };
+
+  const copyList = async (listId: string) => {
+    console.log(listId);
+  };
+
+  const renameList = async (listId: string) => {
+    console.log(listId);
   };
 
   return (
     <div className={styles.footer}>
       <div className={styles.left}>
-        <ListsControllers createList={createList} lists={lists} />
+        <ListsControllers
+          changeCurrentListId={changeCurrentListId}
+          currentListId={currentListId}
+          createList={createList}
+          lists={lists}
+        />
 
         <div className={styles.margin5} />
 
@@ -66,6 +93,10 @@ export const SheetsFooter: FC = () => {
               changeCurrentListId={changeCurrentListId}
               name={name}
               isActive={id === currentListId}
+              isLast={lists.length === 1}
+              deleteList={deleteList}
+              copyList={copyList}
+              renameList={renameList}
             />
             <div className={styles.margin5} />
           </Fragment>

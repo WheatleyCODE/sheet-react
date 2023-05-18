@@ -4,6 +4,10 @@ import { ICell } from 'shared/types/table';
 export class TableService {
   tableDBService = new TableDBService();
 
+  changeCellValue(tableId: string, id: string, text: string) {
+    this.tableDBService.changeCellValue(tableId, id, text);
+  }
+
   getCell(tableId: string, id: string) {
     this.tableDBService.getCell(tableId, id);
   }

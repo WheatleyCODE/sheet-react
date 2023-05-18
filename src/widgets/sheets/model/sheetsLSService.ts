@@ -69,6 +69,20 @@ export class SheetsLSService {
     return data;
   }
 
+  async removeList(id: string, listId: string): Promise<ISheetsState> {
+    const data = (await this.#ls.get(id)) as unknown as ISheetsState;
+
+    if (!data) {
+      throw new Error('SheetsLSService, элемент не найден');
+    }
+
+    data.lists = [...data.lists].filter((list) => list.id !== listId);
+
+    await this.#ls.set(id, data as any);
+
+    return data;
+  }
+
   getAllData(): ISheetsData[] {
     const data: ISheetsData[] = [];
 

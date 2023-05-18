@@ -39,6 +39,7 @@ export const SheetsTable: FC = () => {
 
           {cells[i].map((cell, j) => (
             <Cell
+              tableId={id}
               selectCell={selectCell}
               isActive={!!selectCells.find((el) => el?.id === cell?.id)}
               key={cell.id}

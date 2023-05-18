@@ -10,21 +10,45 @@ import styles from './ListActions.module.css';
 interface ListActionsProps {
   name: string;
   isActive?: boolean;
+  isLast: boolean;
   id: string;
-  changeCurrentListId: (id: string) => void;
+  changeCurrentListId: (id: string) => Promise<void>;
+  deleteList: (listId: string) => Promise<void>;
+  copyList: (listId: string) => Promise<void>;
+  renameList: (listId: string) => Promise<void>;
 }
 
-export const ListActions: FC<ListActionsProps> = ({ name, isActive, changeCurrentListId, id }) => {
+export const ListActions: FC<ListActionsProps> = (props) => {
+  const { name, isActive, isLast, id, changeCurrentListId, deleteList, copyList, renameList } = props;
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
 
-  const onClick = () => {
+  const changeCurrentListIdHandler = () => {
     changeCurrentListId(id);
+  };
+
+  const deleteListHandler = async () => {
+    await deleteList(id);
+    closeDropdown();
+  };
+
+  const copyListHandler = async () => {
+    await copyList(id);
+    closeDropdown();
+  };
+
+  const renameListHandler = async () => {
+    await renameList(id);
+    closeDropdown();
   };
 
   return (
     <div className={styles.actions}>
       <Title text={`Перейти на ${name}`}>
-        <Button onClick={onClick} className={`${styles.button} ${isActive && styles.active}`} text={name} />
+        <Button
+          onClick={changeCurrentListIdHandler}
+          className={`${styles.button} ${isActive && styles.active}`}
+          text={name}
+        />
       </Title>
 
       <Title isStopShow={isShow} text={`Параметры ${name}`}>
@@ -41,9 +65,14 @@ export const ListActions: FC<ListActionsProps> = ({ name, isActive, changeCurren
               closeDropdown={closeDropdown}
             >
               <DropdownMenu>
-                <DropdownMenuItem onClick={closeDropdown} Icon={MdDeleteOutline} text="Удалить" />
-                <DropdownMenuItem onClick={closeDropdown} Icon={MdContentCopy} text="Копировать" />
-                <DropdownMenuItem onClick={closeDropdown} Icon={MdDriveFileRenameOutline} text="Переименовать" />
+                <DropdownMenuItem
+                  onClick={isLast ? undefined : deleteListHandler}
+                  Icon={MdDeleteOutline}
+                  className={isLast && styles.last}
+                  text="Удалить"
+                />
+                <DropdownMenuItem onClick={copyListHandler} Icon={MdContentCopy} text="Копировать" />
+                <DropdownMenuItem onClick={renameListHandler} Icon={MdDriveFileRenameOutline} text="Переименовать" />
               </DropdownMenu>
             </MDropdown>
           )}

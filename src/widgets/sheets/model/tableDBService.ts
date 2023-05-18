@@ -23,6 +23,18 @@ export class TableDBService {
     return db;
   }
 
+  async changeCellValue(tableId: string, id: string, value: string): Promise<ICell | undefined> {
+    const db = await this.#openDB(tableId);
+    const data = await db.get<ICell>(id);
+
+    data.value = value;
+
+    db.put('id', data);
+    db.close();
+
+    return data;
+  }
+
   async getCell(tableId: string, id: string): Promise<ICell | undefined> {
     if (this.#dbs[tableId]?.isOpen) {
       return await this.#dbs[tableId].get<ICell>(id);
