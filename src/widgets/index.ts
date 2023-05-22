@@ -30,3 +30,4 @@ export { createSheetsState } from './sheets/utils/createSheetsState';
 export { toCharCode } from './sheets/utils/toCharCode';
 
 export { ModalController } from './modal-controller/ModalController';
+export { modalsActions, modalsSlice } from './modal-controller/store/modalsSlice';

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { contextMenuSlice } from 'features';
-import { asideSlice, toolbarSlice, tableSlice, createSheetsSlice, sheetsSlice } from 'widgets';
+import { asideSlice, toolbarSlice, tableSlice, createSheetsSlice, sheetsSlice, modalsSlice } from 'widgets';
 
 export const rootReducer = combineReducers({
   [tableSlice.name]: tableSlice.reducer,
@@ -9,4 +9,5 @@ export const rootReducer = combineReducers({
   [createSheetsSlice.name]: createSheetsSlice.reducer,
   [sheetsSlice.name]: sheetsSlice.reducer,
   [contextMenuSlice.name]: contextMenuSlice.reducer,
+  [modalsSlice.name]: modalsSlice.reducer,
 });

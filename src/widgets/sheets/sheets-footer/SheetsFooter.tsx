@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom';
 import { tableActions } from '../store/tableSlice';
 import { sheetsActions } from '../store/sheetsSlice';
 import { sheetsService } from '../services/sheetsService';
+import { modalsActions } from 'widgets/index';
 
 export const SheetsFooter: FC = () => {
   const { id } = useParams();
@@ -74,6 +75,14 @@ export const SheetsFooter: FC = () => {
     console.log(listId);
   };
 
+  const openDeleteModal = (id: string) => {
+    dispatch(modalsActions.changeDeleteList({ isShow: true, id }));
+  };
+
+  const openRenameModal = (id: string) => {
+    dispatch(modalsActions.changeRenameList({ isShow: true, id }));
+  };
+
   return (
     <div className={styles.footer}>
       <div className={styles.left}>
@@ -94,9 +103,9 @@ export const SheetsFooter: FC = () => {
               name={name}
               isActive={id === currentListId}
               isLast={lists.length === 1}
-              deleteList={deleteList}
               copyList={copyList}
-              renameList={renameList}
+              openDeleteModal={openDeleteModal}
+              openRenameModal={openRenameModal}
             />
             <div className={styles.margin5} />
           </Fragment>

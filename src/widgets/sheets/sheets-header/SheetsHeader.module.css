@@ -13,3 +13,11 @@
   width: 100%;
   padding-left: calc(var(--sheets-padding) * 2);
 }
+
+.settings {
+  display: flex;
+}
+
+.loader {
+  padding-right: calc(var(--sheets-padding) * 5);
+}

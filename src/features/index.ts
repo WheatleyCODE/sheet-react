@@ -16,3 +16,6 @@ export { Settings } from './sheets/settings/Settings';
 export { ListsControllers } from './sheets/lists-controllers/ListsControllers';
 export { ListActions } from './sheets/lists-actions/ListsActions';
 export { ToggleAside } from './sheets/toggle-aside/ToggleAside';
+
+export { DeleteListModal } from './modals/delete-list-modal/DeleteListModal';
+export { RenameListModal } from './modals/rename-list-modal/RenameListModal';

@@ -1,21 +1,26 @@
-import { FC, useState } from 'react';
-import { Backdrop, Modal, Portal } from 'shared/ui';
+import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { useTypedSelector } from 'shared/lib/hooks/redux/useTypedSelector';
+import { useTypedDispatch } from 'shared/lib/hooks/redux/useTypedDispatch';
+import { modalsActions } from '..';
+import { DeleteListModal, RenameListModal } from 'features/index';
 
 export const ModalController: FC = () => {
-  const [isShow, setIsShow] = useState(true); // ! Fix
+  const { deleteList, renameList } = useTypedSelector((state) => state.modals);
+  const dispatch = useTypedDispatch();
+
+  const closeDeleteModal = () => {
+    dispatch(modalsActions.changeDeleteList({ isShow: false, id: '' }));
+  };
+
+  const closeRenameModal = () => {
+    dispatch(modalsActions.changeRenameList({ isShow: false, id: '' }));
+  };
 
   return (
     <AnimatePresence>
-      {isShow && (
-        <Portal>
-          <Backdrop onClose={() => setIsShow(false)}>
-            <Modal onClose={() => setIsShow(false)}>
-              <h1>Modal Template</h1>
-            </Modal>
-          </Backdrop>
-        </Portal>
-      )}
+      {deleteList.isShow && <DeleteListModal onClose={closeDeleteModal} />}
+      {renameList.isShow && <RenameListModal onClose={closeRenameModal} />}
     </AnimatePresence>
   );
 };

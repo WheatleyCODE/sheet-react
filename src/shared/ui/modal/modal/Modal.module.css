@@ -3,7 +3,7 @@
   max-width: 400px;
   background-color: var(--color-white);
   box-shadow: 0 0 4px 1px var(--color-black2);
-  padding: 30px;
+  padding: calc(var(--sheets-padding) * 3);
   border-radius: 8px;
 }
 

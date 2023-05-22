@@ -1,0 +1,22 @@
+.delete_modal {
+  width: 320px;
+}
+
+.title {
+  font-weight: 400;
+  font-size: var(--font-big);
+  padding-bottom: calc(var(--sheets-padding) * 2);
+}
+
+.list_name {
+  padding-top: calc(var(--sheets-padding) / 2);
+  font-weight: 400;
+  color: var(--color-dark-green);
+}
+
+.buttons {
+  margin-top: calc(var(--sheets-padding) * 2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

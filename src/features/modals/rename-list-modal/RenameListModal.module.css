@@ -1,0 +1,16 @@
+.rename_modal {
+  width: 320px;
+}
+
+.title {
+  font-weight: 400;
+  font-size: var(--font-big);
+  padding-bottom: calc(var(--sheets-padding) * 2);
+}
+
+.buttons {
+  margin-top: calc(var(--sheets-padding) * 2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

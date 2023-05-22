@@ -13,21 +13,21 @@ interface ListActionsProps {
   isLast: boolean;
   id: string;
   changeCurrentListId: (id: string) => Promise<void>;
-  deleteList: (listId: string) => Promise<void>;
   copyList: (listId: string) => Promise<void>;
-  renameList: (listId: string) => Promise<void>;
+  openRenameModal: (listId: string) => void;
+  openDeleteModal: (listId: string) => void;
 }
 
 export const ListActions: FC<ListActionsProps> = (props) => {
-  const { name, isActive, isLast, id, changeCurrentListId, deleteList, copyList, renameList } = props;
+  const { name, isActive, isLast, id, changeCurrentListId, openRenameModal, copyList, openDeleteModal } = props;
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
 
   const changeCurrentListIdHandler = () => {
     changeCurrentListId(id);
   };
 
-  const deleteListHandler = async () => {
-    await deleteList(id);
+  const deleteListHandler = () => {
+    openDeleteModal(id);
     closeDropdown();
   };
 
@@ -36,8 +36,8 @@ export const ListActions: FC<ListActionsProps> = (props) => {
     closeDropdown();
   };
 
-  const renameListHandler = async () => {
-    await renameList(id);
+  const renameListHandler = () => {
+    openRenameModal(id);
     closeDropdown();
   };
 

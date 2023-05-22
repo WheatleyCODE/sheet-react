@@ -1,6 +1,7 @@
 import React, { FC, memo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { CgClose } from 'react-icons/cg';
+import { ANIMATION_DURATION } from 'shared/consts';
 import styles from './Modal.module.css';
 
 export interface IModalProps {
@@ -18,10 +19,10 @@ export const Modal: FC<IModalProps> = ({ children, onClose, className }) => {
 
   return (
     <motion.div
-      initial={{ translateY: -30, opacity: 0 }}
-      animate={{ translateY: 0, opacity: 1 }}
-      transition={{ duration: 0.1 }}
-      exit={{ translateY: -30, opacity: 0 }}
+      initial={{ translateY: -30, opacity: 0, scale: 0.5 }}
+      animate={{ translateY: 0, opacity: 1, scale: 1 }}
+      transition={{ duration: ANIMATION_DURATION }}
+      exit={{ translateY: -30, opacity: 0, scale: 0.5 }}
       onClick={stopPropagation}
       className={`${styles.modal} ${className || ''}`}
     >
