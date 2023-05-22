@@ -16,6 +16,7 @@ export interface ISheetsState {
   createDate: number;
   changeDate: number;
   openDate: number;
+  isLoading: boolean;
 }
 
 export const initialState: ISheetsState = {
@@ -27,6 +28,7 @@ export const initialState: ISheetsState = {
   currentListId: '',
   lists: [],
   settings: {},
+  isLoading: true,
 };
 
 export const sheetsSlice = createSlice({
@@ -63,6 +65,10 @@ export const sheetsSlice = createSlice({
 
     changeCurrentListId: (state, { payload }: PayloadAction<string>) => {
       state.currentListId = payload;
+    },
+
+    changeIsLoading: (state, { payload }: PayloadAction<boolean>) => {
+      state.isLoading = payload;
     },
   },
 });
