@@ -1,23 +1,23 @@
 import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { MdFunctions } from 'react-icons/md';
+import { MdOutlineFilterAlt } from 'react-icons/md';
 import { Button, MDropdown, Title } from 'shared/ui';
-import { DropdownMenu, DropdownMenuItem } from 'entities';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
+import { DropdownMenu, DropdownMenuItem } from 'entities';
 import { ANIMATION_DURATION } from 'shared/consts';
-import styles from './CellsFunctions.module.css';
+import styles from './CellsFilters.module.css';
 
-interface CellsFunctionsProps {
+interface CellsFiltersProps {
   fn?: any;
 }
 
-export const CellsFunctions: FC<CellsFunctionsProps> = () => {
+export const CellsFilters: FC<CellsFiltersProps> = () => {
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
 
   return (
-    <div className={styles.functions}>
-      <Title isStopShow={isShow} text="Функции">
-        <Button onClick={toggleDropdown} className={styles.button} Icon={MdFunctions} />
+    <div className={styles.filters}>
+      <Title isStopShow={isShow} text="Добавить фильтр">
+        <Button onClick={toggleDropdown} className={styles.button} Icon={MdOutlineFilterAlt} />
       </Title>
 
       <AnimatePresence>
@@ -31,10 +31,9 @@ export const CellsFunctions: FC<CellsFunctionsProps> = () => {
             initial={{ height: 0 }}
           >
             <DropdownMenu>
-              <DropdownMenuItem text="Добавить функцию" />
-              <DropdownMenuItem text="Добавить функцию" />
-              <DropdownMenuItem text="Добавить функцию" />
-              <DropdownMenuItem text="Добавить функцию" />
+              <DropdownMenuItem text="Добавить фильтр" />
+              <DropdownMenuItem text="Добавить фильтр" />
+              <DropdownMenuItem text="Добавить фильтр" />
             </DropdownMenu>
           </MDropdown>
         )}

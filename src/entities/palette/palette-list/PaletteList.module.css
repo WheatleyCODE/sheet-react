@@ -1,0 +1,6 @@
+.list {
+  display: flex;
+  padding: var(--sheets-padding);
+  max-width: 260px;
+  flex-wrap: wrap;
+}

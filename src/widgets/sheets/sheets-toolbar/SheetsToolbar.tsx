@@ -1,15 +1,19 @@
 import { FC } from 'react';
 import {
   CellsBorder,
-  CellsColors,
+  CellsColor,
   CellsTextFormats,
   CellsTypes,
   CellsView,
   ChangeLastActions,
   CellsFontFamily,
-  CellsFormats,
+  CellsHorAlign,
+  CellsVerAlign,
   CellsFunctions,
   CellsFontSize,
+  CellsTextColor,
+  CellsTextWrap,
+  CellsFilters,
 } from 'features';
 import styles from './SheetsToolbar.module.css';
 
@@ -29,12 +33,16 @@ export const SheetsToolbar: FC = () => {
         <div className={styles.space} />
         <CellsTextFormats />
         <div className={styles.space} />
-        <CellsColors />
+        <CellsTextColor />
+        <CellsColor />
         <div className={styles.space} />
         <CellsBorder />
         <div className={styles.space} />
-        <CellsFormats />
+        <CellsHorAlign />
+        <CellsVerAlign />
+        <CellsTextWrap />
         <div className={styles.space} />
+        <CellsFilters />
         <CellsFunctions />
       </div>
     </div>

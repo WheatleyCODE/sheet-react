@@ -1,0 +1,6 @@
+.menu {
+  display: flex;
+  padding: var(--sheets-padding);
+  max-width: 160px;
+  flex-wrap: wrap;
+}

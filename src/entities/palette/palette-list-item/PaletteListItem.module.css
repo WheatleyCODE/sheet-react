@@ -1,0 +1,15 @@
+.item {
+  transition: all var(--animation-duration);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  margin: 2px 1px;
+}
+
+.item:hover {
+  scale: 1.1;
+}

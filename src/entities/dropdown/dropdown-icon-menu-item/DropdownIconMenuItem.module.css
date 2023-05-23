@@ -1,0 +1,19 @@
+.item {
+  cursor: pointer;
+  transition: background var(--animation-duration);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+}
+
+.icon {
+  font-size: var(--font-big);
+  color: var(--color-black2);
+}
+
+.item:hover {
+  background-color: var(--color-light-grey);
+}

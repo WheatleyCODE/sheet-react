@@ -10,11 +10,15 @@ export { CellsFontFamily } from './toolbar/cells-font-family/CellsFontFamily';
 export { ChangeLastActions } from './toolbar/change-last-actions/ChangeLastActions';
 export { CellsView } from './toolbar/cells-view/CellsView';
 export { CellsTypes } from './toolbar/cells-types/CellsTypes';
-export { CellsColors } from './toolbar/cells-colors/CellsColors';
+export { CellsColor } from './toolbar/cells-color/CellsColor';
+export { CellsTextColor } from './toolbar/cells-text-color/CellsTextColor';
 export { CellsTextFormats } from './toolbar/cells-text-formats/CellsTextFormats';
 export { CellsBorder } from './toolbar/cells-border/CellsBorder';
-export { CellsFormats } from './toolbar/cells-formats/CellsFormats';
+export { CellsHorAlign } from './toolbar/cells-hor-align/CellsHorAlign';
+export { CellsVerAlign } from './toolbar/cells-ver-align/CellsVerAlign';
+export { CellsTextWrap } from './toolbar/cells-text-wrap/CellsTextWrap';
 export { CellsFunctions } from './toolbar/cells-functions/CellsFunctions';
+export { CellsFilters } from './toolbar/cells-filters/CellsFilters';
 export { CellsFontSize } from './toolbar/cells-font-size/CellsFontSize';
 
 export { ListFilter } from './create-sheets/list-filter/ListFilter';
