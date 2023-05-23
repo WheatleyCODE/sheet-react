@@ -1,0 +1,19 @@
+.types {
+  display: inline-flex;
+}
+
+.button {
+  margin-right: 1px;
+  width: 40px;
+  height: 40px;
+}
+
+.button_123 {
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+}
+
+.button_123 svg {
+  font-size: 1.9rem;
+}

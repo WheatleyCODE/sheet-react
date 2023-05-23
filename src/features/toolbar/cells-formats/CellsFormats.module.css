@@ -1,0 +1,9 @@
+.formats {
+  display: inline-block;
+}
+
+.button {
+  margin-right: 1px;
+  width: 40px;
+  height: 40px;
+}

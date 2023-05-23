@@ -1,75 +1,41 @@
 import { FC } from 'react';
-import { Button, Title } from 'shared/ui';
 import {
-  MdRedo,
-  MdUndo,
-  MdOutlineFormatPaint,
-  MdOutlineLocalPrintshop,
-  MdCurrencyRuble,
-  MdPercent,
-  MdFormatBold,
-  MdFormatItalic,
-  MdStrikethroughS,
-  MdFormatColorText,
-  MdFormatColorFill,
-  MdBorderAll,
-  MdFormatAlignLeft,
-  MdVerticalAlignBottom,
-  MdWrapText,
-  MdOutlineTextRotationNone,
-  MdOutlineFilterAlt,
-  MdFunctions,
-} from 'react-icons/md';
-import { FontFamily } from 'features';
+  CellsBorder,
+  CellsColors,
+  CellsTextFormats,
+  CellsTypes,
+  CellsView,
+  ChangeLastActions,
+  CellsFontFamily,
+  CellsFormats,
+  CellsFunctions,
+  CellsFontSize,
+} from 'features';
 import styles from './SheetsToolbar.module.css';
 
 export const SheetsToolbar: FC = () => {
   return (
     <div className={styles.toolbar}>
-      {/* ! TEMPLATE */}
       <div className={styles.main}>
-        <Title text="Отменить">
-          <Button className={styles.button} Icon={MdUndo} />
-        </Title>
-        <Title text="Повторить">
-          <Button className={styles.button} Icon={MdRedo} />
-        </Title>
-
+        <ChangeLastActions />
         <div className={styles.space} />
-
-        <Button className={styles.button} Icon={MdOutlineLocalPrintshop} />
-        <Button className={styles.button} Icon={MdOutlineFormatPaint} />
-        <Button className={styles.button} Icon={MdCurrencyRuble} />
-        <Button className={styles.button} Icon={MdPercent} />
-
+        <CellsView />
         <div className={styles.space} />
-
-        <FontFamily />
-
+        <CellsTypes />
         <div className={styles.space} />
-
-        <Button className={styles.button} Icon={MdFormatBold} />
-        <Title text="Курсив">
-          <Button className={styles.button} Icon={MdFormatItalic} />
-        </Title>
-        <Title text="Зачеркнутый текст">
-          <Button className={styles.button} Icon={MdStrikethroughS} />
-        </Title>
-        <Button className={styles.button} Icon={MdFormatColorText} />
-        <Button className={styles.button} Icon={MdFormatColorFill} />
-
+        <CellsFontFamily />
         <div className={styles.space} />
-
-        <Button className={styles.button} Icon={MdBorderAll} />
-        <Button className={styles.button} Icon={MdFormatAlignLeft} />
-        <Button className={styles.button} Icon={MdVerticalAlignBottom} />
-        <Button className={styles.button} Icon={MdWrapText} />
-        <Button className={styles.button} Icon={MdOutlineTextRotationNone} />
-
+        <CellsFontSize />
         <div className={styles.space} />
-
-        <Button className={styles.button} Icon={MdOutlineFilterAlt} />
-        <Button className={styles.button} Icon={MdFunctions} />
+        <CellsTextFormats />
+        <div className={styles.space} />
+        <CellsColors />
+        <div className={styles.space} />
+        <CellsBorder />
+        <div className={styles.space} />
+        <CellsFormats />
+        <div className={styles.space} />
+        <CellsFunctions />
       </div>
     </div>
   );

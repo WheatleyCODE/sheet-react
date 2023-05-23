@@ -6,6 +6,11 @@
   margin-top: 5px;
 }
 
+.button {
+  height: 40px;
+  width: 100px;
+}
+
 .menu {
   width: 150px;
   height: 500px;

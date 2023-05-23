@@ -6,7 +6,16 @@ export { useContextMenu } from './table/context-menu/useContextMenu';
 export { contextMenuActions, contextMenuSlice } from './table/context-menu/contextMenuSlice';
 export { ContextMenu } from './table/context-menu/ContextMenu';
 
-export { FontFamily } from './toolbar/font-family/FontFamily';
+export { CellsFontFamily } from './toolbar/cells-font-family/CellsFontFamily';
+export { ChangeLastActions } from './toolbar/change-last-actions/ChangeLastActions';
+export { CellsView } from './toolbar/cells-view/CellsView';
+export { CellsTypes } from './toolbar/cells-types/CellsTypes';
+export { CellsColors } from './toolbar/cells-colors/CellsColors';
+export { CellsTextFormats } from './toolbar/cells-text-formats/CellsTextFormats';
+export { CellsBorder } from './toolbar/cells-border/CellsBorder';
+export { CellsFormats } from './toolbar/cells-formats/CellsFormats';
+export { CellsFunctions } from './toolbar/cells-functions/CellsFunctions';
+export { CellsFontSize } from './toolbar/cells-font-size/CellsFontSize';
 
 export { ListFilter } from './create-sheets/list-filter/ListFilter';
 export { SheetsCard, MSheetsCard } from './create-sheets/sheets-card/SheetsCard';

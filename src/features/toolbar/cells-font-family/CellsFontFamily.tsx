@@ -4,10 +4,10 @@ import { AnimatePresence } from 'framer-motion';
 import { Button, MDropdown, Title } from 'shared/ui';
 import { ANIMATION_DURATION } from 'shared/consts/animate';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
-import styles from './FontFamily.module.css';
-import { DropdownMenu, DropdownMenuItem } from 'entities/index';
+import { DropdownMenu, DropdownMenuItem } from 'entities';
+import styles from './CellsFontFamily.module.css';
 
-export const FontFamily: FC = () => {
+export const CellsFontFamily: FC = () => {
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
 
   return (

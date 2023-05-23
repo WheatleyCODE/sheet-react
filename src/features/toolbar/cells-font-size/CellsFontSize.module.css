@@ -1,0 +1,18 @@
+.font_size {
+  display: inline-flex;
+  align-items: center;
+}
+
+.button {
+  width: 40px;
+  height: 40px;
+}
+
+.input {
+  text-align: center;
+  width: 40px;
+  margin: 0 5px;
+  height: 40px;
+  border-top: 1px solid var(--color-light-grey);
+  border-bottom: 1px solid var(--color-light-grey);
+}
