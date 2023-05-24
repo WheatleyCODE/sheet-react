@@ -6,12 +6,14 @@ interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   text?: string;
   className?: string;
   Icon?: IconType;
+  SubIcon?: IconType;
   disable?: boolean;
 }
 
 export const Button: FC<IButtonProps> = memo((props) => {
-  const { text, className = '', Icon, disable = false, ...otherProps } = props;
+  const { text, className = '', Icon, SubIcon, disable = false, ...otherProps } = props;
   const MemoIcon = Icon && memo(Icon);
+  const MemoSubIcon = SubIcon && memo(SubIcon);
 
   return (
     <button
@@ -28,6 +30,11 @@ export const Button: FC<IButtonProps> = memo((props) => {
         </div>
       )}
       {text}
+      {MemoSubIcon && (
+        <div className={styles.button_sub_icon_container}>
+          <MemoSubIcon className={styles.button_sub_icon} />
+        </div>
+      )}
     </button>
   );
 });

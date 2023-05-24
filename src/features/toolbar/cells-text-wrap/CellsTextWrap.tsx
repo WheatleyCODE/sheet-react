@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Button, MDropdown, Title } from 'shared/ui';
-import { MdCheck, MdWrapText } from 'react-icons/md';
+import { MdCheck, MdOutlineArrowDropDown, MdWrapText } from 'react-icons/md';
 import styles from './CellsTextWrap.module.css';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import { AnimatePresence } from 'framer-motion';
@@ -17,7 +17,7 @@ export const CellsTextWrap: FC<ICellsTextWrapProps> = () => {
   return (
     <div className={styles.wrap}>
       <Title isStopShow={isShow} text="Перенос текста">
-        <Button onClick={toggleDropdown} className={styles.button} Icon={MdWrapText} />
+        <Button onClick={toggleDropdown} className={styles.button} Icon={MdWrapText} SubIcon={MdOutlineArrowDropDown} />
       </Title>
 
       <AnimatePresence>

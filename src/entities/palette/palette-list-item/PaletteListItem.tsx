@@ -4,11 +4,12 @@ import { MdCheck } from 'react-icons/md';
 
 interface PaletteListItemProps {
   color: string;
+  title: string;
 }
 
-export const PaletteListItem: FC<PaletteListItemProps> = ({ color }) => {
+export const PaletteListItem: FC<PaletteListItemProps> = ({ color, title }) => {
   return (
-    <div style={{ background: color }} className={styles.item}>
+    <div title={title} style={{ background: color }} className={styles.item}>
       {/* <MdCheck /> */}
     </div>
   );

@@ -26,13 +26,13 @@ export const CellsTextColor: FC<ICellsTextColorProps> = () => {
             className={styles.dropdown}
             closeDropdown={closeDropdown}
             transition={{ duration: ANIMATION_DURATION }}
-            exit={{ height: 0 }}
-            animate={{ height: 'auto' }}
-            initial={{ height: 0 }}
+            exit={{ height: 0, opacity: 0.9 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            initial={{ height: 0, opacity: 0.9 }}
           >
             <PaletteList>
               {colors.map((color) => (
-                <PaletteListItem key={color.title} color={color.color} />
+                <PaletteListItem key={color.title} title={color.title} color={color.color} />
               ))}
             </PaletteList>
           </MDropdown>

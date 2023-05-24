@@ -1,6 +1,11 @@
 import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { MdVerticalAlignBottom, MdVerticalAlignCenter, MdVerticalAlignTop } from 'react-icons/md';
+import {
+  MdOutlineArrowDropDown,
+  MdVerticalAlignBottom,
+  MdVerticalAlignCenter,
+  MdVerticalAlignTop,
+} from 'react-icons/md';
 import { DropdownIconMenu, DropdownIconMenuItem } from 'entities';
 import { Button, MDropdown, Title } from 'shared/ui';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
@@ -17,7 +22,12 @@ export const CellsVerAlign: FC<ICellsVerAlignProps> = () => {
   return (
     <div className={styles.vertical}>
       <Title isStopShow={isShow} text="Выравнивание по вертикали">
-        <Button onClick={toggleDropdown} className={styles.button} Icon={MdVerticalAlignBottom} />
+        <Button
+          onClick={toggleDropdown}
+          className={styles.button}
+          Icon={MdVerticalAlignBottom}
+          SubIcon={MdOutlineArrowDropDown}
+        />
       </Title>
 
       <AnimatePresence>

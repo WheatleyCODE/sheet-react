@@ -19,6 +19,7 @@
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow, transform;
+  font-size: 0.95rem;
 }
 
 .button:hover {
@@ -41,4 +42,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.button_sub_icon_container {
+  margin-left: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button_sub_icon {
+  font-size: 0.9rem;
 }

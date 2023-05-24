@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Button, MDropdown, Title } from 'shared/ui';
-import { MdFormatAlignCenter, MdFormatAlignLeft, MdFormatAlignRight } from 'react-icons/md';
+import { MdFormatAlignCenter, MdFormatAlignLeft, MdFormatAlignRight, MdOutlineArrowDropDown } from 'react-icons/md';
 import { DropdownIconMenu, DropdownIconMenuItem } from 'entities';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import { ANIMATION_DURATION } from 'shared/consts';
@@ -17,7 +17,12 @@ export const CellsHorAlign: FC<ICellsHorAlignProps> = () => {
   return (
     <div className={styles.horizontal}>
       <Title isStopShow={isShow} text="Выравнивание по горизонтали">
-        <Button onClick={toggleDropdown} className={styles.button} Icon={MdFormatAlignLeft} />
+        <Button
+          onClick={toggleDropdown}
+          className={styles.button}
+          Icon={MdFormatAlignLeft}
+          SubIcon={MdOutlineArrowDropDown}
+        />
       </Title>
 
       <AnimatePresence>
