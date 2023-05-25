@@ -1,5 +1,15 @@
-import { CellFormats, Fonts, HorizontalAligns, ICell, ICol, IRow, TextWraps, VerticalAligns } from 'shared/types/table';
-import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from 'shared/consts/table';
+import {
+  CellFormats,
+  Fonts,
+  HorizontalAligns,
+  ICell,
+  ICol,
+  IRow,
+  TextWraps,
+  VerticalAligns,
+  DEFAULT_HEIGHT,
+  DEFAULT_WIDTH,
+} from 'entities';
 
 export const createColData = (value: string, id: number): ICol => {
   return {

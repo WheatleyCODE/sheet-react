@@ -1,4 +1,4 @@
-import { ICell, ICol, IRow } from 'shared/types/table';
+import { ICell, ICol, IRow } from 'entities/share/types/table';
 import { toCharCode } from '../utils/toCharCode';
 import { createCellData, createColData, createRowData } from './createCells';
 

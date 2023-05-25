@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ICell, ICol, IRow } from 'shared/types/table';
+import { ICell, ICol, IRow } from 'entities';
 
 export interface TableState {
   id: string;

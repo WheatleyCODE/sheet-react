@@ -1,4 +1,4 @@
-import { CHARS_MAX_LENGTH, CODES } from 'shared/consts/table';
+import { CHARS_MAX_LENGTH, CODES } from 'entities';
 
 export const toCharCode = (): (() => string) => {
   let count = -1;

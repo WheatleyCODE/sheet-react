@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ICol, IRow } from 'shared/types/table';
+import { ICol, IRow } from 'entities';
 export interface IList {
   name: string;
   id: string;
@@ -40,10 +40,7 @@ export const sheetsSlice = createSlice({
     },
 
     initSheets: (state, { payload }: PayloadAction<ISheetsState>) => {
-      const { id, name, lists, settings, currentListId, openDate, changeDate, createDate } = payload;
-
-      console.log(lists);
-
+      const { id, name, lists, settings, currentListId, openDate, changeDate, createDate, isLoading } = payload;
       state.currentListId = currentListId;
       state.id = id;
       state.name = name;
@@ -52,6 +49,7 @@ export const sheetsSlice = createSlice({
       state.createDate = createDate;
       state.changeDate = changeDate;
       state.openDate = openDate;
+      state.isLoading = isLoading;
     },
 
     addList: (state, { payload }: PayloadAction<IList>) => {

@@ -1,4 +1,4 @@
-import { ICol, IRow } from 'shared/types/table';
+import { ICol, IRow } from 'entities';
 import { ISheetsState } from '../store/sheetsSlice';
 
 export const createSheetsState = (id: string, tableId: string, cols: ICol[], rows: IRow[]): ISheetsState => {
@@ -11,5 +11,6 @@ export const createSheetsState = (id: string, tableId: string, cols: ICol[], row
     createDate: Date.now(),
     changeDate: Date.now(),
     openDate: Date.now(),
+    isLoading: true,
   };
 };

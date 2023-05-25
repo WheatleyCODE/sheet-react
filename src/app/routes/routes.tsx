@@ -1,5 +1,5 @@
-import { PathRoutes } from 'shared/types/routes.';
 import { CreateSheets, Sheets } from 'pages';
+import { PathRoutes } from 'entities';
 
 export const routes = [
   {
