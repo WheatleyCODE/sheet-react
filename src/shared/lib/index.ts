@@ -7,4 +7,5 @@ export * from './iterators';
 export * from './kv-storage';
 export * from './parser-generators';
 export * from './promises';
+export * from './providers';
 export * from './symbols';
