@@ -1,2 +1,2 @@
-export { CreateSheets } from './create-sheets/CreateSheets';
-export { Sheets } from './sheets/Sheets';
+export * from './create-sheets';
+export * from './sheets';
