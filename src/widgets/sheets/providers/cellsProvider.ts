@@ -1,4 +1,5 @@
 import { BaseProvider, IDataProvider, IDataProviderPeek } from 'shared';
+import { RequestBuilder } from 'shared/lib/request/request-builder/requestBuilder';
 
 // * PROTOTYPE | TEMPLATE
 export class CellsBaseProvider extends BaseProvider {
@@ -11,7 +12,10 @@ export class CellsBaseProvider extends BaseProvider {
 }
 
 export class CellsProvider extends CellsBaseProvider implements IDataProvider<any> {
-  // static request = requestBuilder({ headers: { 'Content-Type': 'application/json' } });
+  static request = new RequestBuilder('url', { headers: { 'Content-Length': '1934' } })
+    .addHeaders({ 'Content-Type': 'application/json' })
+    .build();
+
   constructor(normalizer: (a: any) => any) {
     super(normalizer);
   }
@@ -26,12 +30,9 @@ export class CellsProvider extends CellsBaseProvider implements IDataProvider<an
 }
 
 export class CellsPeekProvider extends CellsProvider implements IDataProviderPeek<any> {
-  // ! И все должно склеиться
-  // static request = CellsProvider.request({ headers: { 'my-peek-header': 'hello' } });
+  static request = CellsProvider.request.addHeaders({ 'My-Peek': 'json' });
 
   peek(query: unknown): Promise<any> {
     throw new Error('Method not implemented.');
   }
 }
-
-// todo Создать requestBuilder
