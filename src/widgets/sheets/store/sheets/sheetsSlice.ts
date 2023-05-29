@@ -1,24 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ICol, IRow } from 'entities';
-
-export interface IList {
-  name: string;
-  id: string;
-  cols: ICol[];
-  rows: IRow[];
-}
-
-export interface ISheetsState {
-  id: string;
-  name: string;
-  lists: IList[];
-  currentListId: string | null;
-  settings: any;
-  createDate: number;
-  changeDate: number;
-  openDate: number;
-  isLoading: boolean;
-}
+import { IList, ISheetsState } from './interface';
 
 export const initialState: ISheetsState = {
   createDate: 0,
@@ -75,12 +56,12 @@ export const sheetsSlice = createSlice({
       state.lists = [...state.lists].filter((list) => list.id !== payload);
     },
 
-    renameList: (state, { payload }: PayloadAction<{ id: string; newName: string }>) => {
-      const { id, newName } = payload;
+    renameList: (state, { payload }: PayloadAction<{ id: string; name: string }>) => {
+      const { id, name } = payload;
 
       state.lists = state.lists.map((list) => {
         if (list.id === id) {
-          return { ...list, name: newName };
+          return { ...list, name };
         }
 
         return list;

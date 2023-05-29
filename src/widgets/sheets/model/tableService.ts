@@ -53,6 +53,12 @@ export class TableService {
     this.#idbs.deleteDB(id);
   }
 
+  deleteTables(ids: string[]): void {
+    for (const id of ids) {
+      this.deleteTable(id);
+    }
+  }
+
   async copy(id: string): Promise<{ cells: ICell[][]; id: string }> {
     const allCells = await this.#idbs.getAll<ICell>(id);
 

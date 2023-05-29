@@ -1,4 +1,4 @@
-import { ISheetsState } from '../store/sheets/sheetsSlice';
+import { ISheetsState } from '../store/sheets/interface';
 
 export const createSheetsState = (id: string): ISheetsState => {
   return {

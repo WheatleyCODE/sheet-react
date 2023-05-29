@@ -1,8 +1,8 @@
-import { IList, ISheetsState } from '../store/sheets/sheetsSlice';
 import { SheetsService } from '../model/sheetsService';
 
 // ! Fix
 import { ISheetsData } from 'widgets/create-sheets/store/createSheetsSlice';
+import { IList, ISheetsState } from '../store/sheets/interface';
 
 class SheetsController {
   #sheetsService = new SheetsService();
@@ -31,7 +31,7 @@ class SheetsController {
     return await this.#sheetsService.addList(id, tableId, list);
   }
 
-  async changeCurrentListId(id: string, newCurrentId: string) {
+  async changeCurrentListId(id: string, newCurrentId: string): Promise<ISheetsState> {
     return await this.#sheetsService.changeCurrentListId(id, newCurrentId);
   }
 

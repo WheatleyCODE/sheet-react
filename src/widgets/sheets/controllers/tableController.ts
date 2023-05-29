@@ -24,6 +24,10 @@ export class TableController {
   deleteTable(id: string) {
     this.tableService.deleteTable(id);
   }
+
+  deleteTables(ids: string[]) {
+    this.tableService.deleteTables(ids);
+  }
 }
 
 export const tableController = new TableController();
