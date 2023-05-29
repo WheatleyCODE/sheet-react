@@ -1,21 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { sheetsActions, sheetsController, tableActions, tableController } from 'widgets/sheets';
 import { ITable } from 'widgets/sheets/helpers/createTable';
+import { createListState } from 'widgets/sheets/utils/createListState';
+import { ITableChangeCellValue, ITableFields } from './interface';
 
-export const createTable = createAsyncThunk<ITable, { sheetId: string }>(
+export const createTable = createAsyncThunk<ITable, ITableFields>(
   'table/createTable',
-  async (fields, thunkAPI) => {
+  async ({ tableId }, thunkAPI) => {
     try {
       const table = await tableController.create();
+      const { id, rows, cols } = table;
 
-      const list = {
-        name: 'Лист 1',
-        id: table.id,
-        cols: table.cols,
-        rows: table.rows,
-      };
+      const list = createListState('Лист 1', id, cols, rows);
 
-      await sheetsController.addList(fields.sheetId, table.id, list);
+      await sheetsController.addList(tableId, id, list);
 
       thunkAPI.dispatch(sheetsActions.addList(list));
       thunkAPI.dispatch(tableActions.initTable(table));
@@ -28,7 +26,7 @@ export const createTable = createAsyncThunk<ITable, { sheetId: string }>(
   }
 );
 
-export const changeCellValue = createAsyncThunk<void, { tableId: string; id: string; value: string }>(
+export const changeCellValue = createAsyncThunk<void, ITableChangeCellValue>(
   'table/changeCellValue',
   async ({ tableId, id, value }, thunkAPI) => {
     try {

@@ -1,5 +1,4 @@
-import { IndexedDB } from 'shared';
-import { ICell, COLS_COUNT, ROWS_COUNT, ICol, IRow } from 'entities';
+import { ICell, COLS_COUNT, ROWS_COUNT } from 'entities';
 import { IndexedDBService } from './indexedDBService';
 import { createTable } from '..';
 import { ITable } from '../helpers/createTable';
