@@ -4,12 +4,18 @@ import { useValidInput } from 'shared';
 import styles from './RenameListModal.module.css';
 
 interface IRenameListModalProps {
-  renameList: () => void;
+  renameList: (id: string, name: string) => void;
+  listId: string;
   onClose: () => void;
 }
 
-export const RenameListModal: FC<IRenameListModalProps> = ({ renameList, onClose }) => {
+export const RenameListModal: FC<IRenameListModalProps> = ({ renameList, listId, onClose }) => {
   const input = useValidInput('');
+
+  const onSuccess = () => {
+    renameList(listId, input.value);
+    onClose();
+  };
 
   return (
     <Portal>
@@ -17,6 +23,7 @@ export const RenameListModal: FC<IRenameListModalProps> = ({ renameList, onClose
         <Modal onClose={onClose}>
           <div className={styles.rename_modal}>
             <div className={styles.title}>Переименовать</div>
+
             <Input
               value={input.value}
               type="text"
@@ -31,7 +38,7 @@ export const RenameListModal: FC<IRenameListModalProps> = ({ renameList, onClose
 
             <div className={styles.buttons}>
               <Button onClick={onClose} text="Отмена" />
-              <Button text="Переименовать" />
+              <Button onClick={onSuccess} text="Переименовать" />
             </div>
           </div>
         </Modal>

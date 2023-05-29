@@ -5,7 +5,7 @@ import { sheetsSortFns } from '../../consts/sheetsSorts';
 import styles from './CreateSheetsLists.module.css';
 
 export interface ICreateSheetsListsProps {
-  deleteSheets: (id: string) => Promise<void>;
+  deleteSheets: (id: string) => void;
 }
 
 export const CreateSheetsLists: FC<ICreateSheetsListsProps> = ({ deleteSheets }) => {

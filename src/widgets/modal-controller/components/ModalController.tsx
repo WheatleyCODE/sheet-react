@@ -1,11 +1,14 @@
 import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { useTypedSelector, useTypedDispatch } from 'shared';
+import { useTypedSelector, useTypedDispatch, useActions } from 'shared';
 import { DeleteListModal, RenameListModal } from 'features';
 import { modalsActions } from '../store/modalsSlice';
+import { useParams } from 'react-router-dom';
 
 export const ModalController: FC = () => {
-  const { deleteList, renameList } = useTypedSelector((state) => state.modals);
+  const { id } = useParams();
+  const { deleteListModal, renameListModal } = useTypedSelector((state) => state.modals);
+  const { removeList, renameList } = useActions();
   const dispatch = useTypedDispatch();
 
   const closeDeleteModal = () => {
@@ -16,10 +19,24 @@ export const ModalController: FC = () => {
     dispatch(modalsActions.changeRenameList({ isShow: false, id: '' }));
   };
 
+  const deleteListHandler = async (listId: string) => {
+    if (!id) return;
+    removeList({ id, listId });
+  };
+
+  const renameListHandler = async (listId: string, name: string) => {
+    if (!id) return;
+    renameList({ id, listId, name });
+  };
+
   return (
     <AnimatePresence>
-      {deleteList.isShow && <DeleteListModal deleteList={() => ({})} onClose={closeDeleteModal} />}
-      {renameList.isShow && <RenameListModal renameList={() => ({})} onClose={closeRenameModal} />}
+      {deleteListModal.isShow && (
+        <DeleteListModal listId={deleteListModal.id} deleteList={deleteListHandler} onClose={closeDeleteModal} />
+      )}
+      {renameListModal.isShow && (
+        <RenameListModal listId={renameListModal.id} renameList={renameListHandler} onClose={closeRenameModal} />
+      )}
     </AnimatePresence>
   );
 };

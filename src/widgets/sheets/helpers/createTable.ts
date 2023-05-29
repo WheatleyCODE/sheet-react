@@ -1,6 +1,14 @@
 import { ICell, ICol, IRow } from 'entities/share/types/table';
 import { toCharCode } from '../utils/toCharCode';
 import { createCellData, createColData, createRowData } from './createCells';
+import { v4 } from 'uuid';
+
+export interface ITable {
+  cols: ICol[];
+  rows: IRow[];
+  cells: ICell[][];
+  id: string;
+}
 
 export const createCols = (colsCount: number): ICol[] => {
   const toChar = toCharCode();
@@ -25,7 +33,7 @@ export const createCells = (rows: IRow[], colsCount: number): ICell[][] => {
   return cells;
 };
 
-export const createTable = (colsCount = 30, rowsCount = 50) => {
+export const createTable = (colsCount = 30, rowsCount = 50): ITable => {
   const cols = createCols(colsCount);
   const rows = createRows(rowsCount);
   const cells = createCells(rows, colsCount);
@@ -34,5 +42,6 @@ export const createTable = (colsCount = 30, rowsCount = 50) => {
     cols,
     rows,
     cells,
+    id: v4(),
   };
 };

@@ -1,27 +1,28 @@
+import { ICell } from 'entities/share';
+import { ITable } from '../helpers/createTable';
 import { TableService } from '../model/tableService';
-import { ICell } from 'entities/share/types/table';
 
 export class TableController {
-  tableDBService = new TableService();
+  tableService = new TableService();
 
-  changeCellValue(tableId: string, id: string, text: string) {
-    this.tableDBService.changeCellValue(tableId, id, text);
+  async create(): Promise<ITable> {
+    return await this.tableService.create();
   }
 
-  getCell(tableId: string, id: string) {
-    this.tableDBService.getCell(tableId, id);
+  async copy(id: string): Promise<{ cells: ICell[][]; id: string }> {
+    return await this.tableService.copy(id);
+  }
+
+  async get(id: string): Promise<ICell[][]> {
+    return await this.tableService.get(id);
+  }
+
+  changeCellValue(tableId: string, id: string, text: string) {
+    this.tableService.changeCellValue(tableId, id, text);
   }
 
   deleteTable(id: string) {
-    this.tableDBService.deleteTable(id);
-  }
-
-  async createTable(tableId: string, cells: ICell[][]): Promise<ICell[]> {
-    return await this.tableDBService.createTable(tableId, cells);
-  }
-
-  async getTable(id: string): Promise<ICell[][]> {
-    return await this.tableDBService.getTable(id);
+    this.tableService.deleteTable(id);
   }
 }
 

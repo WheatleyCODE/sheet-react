@@ -1,7 +1,6 @@
 import { FC, useRef, memo } from 'react';
 import { ICell } from 'entities';
-import { useDebounce } from 'shared';
-import { tableController } from 'widgets';
+import { useActions, useDebounce } from 'shared';
 import styles from './Cell.module.css';
 
 export interface ICellProps {
@@ -14,6 +13,7 @@ export interface ICellProps {
 }
 
 export const Cell: FC<ICellProps> = memo(({ isActive, width, height, cell, selectCell, tableId }) => {
+  const { changeCellValue } = useActions();
   const input = useRef<HTMLDivElement | null>(null);
 
   const onMouseDown = () => {
@@ -21,9 +21,9 @@ export const Cell: FC<ICellProps> = memo(({ isActive, width, height, cell, selec
     selectCell(cell);
   };
 
-  const debouncedChange = useDebounce((text: string) => {
-    tableController.changeCellValue(tableId, cell.id, text);
-  }, 100);
+  const debouncedChange = useDebounce((value: string) => {
+    changeCellValue({ tableId, id: cell.id, value });
+  }, 120);
 
   const onInput = (e: React.FormEvent<HTMLDivElement>) => {
     debouncedChange(e.currentTarget.textContent);

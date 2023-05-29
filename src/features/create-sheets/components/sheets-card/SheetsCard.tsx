@@ -11,7 +11,7 @@ interface SheetsCardProps {
   id: string;
   name: string;
   date: string;
-  deleteSheets: (id: string) => Promise<void>;
+  deleteSheets: (id: string) => void;
 }
 
 export const SheetsCard = forwardRef<HTMLDivElement, SheetsCardProps>(({ name, date, id, deleteSheets }, ref) => {

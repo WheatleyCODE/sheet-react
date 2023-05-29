@@ -7,12 +7,12 @@ import { DropdownMenu, DropdownMenuItem } from 'entities';
 import styles from './ListsControllers.module.css';
 
 // ! Fix
-import { IList } from 'widgets/sheets/store/sheetsSlice';
+import { IList } from 'widgets/sheets/store/sheets/sheetsSlice';
 
 interface IListsControllersProps {
   lists: IList[];
   createList: () => void;
-  currentListId: string;
+  currentListId: string | null;
   changeCurrentListId: (ids: string) => Promise<void>;
 }
 

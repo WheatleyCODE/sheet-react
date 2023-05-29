@@ -1,33 +1,17 @@
 import { FC, useEffect } from 'react';
-import {
-  CreateSheetsFilters,
-  CreateSheetsHeader,
-  CreateSheetsLists,
-  CreateSheetsTemplates,
-  sheetsController,
-  createSheetsActions,
-  tableController,
-} from 'widgets';
-import { useTypedDispatch } from 'shared';
+import { CreateSheetsFilters, CreateSheetsHeader, CreateSheetsLists, CreateSheetsTemplates } from 'widgets';
+import { useActions } from 'shared/lib';
 import styles from './CreateSheets.module.css';
 
 export const CreateSheets: FC = () => {
-  const dispatch = useTypedDispatch();
+  const { getAllSheetsData, removeSheets } = useActions();
 
   useEffect(() => {
-    dispatch(createSheetsActions.changeSheets(sheetsController.getAllData()));
+    getAllSheetsData();
   }, []);
 
-  const deleteSheets = async (id: string) => {
-    const data = await sheetsController.remove(id);
-
-    if (data) {
-      data.lists.forEach((list) => {
-        tableController.deleteTable(list.id);
-      });
-
-      dispatch(createSheetsActions.changeSheets(sheetsController.getAllData()));
-    }
+  const deleteSheets = (id: string) => {
+    removeSheets({ id });
   };
 
   return (

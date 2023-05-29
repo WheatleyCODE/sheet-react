@@ -11,5 +11,5 @@ export type SerializablePrimitiveValue = string | number | boolean | null;
 export type SerializableValue =
   | SerializablePrimitiveValue
   | SerializablePrimitiveValue[]
-  | Record<string, SerializablePrimitiveValue>
+  | Record<string, any>
   | { toJSON(): SerializableValue };

@@ -1,24 +1,24 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface IModalsState {
-  renameList: {
+  renameListModal: {
     isShow: boolean;
     id: string;
   };
 
-  deleteList: {
+  deleteListModal: {
     isShow: boolean;
     id: string;
   };
 }
 
 export const initialState: IModalsState = {
-  renameList: {
+  renameListModal: {
     isShow: false,
     id: '',
   },
 
-  deleteList: {
+  deleteListModal: {
     isShow: false,
     id: '',
   },
@@ -29,13 +29,13 @@ export const modalsSlice = createSlice({
   initialState,
   reducers: {
     changeRenameList: (state, { payload }: PayloadAction<{ isShow: boolean; id: string }>) => {
-      state.renameList.id = payload.id;
-      state.renameList.isShow = payload.isShow;
+      state.renameListModal.id = payload.id;
+      state.renameListModal.isShow = payload.isShow;
     },
 
     changeDeleteList: (state, { payload }: PayloadAction<{ isShow: boolean; id: string }>) => {
-      state.deleteList.id = payload.id;
-      state.deleteList.isShow = payload.isShow;
+      state.deleteListModal.id = payload.id;
+      state.deleteListModal.isShow = payload.isShow;
     },
   },
 });

@@ -1,15 +1,14 @@
 import { ChangeEvent, FC, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { sheetsActions, sheetsController } from 'widgets';
 import { Settings } from 'features';
 import { MSpinner, Logo } from 'entities';
-import { useDebounce, useTypedDispatch, useTypedSelector, ANIMATION_DURATION } from 'shared';
+import { useDebounce, useTypedSelector, ANIMATION_DURATION, useActions } from 'shared';
 import { Input, Title, useValidInput } from 'shared/ui';
 import styles from './SheetsHeader.module.css';
 
 export const SheetsHeader: FC = () => {
   const { name, id, isLoading } = useTypedSelector((state) => state.sheets);
-  const dispatch = useTypedDispatch();
+  const { changeSheetsName } = useActions();
 
   const input = useValidInput('');
 
@@ -18,8 +17,7 @@ export const SheetsHeader: FC = () => {
   }, [id]);
 
   const changeName = useDebounce((value: string) => {
-    sheetsController.changeName(id, value);
-    dispatch(sheetsActions.changeName(value));
+    changeSheetsName({ id, newName: value });
   }, 200);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {

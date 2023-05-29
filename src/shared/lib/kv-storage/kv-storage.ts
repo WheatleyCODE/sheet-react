@@ -1,4 +1,4 @@
-import { SerializableValue, SerializablePrimitiveValue, KVStorageEngine } from './interface';
+import { SerializableValue, KVStorageEngine } from './interface';
 import { LocalStorageEngine } from './local-storage-engine/localStorageEngine';
 
 export function KVFactory(namespace: string, engine?: KVStorageEngine) {
@@ -6,7 +6,6 @@ export function KVFactory(namespace: string, engine?: KVStorageEngine) {
   return new KVStorage(namespace, eng);
 }
 
-// * Также можно вынести в отдельную стратегию преобразование и сериализацию файлов
 export class KVStorage {
   readonly namespace: string;
   readonly engine: KVStorageEngine;
@@ -16,7 +15,7 @@ export class KVStorage {
     this.engine = engine;
   }
 
-  async get<T extends SerializablePrimitiveValue>(key: string): Promise<T | null> {
+  async get<T extends SerializableValue>(key: string): Promise<T | null> {
     const rawData = await this.engine.get(this.#getKey(key));
     return JSON.parse(rawData ?? 'null');
   }

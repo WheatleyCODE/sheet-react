@@ -1,63 +1,65 @@
 import { IndexedDB } from 'shared';
-import { ICell, COLS_COUNT, ROWS_COUNT } from 'entities';
+import { ICell, COLS_COUNT, ROWS_COUNT, ICol, IRow } from 'entities';
+import { IndexedDBService } from './indexedDBService';
+import { createTable } from '..';
+import { ITable } from '../helpers/createTable';
+import { v4 } from 'uuid';
 
 export class TableService {
-  #dbs: { [key: string]: IndexedDB } = {};
-  private static instance: TableService;
+  #idbs = new IndexedDBService();
 
-  constructor() {
-    if (TableService.instance) return TableService.instance;
-    TableService.instance = this;
-  }
+  async create(): Promise<ITable> {
+    const table = createTable(COLS_COUNT, ROWS_COUNT);
 
-  deleteTable(id: string) {
-    IndexedDB.deleteDB(id);
-  }
-
-  async #openDB(tableId: string): Promise<IndexedDB> {
-    const db = new IndexedDB(tableId, 'table', 'id');
-    await db.open();
-    this.#dbs[tableId] = db;
-
-    return db;
-  }
-
-  async changeCellValue(tableId: string, id: string, value: string): Promise<ICell | undefined> {
-    const db = await this.#openDB(tableId);
-    const data = await db.get<ICell>(id);
-
-    data.value = value;
-
-    db.put('id', data);
-    db.close();
-
-    return data;
-  }
-
-  async getCell(tableId: string, id: string): Promise<ICell | undefined> {
-    if (this.#dbs[tableId]?.isOpen) {
-      return await this.#dbs[tableId].get<ICell>(id);
+    for (const row of table.cells) {
+      for await (const cell of row) {
+        await this.#idbs.put(table.id, cell.id, cell);
+      }
     }
 
-    const db = await this.#openDB(tableId);
-
-    const data = await db.get<ICell>(id);
-    db.close();
-
-    return data;
+    return table;
   }
 
-  async getTable(tableId: string): Promise<ICell[][]> {
-    let allCells: ICell[] = [];
-    let db: IndexedDB;
+  async get(tableId: string): Promise<ICell[][]> {
+    console.log(tableId);
 
-    if (this.#dbs[tableId]?.isOpen) {
-      allCells = await this.#dbs[tableId].getAll<ICell>();
-      db = this.#dbs[tableId];
-    } else {
-      const idb = await this.#openDB(tableId);
-      db = idb;
-      allCells = await idb.getAll<ICell>();
+    const allCells = await this.#idbs.getAll<ICell>(tableId);
+
+    const cells: ICell[][] = [];
+
+    for (let i = 0; i < ROWS_COUNT; i++) {
+      cells[i] = new Array(COLS_COUNT);
+    }
+
+    for (const cell of allCells) {
+      const [row, col] = cell.id.split(':');
+      cells[Number(row)][Number(col)] = cell;
+    }
+
+    return cells;
+  }
+
+  async changeCellValue(tableId: string, id: string, value: string): Promise<ICell> {
+    const cell = await this.#idbs.get<ICell>(tableId, id);
+
+    if (!cell) throw new Error('Ячейка не найдена');
+
+    cell.value = value;
+    await this.#idbs.put(tableId, id, cell);
+    return cell;
+  }
+
+  deleteTable(id: string): void {
+    this.#idbs.deleteDB(id);
+  }
+
+  async copy(id: string): Promise<{ cells: ICell[][]; id: string }> {
+    const allCells = await this.#idbs.getAll<ICell>(id);
+
+    const tableId = v4();
+
+    for await (const cell of allCells) {
+      await this.#idbs.put(tableId, cell.id, cell);
     }
 
     const cells: ICell[][] = [];
@@ -67,31 +69,10 @@ export class TableService {
     }
 
     for (const cell of allCells) {
-      const id = cell.id.split(':');
-      const row = Number(id[0]);
-      const col = Number(id[1]);
-      cells[row][col] = cell;
+      const [row, col] = cell.id.split(':');
+      cells[Number(row)][Number(col)] = cell;
     }
 
-    db.close();
-
-    return cells;
-  }
-
-  async createTable(tableId: string, cells: ICell[][]): Promise<ICell[]> {
-    const db = await this.#openDB(tableId);
-
-    for (const row of cells) {
-      for await (const cell of row) {
-        await db.put(cell.id, cell);
-      }
-    }
-
-    const data = await db.getAll<ICell>();
-
-    // Todo fix close database
-    db.close();
-
-    return data;
+    return { cells, id: tableId };
   }
 }

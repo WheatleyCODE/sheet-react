@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Страница 1" id="cOe1a5cerJCm0QMi9jSH">
-        <mxGraphModel dx="3789" dy="1413" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+        <mxGraphModel dx="2604" dy="872" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -88,7 +88,7 @@
                 <mxCell id="186" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="170" target="172" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="170" value="SheetsController" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;glass=0;shadow=0;" parent="1" vertex="1">
+                <mxCell id="170" value="sheetsController" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;glass=0;shadow=0;" parent="1" vertex="1">
                     <mxGeometry x="4110" y="1040" width="160" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="171" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="172" target="170" edge="1">
@@ -814,11 +814,44 @@
                 <mxCell id="557" value="hoc" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;glass=0;shadow=0;" parent="1" vertex="1">
                     <mxGeometry x="-180" y="3120" width="160" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="558" value="providers" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;glass=0;shadow=0;" vertex="1" parent="1">
+                <mxCell id="558" value="providers" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;glass=0;shadow=0;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1560" width="160" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="560" value="providers" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;glass=0;shadow=0;" vertex="1" parent="1">
+                <mxCell id="560" value="providers" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;glass=0;shadow=0;" parent="1" vertex="1">
                     <mxGeometry y="3180" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="567" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="565" target="566">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="565" value="Действие" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2880" y="1240" width="240" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="570" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="566" target="569">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="572" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="566" target="568">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="575" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="566" target="574">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="566" value="Ассинхронный Экшен" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2880" y="1320" width="240" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="573" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="568" target="566">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="568" value="TableController" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="3120" y="1439.5" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="571" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="569" target="566">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="569" value="SheetController" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="3360" y="1440.5" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="574" value="Изменение редакса" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                    <mxGeometry x="2840" y="1440" width="240" height="40" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { ICol, IRow } from 'entities';
+
 export interface IList {
   name: string;
   id: string;
@@ -11,7 +12,7 @@ export interface ISheetsState {
   id: string;
   name: string;
   lists: IList[];
-  currentListId: string;
+  currentListId: string | null;
   settings: any;
   createDate: number;
   changeDate: number;
@@ -28,7 +29,7 @@ export const initialState: ISheetsState = {
   currentListId: '',
   lists: [],
   settings: {},
-  isLoading: true,
+  isLoading: false,
 };
 
 export const sheetsSlice = createSlice({
@@ -41,6 +42,7 @@ export const sheetsSlice = createSlice({
 
     initSheets: (state, { payload }: PayloadAction<ISheetsState>) => {
       const { id, name, lists, settings, currentListId, openDate, changeDate, createDate, isLoading } = payload;
+
       state.currentListId = currentListId;
       state.id = id;
       state.name = name;
@@ -52,6 +54,18 @@ export const sheetsSlice = createSlice({
       state.isLoading = isLoading;
     },
 
+    clearSheets: (state) => {
+      state.currentListId = initialState.currentListId;
+      state.id = initialState.id;
+      state.name = initialState.name;
+      state.lists = initialState.lists;
+      state.settings = initialState.settings;
+      state.createDate = initialState.createDate;
+      state.changeDate = initialState.changeDate;
+      state.openDate = initialState.openDate;
+      state.isLoading = initialState.isLoading;
+    },
+
     addList: (state, { payload }: PayloadAction<IList>) => {
       state.lists.push(payload);
       state.currentListId = payload.id;
@@ -59,6 +73,18 @@ export const sheetsSlice = createSlice({
 
     removeList: (state, { payload }: PayloadAction<string>) => {
       state.lists = [...state.lists].filter((list) => list.id !== payload);
+    },
+
+    renameList: (state, { payload }: PayloadAction<{ id: string; newName: string }>) => {
+      const { id, newName } = payload;
+
+      state.lists = state.lists.map((list) => {
+        if (list.id === id) {
+          return { ...list, name: newName };
+        }
+
+        return list;
+      });
     },
 
     changeCurrentListId: (state, { payload }: PayloadAction<string>) => {

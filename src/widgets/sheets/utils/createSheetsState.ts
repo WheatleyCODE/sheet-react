@@ -1,16 +1,15 @@
-import { ICol, IRow } from 'entities';
-import { ISheetsState } from '../store/sheetsSlice';
+import { ISheetsState } from '../store/sheets/sheetsSlice';
 
-export const createSheetsState = (id: string, tableId: string, cols: ICol[], rows: IRow[]): ISheetsState => {
+export const createSheetsState = (id: string): ISheetsState => {
   return {
-    name: 'Таблица',
-    lists: [{ name: 'Лист 1', id: tableId, cols, rows }],
-    settings: {},
-    currentListId: tableId,
     id,
+    name: 'Table new',
+    lists: [],
+    currentListId: null,
     createDate: Date.now(),
     changeDate: Date.now(),
     openDate: Date.now(),
+    settings: {},
     isLoading: true,
   };
 };
