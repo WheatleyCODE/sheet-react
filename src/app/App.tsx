@@ -1,8 +1,9 @@
 import { FC } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { routes } from './routes/routes';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { routes } from './routes/routes';
 import { store } from './redux/store';
+import { PathRoutes } from 'entities/share';
 import './global.css';
 
 export const App: FC = () => {
@@ -13,6 +14,7 @@ export const App: FC = () => {
           {routes.map(({ path, Page }) => (
             <Route key={path} path={path} element={<Page />} />
           ))}
+          <Route path="*" element={<Navigate to={PathRoutes.CREATE_SHEETS} replace />} />
         </Routes>
       </BrowserRouter>
     </Provider>

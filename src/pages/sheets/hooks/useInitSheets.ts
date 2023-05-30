@@ -16,7 +16,7 @@ export const useInitSheets = () => {
       if (isExists) {
         await getSheets({ id });
       } else {
-        createSheets({ id });
+        await createSheets({ id });
         createTable({ tableId: id });
       }
     };

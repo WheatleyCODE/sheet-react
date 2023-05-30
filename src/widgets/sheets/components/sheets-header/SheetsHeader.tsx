@@ -17,7 +17,7 @@ export const SheetsHeader: FC = () => {
   }, [id]);
 
   const changeName = useDebounce((value: string) => {
-    changeSheetsName({ id, newName: value });
+    changeSheetsName({ id, name: value });
   }, 200);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -10,11 +10,7 @@ export class TableService {
   async create(): Promise<ITable> {
     const table = createTable(COLS_COUNT, ROWS_COUNT);
 
-    for (const row of table.cells) {
-      for await (const cell of row) {
-        await this.#idbs.put(table.id, cell.id, cell);
-      }
-    }
+    await this.#idbs.createDBFromMatrix(table.id, table.cells);
 
     return table;
   }

@@ -52,8 +52,6 @@ export class SheetsService {
     const data = await this.#ls.get<ISheetsState>(id);
     if (!data) throw new Error('SheetsService, элемент не найден');
 
-    console.log(id, listId, newName);
-
     data.lists = data.lists.map((list) => {
       if (list.id === listId) {
         return { ...list, name: newName };

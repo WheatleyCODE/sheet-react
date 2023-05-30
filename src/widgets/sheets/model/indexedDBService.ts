@@ -23,6 +23,27 @@ export class IndexedDBService {
     IndexedDB.deleteDB(id);
   }
 
+  async createDBFromMatrix(tableId: string, matrix: { id: string }[][]): Promise<void> {
+    try {
+      await this.#openDB(tableId);
+
+      const puts: Promise<void>[] = [];
+
+      for (const row of matrix) {
+        for (const cell of row) {
+          puts.push(this.#dbs[tableId].put(cell.id, cell));
+        }
+      }
+
+      await Promise.all(puts);
+    } catch (e) {
+      console.log(e, 'createDBFromMatrix');
+      throw e;
+    } finally {
+      this.#closeDB(tableId);
+    }
+  }
+
   async #openDB(tableId: string) {
     if (!this.#dbs[tableId]) {
       await this.createDB(tableId);
