@@ -10,6 +10,6 @@ export const createSheetsState = (id: string): ISheetsState => {
     changeDate: Date.now(),
     openDate: Date.now(),
     settings: {},
-    isLoading: true,
+    isLoading: false,
   };
 };
