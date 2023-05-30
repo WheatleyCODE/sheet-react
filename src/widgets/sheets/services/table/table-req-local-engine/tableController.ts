@@ -1,8 +1,9 @@
+import { ITable } from 'widgets/sheets/helpers/createTable';
+import { TableService } from 'widgets/sheets/models/tableService';
 import { ICell } from 'entities/share';
-import { ITable } from '../helpers/createTable';
-import { TableService } from '../model/tableService';
+import { ITableReqEngine } from '../interface';
 
-export class TableController {
+export class TableController implements ITableReqEngine {
   tableService = new TableService();
 
   async create(): Promise<ITable> {
@@ -17,17 +18,15 @@ export class TableController {
     return await this.tableService.get(id);
   }
 
-  changeCellValue(tableId: string, id: string, text: string) {
+  changeCellValue(tableId: string, id: string, text: string): void {
     this.tableService.changeCellValue(tableId, id, text);
   }
 
-  deleteTable(id: string) {
+  deleteTable(id: string): void {
     this.tableService.deleteTable(id);
   }
 
-  deleteTables(ids: string[]) {
+  deleteTables(ids: string[]): void {
     this.tableService.deleteTables(ids);
   }
 }
-
-export const tableController = new TableController();

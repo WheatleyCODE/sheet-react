@@ -1,9 +1,7 @@
-import { KVFactory, LocalStorageEngine, SerializableValue } from 'shared';
-import { IList, ISheetsState } from '../store/sheets/sheetsSlice';
-
-// ! Fix
 import { ISheetsData } from 'widgets/create-sheets/store/createSheetsSlice';
-import { createSheetsState } from '../';
+import { KVFactory, LocalStorageEngine, SerializableValue } from 'shared';
+import { createSheetsState } from '..';
+import { IList, ISheetsState } from '../store/sheets/interface';
 
 export class SheetsService {
   #ls = KVFactory('sheets', new LocalStorageEngine());

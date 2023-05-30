@@ -12,13 +12,13 @@ export { sheetsActions, sheetsSlice } from './store/sheets/sheetsSlice';
 
 export { createTable } from './helpers/createTable';
 
-export { SheetsService } from './model/sheetsService';
-export { TableService } from './model/tableService';
-export { LastActionsService } from './model/lastActionsService';
+export { SheetsService } from './models/sheetsService';
+export { TableService } from './models/tableService';
+export { LastActionsService } from './models/lastActionsService';
 
-export { sheetsController } from './controllers/sheetsController';
-export { tableController } from './controllers/tableController';
-export { lastActionsController } from './controllers/lastActionsController';
+export { SheetsReqServiceFactory, SheetsReqService } from './services/sheets/sheetsReqService';
+export { TableReqServiceFactory, TableReqService } from './services/table/tableReqService';
+export { LastActionsReqServiceFactory, LastActionsReqService } from './services/last-actions/lastActionsReqService';
 
 export { createSheetsState } from './utils/createSheetsState';
 export { toCharCode } from './utils/toCharCode';

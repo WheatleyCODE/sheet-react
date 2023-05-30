@@ -1,12 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { sheetsController } from 'widgets/sheets';
+import { SheetsReqServiceFactory } from 'widgets/sheets';
 import { createSheetsActions } from '..';
 
 import { ISheetsData } from './createSheetsSlice';
 
 export const getAllSheetsData = createAsyncThunk<ISheetsData[]>('sheets/createSheets', async (_, thunkAPI) => {
   try {
-    const sheets = sheetsController.getAllData();
+    const sheetsReqService = SheetsReqServiceFactory();
+    const sheets = sheetsReqService.getAllData();
 
     thunkAPI.dispatch(createSheetsActions.changeSheets(sheets));
 

@@ -1,10 +1,9 @@
-import { SheetsService } from '../model/sheetsService';
-
-// ! Fix
+import { SheetsService } from 'widgets/sheets/models/sheetsService';
 import { ISheetsData } from 'widgets/create-sheets/store/createSheetsSlice';
-import { IList, ISheetsState } from '../store/sheets/interface';
+import { IList, ISheetsState } from 'widgets/sheets/store/sheets/interface';
+import { ISheetsReqEngine } from '../interface';
 
-class SheetsController {
+export class SheetsController implements ISheetsReqEngine {
   #sheetsService = new SheetsService();
 
   async create(id: string): Promise<ISheetsState> {
@@ -47,5 +46,3 @@ class SheetsController {
     return await this.#sheetsService.removeList(id, listId);
   }
 }
-
-export const sheetsController = new SheetsController();

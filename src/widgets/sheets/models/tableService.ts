@@ -1,8 +1,8 @@
+import { v4 } from 'uuid';
 import { ICell, COLS_COUNT, ROWS_COUNT } from 'entities';
 import { IndexedDBService } from './indexedDBService';
 import { createTable } from '..';
 import { ITable } from '../helpers/createTable';
-import { v4 } from 'uuid';
 
 export class TableService {
   #idbs = new IndexedDBService();

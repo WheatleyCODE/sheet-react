@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineTable } from 'react-icons/ai';
 import { MdDeleteOutline } from 'react-icons/md';
-import { sheetsController } from 'widgets';
+import { SheetsReqServiceFactory } from 'widgets';
 import { useDropdown, MActionWindow, ANIMATION_DURATION } from 'shared';
 import styles from './SheetsCard.module.css';
 
@@ -19,7 +19,8 @@ export const SheetsCard = forwardRef<HTMLDivElement, SheetsCardProps>(({ name, d
   const navigate = useNavigate();
 
   const openSheets = async () => {
-    await sheetsController.changeOpenDate(id);
+    const sheetsReqService = SheetsReqServiceFactory();
+    sheetsReqService.changeOpenDate(id);
     navigate(`sheets/${id}`);
   };
 

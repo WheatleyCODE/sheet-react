@@ -1,4 +1,4 @@
-import { LastActionsService } from '../model/lastActionsService';
+import { LastActionsService } from 'widgets/sheets/models/lastActionsService';
 
 export class LastActionsController {
   #lastActionsSSService = new LastActionsService();
@@ -11,5 +11,3 @@ export class LastActionsController {
     return await this.#lastActionsSSService.getLastActions(count);
   }
 }
-
-export const lastActionsController = new LastActionsController();
