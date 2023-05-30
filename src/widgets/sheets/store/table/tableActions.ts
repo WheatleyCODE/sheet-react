@@ -3,11 +3,13 @@ import { sheetsActions, sheetsController, tableActions, tableController } from '
 import { ITable } from 'widgets/sheets/helpers/createTable';
 import { createListState } from 'widgets/sheets/utils/createListState';
 import { ITableChangeCellValue, ITableFields } from './interface';
+import { modalsActions } from 'widgets/modal-controller';
 
 export const createTable = createAsyncThunk<ITable, ITableFields>(
   'table/createTable',
   async ({ tableId }, thunkAPI) => {
     try {
+      thunkAPI.dispatch(modalsActions.changeLoader({ isShow: true }));
       const table = await tableController.create();
       const { id, rows, cols } = table;
 
@@ -17,9 +19,11 @@ export const createTable = createAsyncThunk<ITable, ITableFields>(
 
       thunkAPI.dispatch(sheetsActions.addList(list));
       thunkAPI.dispatch(tableActions.initTable(table));
+      thunkAPI.dispatch(modalsActions.changeLoader({ isShow: false }));
 
       return table;
     } catch (e) {
+      thunkAPI.dispatch(modalsActions.changeLoader({ isShow: false }));
       console.log(e);
       throw e;
     }

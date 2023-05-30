@@ -8,9 +8,10 @@ export interface IModalProps {
   children: React.ReactNode;
   onClose: () => void;
   className?: string;
+  isHideCloseButton?: boolean;
 }
 
-export const Modal: FC<IModalProps> = ({ children, onClose, className }) => {
+export const Modal: FC<IModalProps> = ({ children, onClose, className, isHideCloseButton }) => {
   const MemoIcon = memo(CgClose);
 
   const stopPropagation = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -26,9 +27,11 @@ export const Modal: FC<IModalProps> = ({ children, onClose, className }) => {
       onClick={stopPropagation}
       className={`${styles.modal} ${className || ''}`}
     >
-      <div aria-hidden onClick={onClose} className={styles.close_button}>
-        <MemoIcon />
-      </div>
+      {!isHideCloseButton && (
+        <div aria-hidden onClick={onClose} className={styles.close_button}>
+          <MemoIcon />
+        </div>
+      )}
 
       {children}
     </motion.div>
