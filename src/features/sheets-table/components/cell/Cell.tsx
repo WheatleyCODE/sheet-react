@@ -1,6 +1,7 @@
-import { FC, useRef, memo, useLayoutEffect } from 'react';
+import { FC, useRef, memo, useLayoutEffect, useEffect } from 'react';
 import { CellsDataTypes, CellsEventEmitter, CellsEventNames, ICell } from 'entities';
 import { useActions, useDebounce } from 'shared';
+import { setEndOfContentEditable } from 'features/sheets-table/utils/setEndOfContentEditable';
 import styles from './Cell.module.css';
 
 export interface ICellProps {
@@ -23,7 +24,7 @@ export const Cell: FC<ICellProps> = memo(({ isActive, width, height, cell, selec
 
   const debouncedChange = useDebounce((value: string) => {
     changeCellValue({ tableId, id: cell.id, value });
-  }, 0);
+  }, 300);
 
   const onInput = (e: React.FormEvent<HTMLDivElement>) => {
     debouncedChange(e.currentTarget.textContent);
@@ -40,6 +41,12 @@ export const Cell: FC<ICellProps> = memo(({ isActive, width, height, cell, selec
 
     return unsubscribe;
   }, []);
+
+  useEffect(() => {
+    const el = input.current;
+    if (!el) return;
+    setEndOfContentEditable(el);
+  }, [cell.value]);
 
   return (
     <div style={{ width, height }} onMouseDown={onMouseDown} className={`${styles.cell} ${isActive && styles.active}`}>

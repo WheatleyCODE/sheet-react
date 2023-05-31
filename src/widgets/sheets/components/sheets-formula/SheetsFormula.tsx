@@ -1,7 +1,9 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { MdFunctions } from 'react-icons/md';
 import { useTypedSelector } from 'shared';
 import styles from './SheetsFormula.module.css';
+
+const MemoFunctions = memo(MdFunctions);
 
 export const SheetsFormula: FC = () => {
   const { selectCells } = useTypedSelector((state) => state.table);
@@ -11,9 +13,9 @@ export const SheetsFormula: FC = () => {
       <div className={styles.coords}>{selectCells[0]?.id}</div>
       <div className={styles.textfild}>
         <div className={styles.icon}>
-          <MdFunctions />
+          <MemoFunctions />
         </div>
-        <input className={styles.input} type="text" />
+        <input value={selectCells[0]?.value} className={styles.input} type="text" />
       </div>
     </div>
   );

@@ -16,8 +16,6 @@ export class TableService {
   }
 
   async get(tableId: string): Promise<ICell[][]> {
-    console.log(tableId);
-
     const allCells = await this.#idbs.getAll<ICell>(tableId);
 
     const cells: ICell[][] = [];

@@ -36,6 +36,14 @@ export const tableSlice = createSlice({
       const { id, value } = payload;
       const [row, col] = id.split(':');
       state.cells[Number(row)][Number(col)].value = value;
+
+      state.selectCells = state.selectCells.map((cell) => {
+        if (cell.id) {
+          return { ...cell, value };
+        }
+
+        return cell;
+      });
     },
 
     setSelectCells: (state, { payload }: PayloadAction<ICell[]>) => {
