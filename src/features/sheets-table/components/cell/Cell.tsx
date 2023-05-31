@@ -23,7 +23,7 @@ export const Cell: FC<ICellProps> = memo(({ isActive, width, height, cell, selec
 
   const debouncedChange = useDebounce((value: string) => {
     changeCellValue({ tableId, id: cell.id, value });
-  }, 120);
+  }, 0);
 
   const onInput = (e: React.FormEvent<HTMLDivElement>) => {
     debouncedChange(e.currentTarget.textContent);
@@ -38,6 +38,7 @@ export const Cell: FC<ICellProps> = memo(({ isActive, width, height, cell, selec
         ref={input}
         className={styles.cell_input}
         contentEditable
+        spellCheck={false}
       >
         {cell.value}
       </div>

@@ -1,9 +1,10 @@
-import { FC } from 'react';
+import { FC, useState, ChangeEvent } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { MdAdd, MdRemove } from 'react-icons/md';
 import { Button, MDropdown, Title } from 'shared/ui';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import { ANIMATION_DURATION } from 'shared/consts';
+import { FONT_SIZES } from 'features/sheets-toolbar/consts/sizes';
 import styles from './CellsFontSize.module.css';
 
 interface ICellsFontSizeProps {
@@ -12,6 +13,23 @@ interface ICellsFontSizeProps {
 
 export const CellsFontSize: FC<ICellsFontSizeProps> = () => {
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
+  const [value, setValue] = useState(10);
+
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const num = Number(event.target.value);
+
+    if (isNaN(num)) {
+      setValue(10);
+      return;
+    }
+
+    setValue(num);
+  };
+
+  const setValueHandler = (num: number) => {
+    setValue(num);
+    closeDropdown();
+  };
 
   return (
     <div className={styles.font_size}>
@@ -21,7 +39,7 @@ export const CellsFontSize: FC<ICellsFontSizeProps> = () => {
 
       <div>
         <Title isStopShow={isShow} text="Размер шрифта">
-          <input onClick={toggleDropdown} className={styles.input} type="text" />
+          <input value={value} onChange={onChange} onClick={toggleDropdown} className={styles.input} type="text" />
         </Title>
 
         <AnimatePresence>
@@ -35,14 +53,11 @@ export const CellsFontSize: FC<ICellsFontSizeProps> = () => {
               initial={{ height: 0 }}
             >
               <div className={styles.menu}>
-                <div className={styles.item}>6</div>
-                <div className={styles.item}>8</div>
-                <div className={styles.item}>10</div>
-                <div className={styles.item}>12</div>
-                <div className={styles.item}>14</div>
-                <div className={styles.item}>18</div>
-                <div className={styles.item}>24</div>
-                <div className={styles.item}>36</div>
+                {FONT_SIZES.map((num) => (
+                  <div key={num} onClick={() => setValueHandler(num)} className={styles.item}>
+                    {num}
+                  </div>
+                ))}
               </div>
             </MDropdown>
           )}
