@@ -1,7 +1,7 @@
 import { FC, useEffect, useCallback } from 'react';
 import { tableActions } from 'widgets';
 import { Cell, CellCol, CellRow, CellAllSelector, useContextMenu } from 'features';
-import { ICell } from 'entities';
+import { CellsDataTypes, CellsEventEmitter, CellsEventNames, ICell, cellsFocusDefault } from 'entities';
 import { useTypedSelector, useTypedDispatch } from 'shared';
 import styles from './SheetsTable.module.css';
 
@@ -11,7 +11,13 @@ export const SheetsTable: FC = () => {
   const { openContextMenu } = useContextMenu();
 
   useEffect(() => {
-    dispatch(tableActions.setSelectCells([cells[0]?.[0]]));
+    const emitter = new CellsEventEmitter();
+
+    const cell = cells[0]?.[0];
+    if (!cell) return;
+
+    dispatch(tableActions.setSelectCells([cell]));
+    emitter.emit(cellsFocusDefault(cell.id, CellsEventNames.FOCUS, CellsDataTypes.FOCUS_DEFAULT));
   }, [id]);
 
   const selectCell = useCallback((cell: ICell) => {

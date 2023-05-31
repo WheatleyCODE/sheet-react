@@ -1,28 +1,31 @@
-import { EventNames, EmitterData } from './interface';
+import { IEventEmitterData, IEventEmitterSubs } from './interface';
 
-export class EventEmitter {
-  private subscribers: { [propName: string]: Array<(a: EmitterData) => void> } = {};
-  private static instance: EventEmitter;
+export abstract class EventEmitter<D extends IEventEmitterData, N extends string> {
+  #subscribers: IEventEmitterSubs<D> = {};
+  private static instance: EventEmitter<any, any>;
 
   constructor() {
     if (EventEmitter.instance) return EventEmitter.instance;
     EventEmitter.instance = this;
   }
 
-  emit(arg: EmitterData): void {
-    const { type } = arg;
+  subscribe(id: string, eventName: N, callback: (a: D) => void): () => void {
+    if (!this.#subscribers[id]) this.#subscribers[id] = {};
+    if (!this.#subscribers[id][eventName]) this.#subscribers[id][eventName] = [];
 
-    if (Array.isArray(this.subscribers[type])) {
-      this.subscribers[type].forEach((callback) => callback(arg));
-    }
-  }
-
-  subscribe(type: EventNames, callback: (a: EmitterData) => void): () => void {
-    this.subscribers[type] = this.subscribers[type] || [];
-    this.subscribers[type].push(callback);
+    this.#subscribers[id][eventName].push(callback);
 
     return () => {
-      this.subscribers[type] = this.subscribers[type].filter((fn) => fn !== callback);
+      this.#subscribers[id][eventName] = this.#subscribers[id][eventName].filter((fn) => fn !== callback);
     };
+  }
+
+  emit(data: D): void {
+    try {
+      const { id, eventName } = data;
+      this.#subscribers[id][eventName].forEach((callback) => callback(data));
+    } catch (e) {
+      console.warn('Вы не подписаны на данный ивент', data);
+    }
   }
 }

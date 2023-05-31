@@ -1,5 +1,5 @@
-import { FC, useRef, memo } from 'react';
-import { ICell } from 'entities';
+import { FC, useRef, memo, useLayoutEffect } from 'react';
+import { CellsDataTypes, CellsEventEmitter, CellsEventNames, ICell } from 'entities';
 import { useActions, useDebounce } from 'shared';
 import styles from './Cell.module.css';
 
@@ -28,6 +28,18 @@ export const Cell: FC<ICellProps> = memo(({ isActive, width, height, cell, selec
   const onInput = (e: React.FormEvent<HTMLDivElement>) => {
     debouncedChange(e.currentTarget.textContent);
   };
+
+  useLayoutEffect(() => {
+    const emitter = new CellsEventEmitter();
+
+    const unsubscribe = emitter.subscribe(cell.id, CellsEventNames.FOCUS, (data) => {
+      if (data.type === CellsDataTypes.FOCUS_DEFAULT) {
+        input.current?.focus();
+      }
+    });
+
+    return unsubscribe;
+  }, []);
 
   return (
     <div style={{ width, height }} onMouseDown={onMouseDown} className={`${styles.cell} ${isActive && styles.active}`}>
