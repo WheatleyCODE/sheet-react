@@ -18,7 +18,7 @@ export class SheetsReqService {
     return this.engine.create(id);
   }
 
-  async get(id: string): Promise<ISheetsState | null> {
+  async get(id: string): Promise<ISheetsState> {
     return await this.engine.get(id);
   }
 
@@ -34,7 +34,7 @@ export class SheetsReqService {
     return await this.engine.renameList(id, listId, newName);
   }
 
-  async addList(id: string, tableId: string, list: IList): Promise<ISheetsState | false> {
+  async addList(id: string, tableId: string, list: IList): Promise<ISheetsState> {
     return await this.engine.addList(id, tableId, list);
   }
 
@@ -46,11 +46,11 @@ export class SheetsReqService {
     return await this.engine.changeOpenDate(id);
   }
 
-  async remove(id: string): Promise<ISheetsState | null> {
+  async remove(id: string): Promise<ISheetsState> {
     return await this.engine.remove(id);
   }
 
-  async removeList(id: string, listId: string): Promise<ISheetsState | false> {
+  async removeList(id: string, listId: string): Promise<ISheetsState> {
     return await this.engine.removeList(id, listId);
   }
 }

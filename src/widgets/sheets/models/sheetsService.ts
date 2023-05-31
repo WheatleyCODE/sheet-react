@@ -8,14 +8,16 @@ export class SheetsService {
 
   async create(id: string): Promise<ISheetsState> {
     const sheetsData = createSheetsState(id);
-
     await this.save(id, sheetsData);
 
     return sheetsData;
   }
 
-  async get(id: string): Promise<ISheetsState | null> {
-    return await this.#ls.get<ISheetsState | null>(id);
+  async get(id: string): Promise<ISheetsState> {
+    const sheets = await this.#ls.get<ISheetsState | null>(id);
+    if (!sheets) throw new Error('Таблица не найдена');
+
+    return sheets;
   }
 
   async save(id: string, data: SerializableValue): Promise<void> {
@@ -36,21 +38,21 @@ export class SheetsService {
   }
 
   async changeName(id: string, newName: string): Promise<ISheetsState> {
-    const data = await this.#ls.get<ISheetsState>(id);
-    if (!data) throw new Error('SheetsService, элемент не найден');
+    const sheets = await this.#ls.get<ISheetsState>(id);
+    if (!sheets) throw new Error('Таблица не найдена');
 
-    data.changeDate = Date.now();
-    data.name = newName;
-    await this.#ls.set(id, data);
+    sheets.changeDate = Date.now();
+    sheets.name = newName;
+    await this.#ls.set(id, sheets);
 
-    return data;
+    return sheets;
   }
 
   async renameList(id: string, listId: string, newName: string): Promise<ISheetsState> {
-    const data = await this.#ls.get<ISheetsState>(id);
-    if (!data) throw new Error('SheetsService, элемент не найден');
+    const sheets = await this.#ls.get<ISheetsState>(id);
+    if (!sheets) throw new Error('Таблица не найдена');
 
-    data.lists = data.lists.map((list) => {
+    sheets.lists = sheets.lists.map((list) => {
       if (list.id === listId) {
         return { ...list, name: newName };
       }
@@ -58,79 +60,66 @@ export class SheetsService {
       return list;
     });
 
-    data.changeDate = Date.now();
-    await this.#ls.set(id, data);
+    sheets.changeDate = Date.now();
+    await this.#ls.set(id, sheets);
 
-    return data;
+    return sheets;
   }
 
   async addList(id: string, tableId: string, list: IList): Promise<ISheetsState> {
-    const data = await this.#ls.get<ISheetsState>(id);
+    const sheets = await this.#ls.get<ISheetsState>(id);
+    if (!sheets) throw new Error('Таблица не найдена');
 
-    if (!data) {
-      throw new Error('SheetsService, элемент не найден');
-    }
+    sheets.changeDate = Date.now();
+    sheets.lists.push(list);
+    sheets.currentListId = tableId;
 
-    data.changeDate = Date.now();
-    data.lists.push(list);
-    data.currentListId = tableId;
+    await this.#ls.set(id, sheets);
 
-    await this.#ls.set(id, data);
-
-    return data;
+    return sheets;
   }
 
   async changeCurrentListId(id: string, newCurrentId: string): Promise<ISheetsState> {
-    const data = await this.#ls.get<ISheetsState>(id);
+    const sheets = await this.#ls.get<ISheetsState>(id);
+    if (!sheets) throw new Error('Таблица не найдена');
 
-    if (!data) {
-      throw new Error('SheetsService, элемент не найден');
-    }
+    sheets.currentListId = newCurrentId;
+    sheets.changeDate = Date.now();
 
-    data.currentListId = newCurrentId;
-    data.changeDate = Date.now();
+    await this.#ls.set(id, sheets);
 
-    await this.#ls.set(id, data);
-
-    return data;
+    return sheets;
   }
 
   async changeOpenDate(id: string): Promise<ISheetsState> {
-    const data = await this.#ls.get<ISheetsState>(id);
+    const sheets = await this.#ls.get<ISheetsState>(id);
+    if (!sheets) throw new Error('Таблица не найдена');
 
-    if (!data) {
-      throw new Error('SheetsService, элемент не найден');
-    }
+    sheets.openDate = Date.now();
 
-    data.openDate = Date.now();
+    await this.#ls.set(id, sheets);
 
-    await this.#ls.set(id, data);
-
-    return data;
+    return sheets;
   }
 
-  async remove(id: string): Promise<ISheetsState | null> {
-    const data = await this.#ls.get<ISheetsState>(id);
+  async remove(id: string): Promise<ISheetsState> {
+    const sheets = await this.#ls.get<ISheetsState>(id);
+    if (!sheets) throw new Error('Таблица не найдена');
 
-    if (data) {
-      await this.#ls.remove(id);
-    }
+    await this.#ls.remove(id);
 
-    return data;
+    return sheets;
   }
 
   async removeList(id: string, listId: string): Promise<ISheetsState> {
-    const data = await this.#ls.get<ISheetsState>(id);
+    const sheets = await this.#ls.get<ISheetsState>(id);
+    if (!sheets) throw new Error('Таблица не найдена');
 
-    if (!data) {
-      throw new Error('SheetsService, элемент не найден');
-    }
+    sheets.lists = [...sheets.lists].filter((list) => list.id !== listId);
+    sheets.changeDate = Date.now();
 
-    data.lists = [...data.lists].filter((list) => list.id !== listId);
-    data.changeDate = Date.now();
+    await this.#ls.set(id, sheets);
 
-    await this.#ls.set(id, data);
-
-    return data;
+    return sheets;
   }
 }

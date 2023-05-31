@@ -10,7 +10,7 @@ export class SheetsController implements ISheetsReqEngine {
     return this.#sheetsService.create(id);
   }
 
-  async get(id: string): Promise<ISheetsState | null> {
+  async get(id: string): Promise<ISheetsState> {
     return await this.#sheetsService.get(id);
   }
 
@@ -26,7 +26,7 @@ export class SheetsController implements ISheetsReqEngine {
     return await this.#sheetsService.renameList(id, listId, newName);
   }
 
-  async addList(id: string, tableId: string, list: IList): Promise<ISheetsState | false> {
+  async addList(id: string, tableId: string, list: IList): Promise<ISheetsState> {
     return await this.#sheetsService.addList(id, tableId, list);
   }
 
@@ -38,11 +38,11 @@ export class SheetsController implements ISheetsReqEngine {
     return await this.#sheetsService.changeOpenDate(id);
   }
 
-  async remove(id: string): Promise<ISheetsState | null> {
+  async remove(id: string): Promise<ISheetsState> {
     return await this.#sheetsService.remove(id);
   }
 
-  async removeList(id: string, listId: string): Promise<ISheetsState | false> {
+  async removeList(id: string, listId: string): Promise<ISheetsState> {
     return await this.#sheetsService.removeList(id, listId);
   }
 }

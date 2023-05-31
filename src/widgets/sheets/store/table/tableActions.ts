@@ -39,9 +39,9 @@ export const changeCellValue = createAsyncThunk<void, ITableChangeCellValue>(
   async ({ tableId, id, value }, thunkAPI) => {
     try {
       const tableReqService = TableReqServiceFactory();
+      const cell = await tableReqService.changeCellValue(tableId, id, value);
 
-      tableReqService.changeCellValue(tableId, id, value);
-      thunkAPI.dispatch(tableActions.changeCellValue({ id, value }));
+      thunkAPI.dispatch(tableActions.changeCellValue({ id, value: cell.value }));
     } catch (e) {
       console.log(e);
       throw e;

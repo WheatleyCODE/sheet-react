@@ -3,8 +3,9 @@ import { sheetsActions } from './sheetsSlice';
 import { SheetsReqServiceFactory, tableActions, TableReqServiceFactory } from 'widgets/sheets';
 import { createSheetsActions } from 'widgets/create-sheets';
 import { createTableState } from 'widgets/sheets/utils/createTableState';
-import { checkAndGetFirstList, createNewListName } from 'widgets/sheets/utils/listsUtils';
+import { checkAndFindList, checkAndGetFirstList, createNewListName } from 'widgets/sheets/utils/listsUtils';
 import { createListState } from 'widgets/sheets/utils/createListState';
+import { modalsActions } from 'widgets/modal-controller';
 import {
   ISheetsChangeNameFields,
   ISheetsCurrentListFields,
@@ -13,7 +14,6 @@ import {
   ISheetsRenameList,
   ISheetsState,
 } from './interface';
-import { modalsActions } from 'widgets/modal-controller';
 
 export const createSheets = createAsyncThunk<ISheetsState, ISheetsFields>(
   'sheets/createSheets',
@@ -41,7 +41,6 @@ export const removeSheets = createAsyncThunk<ISheetsState, ISheetsFields>(
       const tableReqService = TableReqServiceFactory();
 
       const sheets = await sheetsReqService.remove(fields.id);
-      if (!sheets) throw new Error('Таблица не найдена');
 
       tableReqService.deleteTables(sheets.lists.map((list) => list.id));
       thunkAPI.dispatch(createSheetsActions.removeSheets(sheets.id));
@@ -63,7 +62,6 @@ export const getSheets = createAsyncThunk<ISheetsState, ISheetsFields>('sheets/g
     thunkAPI.dispatch(modalsActions.changeLoader({ isShow: true }));
 
     const sheets = await sheetsReqService.get(id);
-    if (!sheets) throw new Error('Таблица не найдена');
 
     const { id: listId, cols, rows } = checkAndGetFirstList(sheets.lists);
     const cells = await tableReqService.get(listId);
@@ -75,7 +73,6 @@ export const getSheets = createAsyncThunk<ISheetsState, ISheetsFields>('sheets/g
     return sheets;
   } catch (e) {
     thunkAPI.dispatch(modalsActions.changeLoader({ isShow: false }));
-    console.log(e);
     throw e;
   }
 });
@@ -90,14 +87,12 @@ export const createList = createAsyncThunk<ISheetsState, ISheetsFields>(
       thunkAPI.dispatch(modalsActions.changeLoader({ isShow: true }));
 
       const sheets = await sheetsReqService.get(id);
-      if (!sheets) throw new Error('Таблица не найдена');
-      const { id: sheetsId } = sheets;
 
       const table = await tableReqService.create();
       const { id: tableId, cols, rows } = table;
 
       const list = createListState(createNewListName(sheets.lists), tableId, cols, rows);
-      await sheetsReqService.addList(sheetsId, tableId, list);
+      await sheetsReqService.addList(sheets.id, tableId, list);
 
       thunkAPI.dispatch(sheetsActions.addList(list));
       thunkAPI.dispatch(tableActions.initTable(table));
@@ -106,7 +101,6 @@ export const createList = createAsyncThunk<ISheetsState, ISheetsFields>(
       return sheets;
     } catch (e) {
       thunkAPI.dispatch(modalsActions.changeLoader({ isShow: false }));
-      console.log(e);
       throw e;
     }
   }
@@ -122,25 +116,20 @@ export const copyList = createAsyncThunk<ISheetsState, ISheetsListIdFields>(
       thunkAPI.dispatch(modalsActions.changeLoader({ isShow: true }));
 
       const sheets = await sheetsReqService.get(id);
-      if (!sheets) throw new Error('Таблица не найдена');
-
-      const list = sheets.lists.find((list) => list.id === listId);
-      if (!list) throw new Error('Лист не найден');
-      const { cols, rows } = list;
+      const { cols, rows, name } = checkAndFindList(sheets.lists, listId);
 
       const { cells, id: newListId } = await tableReqService.copy(listId);
-      const newList = createListState(createNewListName(sheets.lists, 'скопированный'), newListId, cols, rows);
+      const newList = createListState(`Копия ${name}`, newListId, cols, rows);
 
-      await sheetsReqService.addList(sheets.id, newListId, newList);
+      const resSheets = await sheetsReqService.addList(sheets.id, newListId, newList);
 
       thunkAPI.dispatch(sheetsActions.addList(newList));
       thunkAPI.dispatch(tableActions.initTable(createTableState(newListId, rows, cols, cells)));
       thunkAPI.dispatch(modalsActions.changeLoader({ isShow: false }));
 
-      return sheets;
+      return resSheets;
     } catch (e) {
       thunkAPI.dispatch(modalsActions.changeLoader({ isShow: false }));
-      console.log(e);
       throw e;
     }
   }
@@ -153,20 +142,20 @@ export const removeList = createAsyncThunk<ISheetsState, ISheetsListIdFields>(
       const sheetsReqService = SheetsReqServiceFactory();
       const tableReqService = TableReqServiceFactory();
 
-      const sheets = await sheetsReqService.get(id);
-      if (!sheets) throw new Error('Таблица не найдена');
-
+      const sheets = await sheetsReqService.removeList(id, listId);
       tableReqService.deleteTable(listId);
-      await sheetsReqService.removeList(id, listId);
 
       const { id: extListId, cols, rows } = checkAndGetFirstList(sheets.lists);
       const cells = await tableReqService.get(extListId);
 
       thunkAPI.dispatch(sheetsActions.removeList(listId));
+
+      const resSheets = await sheetsReqService.changeCurrentListId(id, extListId);
+
       thunkAPI.dispatch(tableActions.initTable(createTableState(extListId, rows, cols, cells)));
       thunkAPI.dispatch(sheetsActions.changeCurrentListId(extListId));
 
-      return sheets;
+      return resSheets;
     } catch (e) {
       console.log(e);
       throw e;
@@ -182,12 +171,8 @@ export const changeCurrentList = createAsyncThunk<ISheetsState, ISheetsCurrentLi
       const tableReqService = TableReqServiceFactory();
 
       const sheets = await sheetsReqService.changeCurrentListId(id, newCurrentId);
-      if (!sheets) throw new Error('Таблица не найдена');
 
-      const list = sheets.lists.find((list) => list.id === newCurrentId);
-      if (!list) throw new Error('Лист не найден');
-      const { id: listId, cols, rows } = list;
-
+      const { id: listId, cols, rows } = checkAndFindList(sheets.lists, newCurrentId);
       const cells = await tableReqService.get(listId);
 
       thunkAPI.dispatch(sheetsActions.changeCurrentListId(newCurrentId));

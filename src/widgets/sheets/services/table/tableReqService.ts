@@ -26,8 +26,8 @@ export class TableReqService {
     return await this.engine.get(id);
   }
 
-  changeCellValue(tableId: string, id: string, text: string) {
-    this.engine.changeCellValue(tableId, id, text);
+  async changeCellValue(tableId: string, id: string, text: string): Promise<ICell> {
+    return await this.engine.changeCellValue(tableId, id, text);
   }
 
   deleteTable(id: string): void {

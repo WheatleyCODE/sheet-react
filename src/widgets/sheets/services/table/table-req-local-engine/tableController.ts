@@ -18,8 +18,8 @@ export class TableController implements ITableReqEngine {
     return await this.tableService.get(id);
   }
 
-  changeCellValue(tableId: string, id: string, text: string): void {
-    this.tableService.changeCellValue(tableId, id, text);
+  async changeCellValue(tableId: string, id: string, text: string): Promise<ICell> {
+    return await this.tableService.changeCellValue(tableId, id, text);
   }
 
   deleteTable(id: string): void {

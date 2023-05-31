@@ -7,5 +7,11 @@ export const checkAndGetFirstList = (lists: IList[]): IList => {
 };
 
 export const createNewListName = (lists: IList[], prefix?: string) => {
-  return `Новый ${prefix || ''} лист ${lists.length + 1}`;
+  return `${prefix || ''} Новый лист ${lists.length + 1}`;
+};
+
+export const checkAndFindList = (lists: IList[], id: string): IList => {
+  const list = lists.find((list) => list.id === id);
+  if (!list) throw new Error('Лист не найден');
+  return list;
 };
