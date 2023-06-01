@@ -11,5 +11,9 @@ export const MIN_COL_WIDTH = 30;
 export const ROWS_COUNT = 40;
 export const COLS_COUNT = 30;
 
+export const RESIZE_MARGIN = 3;
+export const ROW_MIN_HEIGHT = 16;
+export const COL_MIN_WIDTH = 40;
+
 export const DEFAULT_WIDTH = 120;
 export const DEFAULT_HEIGHT = 25;

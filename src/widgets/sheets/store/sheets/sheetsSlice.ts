@@ -75,6 +75,10 @@ export const sheetsSlice = createSlice({
     changeIsLoading: (state, { payload }: PayloadAction<boolean>) => {
       state.isLoading = payload;
     },
+
+    changeLists: (state, { payload }: PayloadAction<IList[]>) => {
+      state.lists = payload;
+    },
   },
 });
 

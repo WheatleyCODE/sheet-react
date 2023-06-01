@@ -49,6 +49,16 @@ export const tableSlice = createSlice({
     setSelectCells: (state, { payload }: PayloadAction<ICell[]>) => {
       state.selectCells = payload;
     },
+
+    addColWidth: (state, { payload }: PayloadAction<{ colId: number; width: number }>) => {
+      const { colId, width } = payload;
+      state.cols[colId - 1].width += width;
+    },
+
+    addRowHeight: (state, { payload }: PayloadAction<{ rowId: number; height: number }>) => {
+      const { rowId, height } = payload;
+      state.rows[rowId - 1].height += height;
+    },
   },
 });
 

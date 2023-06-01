@@ -53,4 +53,12 @@ export class SheetsReqService {
   async removeList(id: string, listId: string): Promise<ISheetsState> {
     return await this.engine.removeList(id, listId);
   }
+
+  async addColWidth(sheetsId: string, listId: string, colId: number, width: number): Promise<ISheetsState> {
+    return await this.engine.addColWidth(sheetsId, listId, colId, width);
+  }
+
+  async addRowHeight(sheetsId: string, listId: string, rowId: number, height: number): Promise<ISheetsState> {
+    return await this.engine.addRowHeight(sheetsId, listId, rowId, height);
+  }
 }

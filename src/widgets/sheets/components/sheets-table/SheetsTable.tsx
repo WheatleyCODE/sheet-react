@@ -3,6 +3,7 @@ import { tableActions } from 'widgets';
 import { Cell, CellCol, CellRow, CellAllSelector, useContextMenu } from 'features';
 import { CellsDataTypes, CellsEventEmitter, CellsEventNames, ICell, cellsFocusDefault } from 'entities';
 import { useTypedSelector, useTypedDispatch } from 'shared';
+import { useTableResize } from './useTableResize';
 import styles from './SheetsTable.module.css';
 
 export const SheetsTable: FC = () => {
@@ -28,19 +29,21 @@ export const SheetsTable: FC = () => {
     openContextMenu(e);
   };
 
+  useTableResize();
+
   return (
     <div onContextMenu={onContextMenu} className={styles.table}>
       <div className={`${styles.table_row_header}`}>
         <CellAllSelector />
 
         {cols.map((col) => (
-          <CellCol key={col.id} value={col.value} width={col.width} />
+          <CellCol key={col.id} id={col.id} value={col.value} width={col.width} />
         ))}
       </div>
 
       {rows.map((row, i) => (
         <div key={row.id} className={styles.table_row}>
-          <CellRow value={row.value} height={row.height} />
+          <CellRow id={row.id} value={row.value} height={row.height} />
 
           {cells[i].map((cell, j) => (
             <Cell

@@ -11,11 +11,16 @@
   font-weight: 400;
   border-top: none;
   border-left: none;
+
+  -ms-user-select: none !important;
+  -moz-user-select: none !important;
+  -khtml-user-select: none !important;
+  -webkit-user-select: none !important;
 }
 
 .resize {
   opacity: 0;
-  transition: all var(--animation-duration);
+  transition: opacity var(--animation-duration);
   cursor: row-resize;
   position: absolute;
   left: 0;
@@ -26,6 +31,16 @@
   background-color: var(--color-green);
   border-radius: 1px;
   z-index: 20;
+}
+
+.line {
+  display: none;
+  margin-top: 3px;
+  position: absolute;
+  background-color: var(--color-green);
+  width: 100vw;
+  height: 1px;
+  box-shadow: 0px 0px 2px 0 var(--color-green2);
 }
 
 .resize:hover {

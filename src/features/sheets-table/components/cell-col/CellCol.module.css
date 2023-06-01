@@ -8,11 +8,16 @@
   height: var(--cell-col-height);
   border: 1px solid var(--color-grey);
   border-left: none;
+
+  -ms-user-select: none !important;
+  -moz-user-select: none !important;
+  -khtml-user-select: none !important;
+  -webkit-user-select: none !important;
 }
 
 .resize {
   opacity: 0;
-  transition: all var(--animation-duration);
+  transition: opacity var(--animation-duration);
   cursor: col-resize;
   position: absolute;
   top: 0;
@@ -23,6 +28,16 @@
   background-color: var(--color-green);
   border-radius: 1px;
   z-index: 20;
+}
+
+.line {
+  display: none;
+  margin-left: 3px;
+  position: absolute;
+  background-color: var(--color-green);
+  width: 1px;
+  height: calc(100vh - var(--sheets-toolbar-height) - var(--sheets-footer-height) - var(--sheets-formula-height) - 75px);
+  box-shadow: 0px 0px 2px 0 var(--color-green2);
 }
 
 .resize:hover {

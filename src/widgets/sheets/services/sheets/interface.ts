@@ -12,4 +12,6 @@ export interface ISheetsReqEngine {
   changeOpenDate(id: string): Promise<ISheetsState>;
   remove(id: string): Promise<ISheetsState>;
   removeList(id: string, listId: string): Promise<ISheetsState>;
+  addColWidth(sheetsId: string, listId: string, colId: number, width: number): Promise<ISheetsState>;
+  addRowHeight(sheetsId: string, listId: string, rowId: number, height: number): Promise<ISheetsState>;
 }

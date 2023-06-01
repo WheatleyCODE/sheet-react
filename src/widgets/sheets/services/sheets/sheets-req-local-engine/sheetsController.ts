@@ -45,4 +45,12 @@ export class SheetsController implements ISheetsReqEngine {
   async removeList(id: string, listId: string): Promise<ISheetsState> {
     return await this.#sheetsService.removeList(id, listId);
   }
+
+  async addColWidth(sheetsId: string, listId: string, colId: number, width: number): Promise<ISheetsState> {
+    return await this.#sheetsService.addColWidth(sheetsId, listId, colId, width);
+  }
+
+  async addRowHeight(sheetsId: string, listId: string, rowId: number, height: number): Promise<ISheetsState> {
+    return await this.#sheetsService.addRowHeight(sheetsId, listId, rowId, height);
+  }
 }

@@ -122,4 +122,42 @@ export class SheetsService {
 
     return sheets;
   }
+
+  async addColWidth(sheetsId: string, listId: string, colId: number, width: number): Promise<ISheetsState> {
+    const sheets = await this.#ls.get<ISheetsState>(sheetsId);
+    if (!sheets) throw new Error('Таблица не найдена');
+
+    sheets.changeDate = Date.now();
+
+    const listIndex = sheets.lists.findIndex((list) => list.id === listId);
+    if (listIndex === -1) throw new Error('Лист не найден');
+
+    const colIndex = sheets.lists[listIndex].cols.findIndex((col) => col.id === colId);
+    if (colIndex === -1) throw new Error('Колонка не найдена');
+
+    sheets.lists[listIndex].cols[colIndex].width += width;
+
+    await this.#ls.set(sheetsId, sheets);
+
+    return sheets;
+  }
+
+  async addRowHeight(sheetsId: string, listId: string, rowId: number, height: number): Promise<ISheetsState> {
+    const sheets = await this.#ls.get<ISheetsState>(sheetsId);
+    if (!sheets) throw new Error('Таблица не найдена');
+
+    sheets.changeDate = Date.now();
+
+    const listIndex = sheets.lists.findIndex((list) => list.id === listId);
+    if (listIndex === -1) throw new Error('Лист не найден');
+
+    const rowIndex = sheets.lists[listIndex].rows.findIndex((row) => row.id === rowId);
+    if (rowIndex === -1) throw new Error('Строка не найдена');
+
+    sheets.lists[listIndex].rows[rowIndex].height += height;
+
+    await this.#ls.set(sheetsId, sheets);
+
+    return sheets;
+  }
 }
