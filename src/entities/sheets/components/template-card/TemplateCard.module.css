@@ -26,11 +26,11 @@
 .image:hover + .text {
   color: var(--color-black);
   background-color: var(--color-white);
-  padding-top: 10px;
+  padding-top: calc(var(--gap) * 2);
 }
 
 .card_def:hover .text {
-  padding-top: var(-gap);
+  padding-top: var(--gap);
   font-weight: 400;
   color: var(--color-white);
   background-color: inherit;
@@ -41,7 +41,7 @@
 }
 
 .text {
-  padding-top: var(-gap);
+  padding-top: var(--gap);
   font-weight: 400;
   color: var(--color-white);
 }

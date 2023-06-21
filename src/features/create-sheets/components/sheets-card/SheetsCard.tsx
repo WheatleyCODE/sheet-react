@@ -34,40 +34,33 @@ export const SheetsCard: FC<SheetsCardProps> = ({ name, date, id, deleteSheets }
   };
 
   return (
-    <MSheetsListItem
-      initial={{ opacity: 0, translateX: -40 }}
-      animate={{ opacity: 1, translateX: 0 }}
-      transition={{ duration: ANIMATION_DURATION }}
-      onClick={openSheets}
-    >
-      <div className={styles.card}>
-        <div className={styles.name}>{name}</div>
-        <div className={styles.date}>{date}</div>
+    <div onClick={openSheets} className={styles.card}>
+      <div className={styles.name}>{name}</div>
+      <div className={styles.date}>{date}</div>
 
-        <div onClick={toggleDropdownHandler} className={styles.actions}>
-          <MdDeleteOutline />
+      <div onClick={toggleDropdownHandler} className={styles.actions}>
+        <MdDeleteOutline />
 
-          <AnimatePresence>
-            {isShow && (
-              <MActionWindow
-                transition={{ duration: ANIMATION_DURATION }}
-                exit={{ height: 0, width: 0, opacity: 0 }}
-                animate={{ height: 'auto', width: 'auto', opacity: 1 }}
-                initial={{ height: 0, width: 0, opacity: 0 }}
-                actionName="Удаление"
-                className={styles.action}
-                onClose={closeDropdown}
-                onSuccess={deleteSheetsHandler}
-              >
-                <div className={styles.alert}>
-                  Вы действительно хотите удалить таблицу
-                  <div className={styles.alert_name}>{name}?</div>
-                </div>
-              </MActionWindow>
-            )}
-          </AnimatePresence>
-        </div>
+        <AnimatePresence>
+          {isShow && (
+            <MActionWindow
+              transition={{ duration: ANIMATION_DURATION }}
+              exit={{ height: 0, width: 0, opacity: 0 }}
+              animate={{ height: 'auto', width: 'auto', opacity: 1 }}
+              initial={{ height: 0, width: 0, opacity: 0 }}
+              actionName="Удаление"
+              className={styles.action}
+              onClose={closeDropdown}
+              onSuccess={deleteSheetsHandler}
+            >
+              <div className={styles.alert}>
+                Вы действительно хотите удалить таблицу
+                <div className={styles.alert_name}>{name}?</div>
+              </div>
+            </MActionWindow>
+          )}
+        </AnimatePresence>
       </div>
-    </MSheetsListItem>
+    </div>
   );
 };

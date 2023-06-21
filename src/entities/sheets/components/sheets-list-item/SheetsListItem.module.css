@@ -6,6 +6,7 @@
   border-radius: calc(var(--radius) * 4);
   transition: all var(--animation-duration);
   padding: 0 calc(var(--gap) * 4);
+  margin-bottom: var(--gap);
 }
 
 .item:hover {
