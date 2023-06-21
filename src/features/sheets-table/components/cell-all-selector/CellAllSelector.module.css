@@ -1,5 +1,3 @@
-@import 'shared/styles/variables.css';
-
 .selector {
   flex-shrink: 0;
   width: var(--cell-row-width);

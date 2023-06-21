@@ -12,7 +12,7 @@
 }
 
 .table_row:first-child {
-  padding-top: 40px;
+  padding-top: calc(var(--gap) * 8);
 }
 
 .table_row_header {

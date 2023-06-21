@@ -1,7 +1,7 @@
 .card {
   width: 100%;
   display: grid;
-  grid-gap: 10px;
+  grid-gap: calc(var(--gap) * 2);
   grid-template-columns: 1fr 354px 45px;
 }
 
@@ -44,12 +44,12 @@
 }
 
 .alert {
-  padding: 10px 0;
+  padding: calc(var(--gap) * 2) 0;
   width: 350px;
 }
 
 .alert_name {
-  padding-top: 5px;
+  padding-top: var(--gap);
   font-weight: 400;
   color: var(--color-dark-green);
 }

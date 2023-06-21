@@ -11,15 +11,15 @@
 .input {
   text-align: center;
   width: 40px;
-  margin: 0 5px;
+  margin: 0 var(--gap);
   height: 40px;
   border-top: 1px solid var(--color-light-grey);
   border-bottom: 1px solid var(--color-light-grey);
 }
 
 .dropdown {
-  margin-left: 5px;
-  margin-top: 5px;
+  margin-left: var(--gap);
+  margin-top: var(--gap);
   width: 40px;
 }
 

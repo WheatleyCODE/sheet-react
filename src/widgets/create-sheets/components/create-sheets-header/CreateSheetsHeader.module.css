@@ -5,5 +5,5 @@
   align-items: center;
   min-height: 60px;
   padding-bottom: var(--gap);
-  background-color: white;
+  background-color: var(--color-white);
 }

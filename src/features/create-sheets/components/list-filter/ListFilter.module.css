@@ -3,11 +3,11 @@
 }
 
 .button svg {
-  margin-right: 5px;
+  margin-right: var(--gap);
 }
 
 .dropdown {
-  margin-top: 5px;
+  margin-top: var(--gap);
 }
 
 .dropdown.visible {

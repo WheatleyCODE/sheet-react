@@ -29,10 +29,10 @@
 
 .filter_name span {
   font-weight: 400;
-  margin-left: 5px;
+  margin-left: var(--gap);
   font-size: calc(var(--font-size * 0.9));
 }
 
 .icon:hover {
-  background-color: rgb(0, 0, 0, 0.1);
+  background-color: var(--dark-01);
 }

@@ -1,25 +1,25 @@
 .card, .card_def {
   position: relative;
   z-index: 21;
-  border-radius: var(--border-radius);
+  border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   width: 180px;
   height: 135px;
-  border-radius: 3px;
+  border-radius: var(--radius);
 }
 
 .card_def:hover {
   transition: var(--animation-duration);
   outline: 2px solid var(--color-dark-green);
-  box-shadow: 0 0 7px 2px rgb(170, 255, 170);
+  box-shadow: 0 0 7px 2px var(--color-light-green3);
 }
 
 .image {
-  border-radius: var(--border-radius);
+  border-radius: var(--radius);
   overflow: hidden;
   background-color: var(--color-white);
-  box-shadow: rgba(70, 67, 73, 0.4) 0 1px 1px, rgba(70, 67, 73, 0.3) 0 7px 13px -3px, #d8d8e2 0 -3px 0 inset;
+  box-shadow: var(--color-shadow-04) 0 1px 1px, var(--color-shadow-03) 0 7px 13px -3px, #d8d8e2 0 -3px 0 inset;
   height: 135px;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .card_def:hover .text {
-  padding-top: 6px;
+  padding-top: var(-gap);
   font-weight: 400;
   color: var(--color-white);
   background-color: inherit;
@@ -41,7 +41,7 @@
 }
 
 .text {
-  padding-top: 6px;
+  padding-top: var(-gap);
   font-weight: 400;
   color: var(--color-white);
 }

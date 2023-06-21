@@ -1,4 +1,5 @@
 @import 'normalize.css';
+@import 'shared/styles/variables.css';
 
 * {
   box-sizing: border-box;

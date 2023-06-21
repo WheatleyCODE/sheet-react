@@ -1,5 +1,5 @@
 .dropdown {
-  border-radius: var(--border-radius);
+  border-radius: var(--radius);
   overflow: hidden;
   position: absolute;
   background-color: var(--color-white);

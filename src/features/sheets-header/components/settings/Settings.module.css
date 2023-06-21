@@ -3,14 +3,14 @@
 }
 
 .menu {
-  padding: 20px;
+  padding: calc(var(--gap) * 4);
   width: 300px;
   height: 600px;
 }
 
 .dropdown {
   right: 0;
-  margin-top: 5px;
+  margin-top: var(--gap);
 }
 
 .dropdown.visible {

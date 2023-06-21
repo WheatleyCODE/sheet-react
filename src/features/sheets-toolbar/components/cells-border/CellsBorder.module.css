@@ -3,7 +3,7 @@
 }
 
 .dropdown {
-  margin-top: 5px;
+  margin-top: var(--gap);
 }
 
 .button {

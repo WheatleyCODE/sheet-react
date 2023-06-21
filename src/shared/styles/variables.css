@@ -1,20 +1,24 @@
 :root {
   --color-blue: #3067dd;
   --color-light-blue: #6189dd;
+
   --color-dark-green: green;
   --color-green: #4ca31a;
   --color-green2: #50c010;
   --color-light-green: rgb(228, 255, 232);
   --color-light-green2: rgb(217, 253, 223);
-  --color-white: #ffffff;
+  --color-light-green3: rgb(170, 255, 170);
+
   --color-black: #242424;
   --color-black2: #444444;
-  --color-light-grey: #e4e4e4;
-  --color-grey: #d1d1d1;
   --color-dark-grey: #a7a7a7;
+  --color-grey: #d1d1d1;
+  --color-light-grey: #e4e4e4;
+  --color-white: #ffffff;
 
   --color-shadow-04: rgba(70, 67, 73, 0.4);
   --color-shadow-03: rgba(70, 67, 73, 0.3);
+  --dark-01: rgb(0, 0, 0, 0.1);
 
   --sheets-header-height: 55px;
   --sheets-toolbar-height: 65px;
@@ -26,15 +30,11 @@
   --cell-row-width: 40px;
   --cell-col-height: 30px;
 
+  --content-max-width: 1000px;
+
   --gap: 5px;
   --radius: 5px;
-
   --font-size: 1rem;
-
-  --border-radius: 4px;
-
   --animation-duration: 0.1s;
-
-  --content-max-width: 1000px;
 }
 

@@ -5,7 +5,7 @@
   cursor: pointer;
   height: 40px;
   padding: 5px 12px;
-  border-radius: var(--border-radius);
+  border-radius: var(--radius);
   appearance: none;
   background-color: #fafaff;
   border-width: 0;

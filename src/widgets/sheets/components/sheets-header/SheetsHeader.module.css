@@ -1,5 +1,3 @@
-@import 'shared/styles/variables';
-
 .header {
   padding: 0 calc(var(--gap) * 4);
   padding-top: 10px;
