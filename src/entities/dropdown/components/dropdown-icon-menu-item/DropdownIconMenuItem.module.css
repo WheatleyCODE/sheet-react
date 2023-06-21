@@ -1,7 +1,7 @@
 .item {
   cursor: pointer;
   transition: background var(--animation-duration);
-  border-radius: 3px;
+  border-radius: var(--radius);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,8 +9,12 @@
   width: 35px;
 }
 
+.active .icon {
+  color: var(--color-dark-green);
+}
+
 .icon {
-  font-size: var(--font-big);
+  font-size: calc(var(--font-size * 1.1));
   color: var(--color-black2);
 }
 

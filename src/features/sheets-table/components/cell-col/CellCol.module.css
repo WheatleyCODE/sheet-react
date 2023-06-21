@@ -59,7 +59,7 @@
 }
 
 .actions svg {
-  font-size: var(--font-big2);
+  font-size: calc(var(--font-size * 1.2));
 }
 
 .actions:hover {

@@ -3,7 +3,7 @@
   max-width: 400px;
   background-color: var(--color-white);
   box-shadow: 0 0 4px 1px var(--color-black2);
-  padding: calc(var(--sheets-padding) * 3);
+  padding: calc(var(--gap) * 6);
   border-radius: 8px;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .close_button svg {
-  font-size: 2rem;
+  font-size: calc(var(--font-size) * 2);
 }
 
 .close_button:hover {

@@ -1,6 +1,6 @@
 .list {
   display: flex;
-  padding: var(--sheets-padding);
-  max-width: 260px;
+  padding: calc(var(--gap) * 2);
+  max-width: 280px;
   flex-wrap: wrap;
 }

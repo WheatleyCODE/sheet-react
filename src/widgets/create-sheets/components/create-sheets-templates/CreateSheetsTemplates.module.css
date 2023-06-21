@@ -10,11 +10,3 @@
   background-attachment: fixed;
   background-size: cover;
 }
-
-.menu {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  width: 1000px;
-}

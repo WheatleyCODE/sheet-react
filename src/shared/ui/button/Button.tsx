@@ -11,7 +11,7 @@ interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button: FC<IButtonProps> = memo((props) => {
-  const { text, className = '', Icon, SubIcon, disable = false, ...otherProps } = props;
+  const { text, className = '', Icon, SubIcon, disable = false, ...anotherProps } = props;
   const MemoIcon = Icon && memo(Icon);
   const MemoSubIcon = SubIcon && memo(SubIcon);
 
@@ -22,7 +22,7 @@ export const Button: FC<IButtonProps> = memo((props) => {
       }`}
       type="button"
       disabled={disable}
-      {...otherProps}
+      {...anotherProps}
     >
       {MemoIcon && (
         <div className={styles.button_icon_container}>

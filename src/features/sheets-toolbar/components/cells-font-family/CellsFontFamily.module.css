@@ -14,7 +14,7 @@
 .menu {
   width: 150px;
   height: 500px;
-  padding: var(--sheets-padding);
+  padding: calc(var(--gap) * 2);
 }
 
 .button svg {

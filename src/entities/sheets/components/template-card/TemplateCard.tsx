@@ -34,6 +34,7 @@ export const TemplateCard: FC<ITemplateCardProps> = ({ text, src, path, noAnimat
             <img src={src} alt="Картинка" />
           </motion.div>
         )}
+
         <div className={styles.text}>{text}</div>
       </Link>
     </div>

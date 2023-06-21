@@ -1,45 +1,29 @@
 .card {
-  transition: all var(--animation-duration);
-  cursor: pointer;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  padding: 0 calc(var(--sheets-padding) * 2);
-  height: 45px;
   width: 100%;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr 354px 45px;
 }
 
-.card:hover {
-  background-color: rgb(228, 255, 232);
-}
-
-.icon, .actions, .name, .sheets, .date {
+.icon, .actions, .date {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
 }
 
-.sheets, .date {
+.name {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.date {
   justify-content: flex-start;
 }
 
-.icon {
-  margin-right: 20px;
-}
-
-.icon svg {
-  color: var(--color-dark-green);
-}
-
-.icon svg{
-  font-size: 1.6rem;
-}
-
 .actions svg {
-  font-size: 1.5rem;
+  font-size: calc(var(--font-size) * 1.5);
   color: var(--color-black2);
 }
 

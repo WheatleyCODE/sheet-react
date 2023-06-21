@@ -1,17 +1,18 @@
 import { FC } from 'react';
-import { Button, MDropdown, Title } from 'shared/ui';
-import { MdCheck, MdOutlineArrowDropDown, MdWrapText } from 'react-icons/md';
-import styles from './CellsTextWrap.module.css';
-import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import { AnimatePresence } from 'framer-motion';
+import { MdCheck, MdOutlineArrowDropDown, MdWrapText } from 'react-icons/md';
+import { TbTextWrapDisabled, TbTextWrap } from 'react-icons/tb';
+import { Button, MDropdown, Title, useDropdown } from 'shared/ui';
 import { ANIMATION_DURATION } from 'shared/consts';
-import { DropdownIconMenu, DropdownIconMenuItem } from 'entities/index';
+import { DropdownIconMenu, DropdownIconMenuItem, TextWraps } from 'entities';
+import styles from './CellsTextWrap.module.css';
 
 interface ICellsTextWrapProps {
-  fn?: any;
+  wrap: TextWraps;
+  changeWrap: (wrap: TextWraps) => void;
 }
 
-export const CellsTextWrap: FC<ICellsTextWrapProps> = () => {
+export const CellsTextWrap: FC<ICellsTextWrapProps> = ({ wrap, changeWrap }) => {
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
 
   return (
@@ -31,9 +32,9 @@ export const CellsTextWrap: FC<ICellsTextWrapProps> = () => {
             initial={{ height: 0 }}
           >
             <DropdownIconMenu>
-              <DropdownIconMenuItem Icon={MdCheck} />
-              <DropdownIconMenuItem Icon={MdCheck} />
-              <DropdownIconMenuItem Icon={MdCheck} />
+              <DropdownIconMenuItem isActive={TextWraps.NO_WRAP === wrap} Icon={TbTextWrapDisabled} />
+              <DropdownIconMenuItem isActive={TextWraps.SLICE === wrap} Icon={MdCheck} />
+              <DropdownIconMenuItem isActive={TextWraps.WRAP === wrap} Icon={TbTextWrap} />
             </DropdownIconMenu>
           </MDropdown>
         )}

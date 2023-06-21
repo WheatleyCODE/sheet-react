@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { MSheetsCard } from 'features';
-import { useTypedSelector, ANIMATION_DURATION } from 'shared';
+import { SheetsCard } from 'features';
+import { useTypedSelector } from 'shared';
 import { sheetsSortFns } from '../../consts/sheetsSorts';
 import styles from './CreateSheetsLists.module.css';
 
@@ -18,10 +18,7 @@ export const CreateSheetsLists: FC<ICreateSheetsListsProps> = ({ deleteSheets })
       <div className={styles.list}>
         <div className={styles.li}>
           {sortSheets.map(({ name, id, openDate }, i) => (
-            <MSheetsCard
-              initial={{ opacity: 0, translateX: -40 }}
-              animate={{ opacity: 1, translateX: 0 }}
-              transition={{ duration: ANIMATION_DURATION, delay: i / 12, type: 'spring' }}
+            <SheetsCard
               deleteSheets={deleteSheets}
               id={id}
               key={id}

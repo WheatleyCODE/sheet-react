@@ -1,5 +1,5 @@
 .menu {
-  padding: var(--sheets-padding) 0;
+  padding: calc(var(--gap) * 2) 0;
   width: 220px;
   background-color: var(--color-white);
 }

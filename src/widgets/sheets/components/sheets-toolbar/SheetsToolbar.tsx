@@ -16,8 +16,13 @@ import {
   CellsFilters,
 } from 'features';
 import styles from './SheetsToolbar.module.css';
+import { useTypedSelector } from 'shared/lib';
 
 export const SheetsToolbar: FC = () => {
+  const { selectCells } = useTypedSelector((state) => state.table);
+
+  const cell = selectCells[0] || {};
+
   return (
     <div className={styles.toolbar}>
       <div className={styles.main}>
@@ -38,9 +43,9 @@ export const SheetsToolbar: FC = () => {
         <div className={styles.space} />
         <CellsBorder />
         <div className={styles.space} />
-        <CellsHorAlign />
-        <CellsVerAlign />
-        <CellsTextWrap />
+        <CellsHorAlign align={cell.horizontalAlign} changeAlign={() => {}} />
+        <CellsVerAlign align={cell.verticalAlign} changeAlign={() => {}} />
+        <CellsTextWrap wrap={cell.textWrap} changeWrap={() => {}} />
         <div className={styles.space} />
         <CellsFilters />
         <CellsFunctions />

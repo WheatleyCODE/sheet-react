@@ -4,12 +4,12 @@
 
 .title {
   font-weight: 400;
-  font-size: var(--font-big);
-  padding-bottom: calc(var(--sheets-padding) * 2);
+  font-size:calc(var(--font-size * 1.1));
+  padding-bottom: calc(var(--gap) * 4);
 }
 
 .buttons {
-  margin-top: calc(var(--sheets-padding) * 2);
+  margin-top: calc(var(--gap) * 4);
   display: flex;
   align-items: center;
   justify-content: space-between;

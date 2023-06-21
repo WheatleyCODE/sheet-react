@@ -15,9 +15,9 @@
 }
 
 .button_123 svg {
-  font-size: 1.9rem;
+  font-size: calc(var(--font-size) * 1.9);
 }
 
 .dropdown {
-  margin-top: 5px;
+  margin-top: var(--gap);
 }

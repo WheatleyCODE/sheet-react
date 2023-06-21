@@ -1,6 +1,6 @@
 .menu {
   display: flex;
-  padding: var(--sheets-padding);
+  padding: calc(var(--gap) * 2);
   max-width: 160px;
   flex-wrap: wrap;
 }

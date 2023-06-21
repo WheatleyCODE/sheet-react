@@ -1,12 +1,12 @@
 .filters {
   width: 100%;
-  padding: calc(var(--sheets-padding)) 0;
+  padding: calc(var(--gap) * 2) 0;
   display: flex;
   justify-content: center;
 }
 
 .main {
-  padding: 0 calc(var(--sheets-padding) * 2);
+  padding: 0 calc(var(--gap) * 4);
   width: 1000px;
   height: 40px;
   display: grid;
@@ -20,17 +20,17 @@
 }
 
 .buttons svg {
-  font-size: var(--font-big2);
+  font-size: calc(var(--font-size * 1.2));
 }
 
 .filter_name {
-  font-size: var(--font-normal2);
+  font-size: calc(var(--font-size * 0.9));
 }
 
 .filter_name span {
   font-weight: 400;
   margin-left: 5px;
-  font-size: var(--font-normal2);
+  font-size: calc(var(--font-size * 0.9));
 }
 
 .icon:hover {

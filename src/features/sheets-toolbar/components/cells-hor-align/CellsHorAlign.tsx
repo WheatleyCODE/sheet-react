@@ -2,16 +2,17 @@ import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Button, MDropdown, Title } from 'shared/ui';
 import { MdFormatAlignCenter, MdFormatAlignLeft, MdFormatAlignRight, MdOutlineArrowDropDown } from 'react-icons/md';
-import { DropdownIconMenu, DropdownIconMenuItem } from 'entities';
+import { DropdownIconMenu, DropdownIconMenuItem, HorizontalAligns } from 'entities';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import { ANIMATION_DURATION } from 'shared/consts';
 import styles from './CellsHorAlign.module.css';
 
 interface ICellsHorAlignProps {
-  fn?: any;
+  align: HorizontalAligns;
+  changeAlign: (align: HorizontalAligns) => void;
 }
 
-export const CellsHorAlign: FC<ICellsHorAlignProps> = () => {
+export const CellsHorAlign: FC<ICellsHorAlignProps> = ({ align, changeAlign }) => {
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
 
   return (
@@ -36,9 +37,9 @@ export const CellsHorAlign: FC<ICellsHorAlignProps> = () => {
             initial={{ height: 0 }}
           >
             <DropdownIconMenu>
-              <DropdownIconMenuItem Icon={MdFormatAlignLeft} />
-              <DropdownIconMenuItem Icon={MdFormatAlignCenter} />
-              <DropdownIconMenuItem Icon={MdFormatAlignRight} />
+              <DropdownIconMenuItem isActive={HorizontalAligns.LEFT === align} Icon={MdFormatAlignLeft} />
+              <DropdownIconMenuItem isActive={HorizontalAligns.CENTER === align} Icon={MdFormatAlignCenter} />
+              <DropdownIconMenuItem isActive={HorizontalAligns.RIGHT === align} Icon={MdFormatAlignRight} />
             </DropdownIconMenu>
           </MDropdown>
         )}

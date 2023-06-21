@@ -34,7 +34,7 @@
   align-items: center;
   justify-content: center;
   height: 32px;
-  font-size: 0.9rem;
+  font-size: calc(var(--font-size) * 0.9);
 }
 
 .item:hover {

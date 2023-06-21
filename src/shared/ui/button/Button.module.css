@@ -19,7 +19,7 @@
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow, transform;
-  font-size: 0.95rem;
+  font-size: var(--font-size);
 }
 
 .button:hover {
@@ -34,7 +34,7 @@
 }
 
 .button_icon {
-  font-size: 1.1rem;
+  font-size: calc(var(--font-size) * 1.1);
   color: var(--color-black2);
 }
 
@@ -52,5 +52,5 @@
 }
 
 .button_sub_icon {
-  font-size: 0.9rem;
+  font-size: calc(var(--font-size) * 0.9);
 }

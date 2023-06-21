@@ -6,17 +6,18 @@ import {
   MdVerticalAlignCenter,
   MdVerticalAlignTop,
 } from 'react-icons/md';
-import { DropdownIconMenu, DropdownIconMenuItem } from 'entities';
+import { DropdownIconMenu, DropdownIconMenuItem, VerticalAligns } from 'entities';
 import { Button, MDropdown, Title } from 'shared/ui';
 import { useDropdown } from 'shared/ui/dropdown/useDropdown';
 import { ANIMATION_DURATION } from 'shared/consts';
 import styles from './CellsVerAlign.module.css';
 
 interface ICellsVerAlignProps {
-  fn?: any;
+  align: VerticalAligns;
+  changeAlign: (align: VerticalAligns) => void;
 }
 
-export const CellsVerAlign: FC<ICellsVerAlignProps> = () => {
+export const CellsVerAlign: FC<ICellsVerAlignProps> = ({ align, changeAlign }) => {
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
 
   return (
@@ -41,9 +42,9 @@ export const CellsVerAlign: FC<ICellsVerAlignProps> = () => {
             initial={{ height: 0 }}
           >
             <DropdownIconMenu>
-              <DropdownIconMenuItem Icon={MdVerticalAlignTop} />
-              <DropdownIconMenuItem Icon={MdVerticalAlignCenter} />
-              <DropdownIconMenuItem Icon={MdVerticalAlignBottom} />
+              <DropdownIconMenuItem isActive={VerticalAligns.TOP === align} Icon={MdVerticalAlignTop} />
+              <DropdownIconMenuItem isActive={VerticalAligns.CENTER === align} Icon={MdVerticalAlignCenter} />
+              <DropdownIconMenuItem isActive={VerticalAligns.BOTTOM === align} Icon={MdVerticalAlignBottom} />
             </DropdownIconMenu>
           </MDropdown>
         )}
