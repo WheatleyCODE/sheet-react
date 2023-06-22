@@ -31,10 +31,18 @@ export const CellsFontSize: FC<ICellsFontSizeProps> = () => {
     closeDropdown();
   };
 
+  const addValue = () => {
+    setValue((p) => p + 1);
+  };
+
+  const subValue = () => {
+    setValue((p) => p - 1);
+  };
+
   return (
     <div className={styles.font_size}>
       <Title text="Уменьшить размер шрифта">
-        <Button className={styles.button} Icon={MdRemove} />
+        <Button onClick={subValue} className={styles.button} Icon={MdRemove} />
       </Title>
 
       <div>
@@ -65,7 +73,7 @@ export const CellsFontSize: FC<ICellsFontSizeProps> = () => {
       </div>
 
       <Title text="Увеличить размер шрифта">
-        <Button className={styles.button} Icon={MdAdd} />
+        <Button onClick={addValue} className={styles.button} Icon={MdAdd} />
       </Title>
     </div>
   );

@@ -4,3 +4,33 @@
   max-width: 280px;
   flex-wrap: wrap;
 }
+
+.reset, .title {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  padding-top: var(--gap);
+  margin-bottom: var(--gap);
+  padding-bottom: var(--gap);
+  font-size: calc(var(--font-size) * 1);
+  border-bottom: 1px solid var(--color-light-grey);
+}
+
+.reset {
+  border-top: 1px solid var(--color-light-grey);
+  padding-top: var(--gap);
+  margin-top: var(--gap);
+  padding-bottom: var(--gap);
+}
+
+.button {
+  width: 100%;
+}
+
+.button svg {
+  margin-right: var(--gap);
+}
