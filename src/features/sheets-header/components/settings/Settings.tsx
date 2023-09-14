@@ -1,23 +1,14 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { MdCheck, MdChevronLeft } from 'react-icons/md';
 import { ANIMATION_DURATION } from 'shared';
-import { Button, MDropdown, Title, useDropdown } from 'shared/ui';
+import { Button, MDropdown, Title, useDropdown, useDropdownSubMenuAnimationFixer } from 'shared/ui';
 import { DropdownMenu, DropdownMenuItem } from 'entities';
 import styles from './Settings.module.css';
 
 export const Settings: FC = () => {
   const { isShow, toggleDropdown, closeDropdown } = useDropdown();
-  const [isHidden, setIsHidden] = useState(false);
-
-  const onMouseEnter = () => {
-    setIsHidden(true);
-  };
-
-  const closeDropdownHandler = () => {
-    setIsHidden(false);
-    closeDropdown();
-  };
+  const { overflowStyles, close: closeDropdownHandler, onMouseEnter } = useDropdownSubMenuAnimationFixer(closeDropdown);
 
   return (
     <div className={styles.settings}>
@@ -29,7 +20,8 @@ export const Settings: FC = () => {
         {isShow && (
           <MDropdown
             onMouseEnter={onMouseEnter}
-            className={`${styles.dropdown} ${isHidden && styles.visible}`}
+            className={styles.dropdown}
+            style={overflowStyles}
             closeDropdown={closeDropdownHandler}
             transition={{ duration: ANIMATION_DURATION * 1.5 }}
             exit={{ height: 0 }}

@@ -1,7 +1,7 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { MdCheck, MdChevronLeft, MdOutlineFilterAlt } from 'react-icons/md';
-import { Button, MDropdown, Title } from 'shared/ui';
+import { Button, MDropdown, Title, useDropdownSubMenuAnimationFixer } from 'shared/ui';
 import { useDropdown, ANIMATION_DURATION, useTypedDispatch } from 'shared';
 import { DropdownMenu, DropdownMenuItem } from 'entities';
 import { createSheetsActions, sheetsSortNames } from 'widgets';
@@ -16,20 +16,12 @@ export interface ListFilterProps {
 
 export const ListFilter: FC<ListFilterProps> = ({ currentSorter }) => {
   const { isShow, closeDropdown, toggleDropdown } = useDropdown();
-  const [isHidden, setIsHidden] = useState(false);
+  const { overflowStyles, close: closeDropdownHandler, onMouseEnter } = useDropdownSubMenuAnimationFixer(closeDropdown);
+
   const dispatch = useTypedDispatch();
 
   const changeCurrentSorter = (sorter: ListSorters) => {
     dispatch(createSheetsActions.changeCurrentSorter(sorter));
-  };
-
-  const onMouseEnter = () => {
-    setIsHidden(true);
-  };
-
-  const closeDropdownHandler = () => {
-    setIsHidden(false);
-    closeDropdown();
   };
 
   const setNameSorter = () => {
@@ -61,13 +53,14 @@ export const ListFilter: FC<ListFilterProps> = ({ currentSorter }) => {
       <AnimatePresence>
         {isShow && (
           <MDropdown
+            style={overflowStyles}
             onMouseEnter={onMouseEnter}
             exit={{ height: 0 }}
             animate={{ height: 'auto' }}
             initial={{ height: 0 }}
             transition={{ duration: ANIMATION_DURATION }}
             closeDropdown={closeDropdownHandler}
-            className={`${styles.dropdown} ${isHidden && styles.visible}`}
+            className={styles.dropdown}
           >
             <DropdownMenu>
               <DropdownMenuItem

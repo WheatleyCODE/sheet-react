@@ -9,7 +9,7 @@ import {
   MdOutlineFilterAlt,
 } from 'react-icons/md';
 import { DropdownMenu, DropdownMenuItem } from 'entities';
-import { ANIMATION_DURATION, useClickOutside } from 'shared';
+import { ANIMATION_DURATION, useClickOutside, useDropdownSubMenuAnimationFixer } from 'shared';
 import { useContextMenu } from './useContextMenu';
 import styles from './ContextMenu.module.css';
 
@@ -21,19 +21,21 @@ interface ContextMenuProps {
 // ! FIX
 export const ContextMenu: FC<ContextMenuProps> = memo(() => {
   const ref = useRef<null | HTMLDivElement>(null);
-  const { closeContextMenu, coords } = useContextMenu();
+  const { closeContextMenu: closeMenu, coords } = useContextMenu();
+  const { overflowStyles, close: closeContextMenu, onMouseEnter } = useDropdownSubMenuAnimationFixer(closeMenu);
 
   useClickOutside(ref, closeContextMenu, ['click', 'contextmenu']);
 
   return (
     <motion.div
       ref={ref}
-      style={coords}
+      style={{ ...coords, ...overflowStyles }}
       transition={{ duration: ANIMATION_DURATION * 1.5 }}
       exit={{ height: 0, opacity: 0.5 }}
       animate={{ height: 'auto', opacity: 1 }}
       initial={{ height: 0, opacity: 0.5 }}
       className={styles.menu}
+      onMouseEnter={onMouseEnter}
     >
       <DropdownMenu>
         <DropdownMenuItem onClick={closeContextMenu} Icon={MdContentCut} text="Вырезать" />

@@ -9,7 +9,3 @@
 .dropdown {
   margin-top: var(--gap);
 }
-
-.dropdown.visible {
-  overflow: visible;
-}
