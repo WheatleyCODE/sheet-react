@@ -1,11 +1,12 @@
-import { FC, useRef, memo, useLayoutEffect, useEffect } from 'react';
-import { CellsDataTypes, CellsEventEmitter, CellsEventNames, ICell } from 'entities';
+import { FC, useRef, memo, useLayoutEffect, useEffect, useState } from 'react';
+import { CellsDataTypes, CellsEventEmitter, CellsEventNames, ICell, cellsMouseUp } from 'entities';
 import { useActions, useDebounce } from 'shared';
 import { setEndOfContentEditable } from 'features/sheets-table/utils/setEndOfContentEditable';
 import styles from './Cell.module.css';
 
 export interface ICellProps {
   isActive?: boolean;
+  isPreSelect?: boolean;
   width: number;
   height: number;
   cell: ICell;
@@ -13,8 +14,9 @@ export interface ICellProps {
   selectCell: (cell: ICell) => void;
 }
 
-export const Cell: FC<ICellProps> = memo(({ isActive, width, height, cell, selectCell, tableId }) => {
+export const Cell: FC<ICellProps> = memo(({ isActive, isPreSelect, width, height, cell, selectCell, tableId }) => {
   const { changeCellValue } = useActions();
+  const emitter = useRef<CellsEventEmitter | null>(null);
   const input = useRef<HTMLDivElement | null>(null);
 
   const onMouseDown = () => {
@@ -31,9 +33,10 @@ export const Cell: FC<ICellProps> = memo(({ isActive, width, height, cell, selec
   };
 
   useLayoutEffect(() => {
-    const emitter = new CellsEventEmitter();
+    const cellsEmitter = new CellsEventEmitter();
+    emitter.current = cellsEmitter;
 
-    const unsubscribe = emitter.subscribe(cell.id, CellsEventNames.FOCUS, (data) => {
+    const unsubscribe = cellsEmitter.subscribe(cell.id, CellsEventNames.FOCUS, (data) => {
       if (data.type === CellsDataTypes.FOCUS_DEFAULT) {
         input.current?.focus();
       }
@@ -48,9 +51,25 @@ export const Cell: FC<ICellProps> = memo(({ isActive, width, height, cell, selec
     setEndOfContentEditable(el);
   }, [cell.value]);
 
+  const onMouseEnter = () => {
+    const cellsEmitter = emitter.current;
+    if (!cellsEmitter) return;
+
+    cellsEmitter.emit(
+      cellsMouseUp(cell.id, CellsEventNames.MOUSE_ENTER, CellsDataTypes.MOUSE_ENTER_DEFAULT, { data: 10 })
+    );
+  };
+
   return (
-    <div style={{ width, height }} onMouseDown={onMouseDown} className={`${styles.cell} ${isActive && styles.active}`}>
+    <div
+      data-cell-id={cell.id}
+      style={{ width, height }}
+      onMouseDown={onMouseDown}
+      onMouseEnter={onMouseEnter}
+      className={`${styles.cell} ${isActive && styles.active} ${isPreSelect && styles.preselect}`}
+    >
       <div
+        data-cell-id={cell.id}
         suppressContentEditableWarning
         style={{ fontSize: cell.fontSize }}
         onInput={onInput}
@@ -62,7 +81,7 @@ export const Cell: FC<ICellProps> = memo(({ isActive, width, height, cell, selec
         {cell.value}
       </div>
 
-      {isActive && <div className={styles.cell_select} />}
+      {isActive && <div data-cell-id={cell.id} className={styles.cell_select} />}
     </div>
   );
 });

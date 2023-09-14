@@ -1,6 +1,7 @@
 export const enum CellsEventNames {
   FOCUS = 'FOCUS',
   SELECT = 'SELECT',
+  MOUSE_ENTER = 'MOUSE_ENTER',
 }
 
 export const enum CellsDataTypes {
@@ -9,6 +10,8 @@ export const enum CellsDataTypes {
 
   SELECT_DEFAULT = 'SELECT_DEFAULT',
   SELECT_FORMULA_ACTIVE = 'SELECT_FORMULA_ACTIVE',
+
+  MOUSE_ENTER_DEFAULT = 'MOUSE_ENTER_DEFAULT',
 }
 
 export type CellsFocusDefault = {
@@ -42,8 +45,18 @@ export type CellsSelectFormulaActive = {
   };
 };
 
+export type CellsMouseUp = {
+  id: string;
+  eventName: CellsEventNames.MOUSE_ENTER;
+  type: CellsDataTypes.MOUSE_ENTER_DEFAULT;
+  payload: {
+    data: number;
+  };
+};
+
 export type CellsEmitterData =
   | CellsFocusDefault
   | CellsFocusFormulaEnter
   | CellsSelectDefault
-  | CellsSelectFormulaActive;
+  | CellsSelectFormulaActive
+  | CellsMouseUp;

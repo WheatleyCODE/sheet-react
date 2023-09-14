@@ -3,6 +3,7 @@ import {
   CellsEventNames,
   CellsFocusDefault,
   CellsFocusFormulaEnter,
+  CellsMouseUp,
   CellsSelectDefault,
   CellsSelectFormulaActive,
 } from './interface';
@@ -47,6 +48,18 @@ export const cellsSelectFormulaActive = (
   type: CellsDataTypes.SELECT_FORMULA_ACTIVE,
   payload: { color: string }
 ): CellsSelectFormulaActive => ({
+  id,
+  type,
+  eventName,
+  payload,
+});
+
+export const cellsMouseUp = (
+  id: string,
+  eventName: CellsEventNames.MOUSE_ENTER,
+  type: CellsDataTypes.MOUSE_ENTER_DEFAULT,
+  payload: { data: number }
+): CellsMouseUp => ({
   id,
   type,
   eventName,

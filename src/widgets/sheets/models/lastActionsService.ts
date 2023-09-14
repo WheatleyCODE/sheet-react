@@ -1,19 +1,22 @@
+import { ICell } from 'entities/share';
 import { KVFactory, SessionStorageEngine } from 'shared';
 
 export class LastActionsService {
   #ss = KVFactory('actions', new SessionStorageEngine());
 
-  getLastActions(count: number) {
-    console.log(count);
+  async setUndoAction(cell: ICell): Promise<void> {
+    return;
   }
 
-  async getAction(id: string) {
-    const data = await this.#ss.get(id);
+  async getAction(id: string): Promise<ICell | null> {
+    return null;
+  }
 
-    if (!data) {
-      throw new Error('Действие не найдено');
-    }
+  async getUndoAction(): Promise<ICell | null> {
+    return null;
+  }
 
-    return data;
+  async getRedoAction(): Promise<ICell | null> {
+    return null;
   }
 }
