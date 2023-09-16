@@ -1,4 +1,4 @@
-import { FC, useRef, memo, useLayoutEffect, useEffect, useState } from 'react';
+import { FC, useRef, memo, useLayoutEffect, useEffect } from 'react';
 import { CellsDataTypes, CellsEventEmitter, CellsEventNames, ICell, cellsMouseUp } from 'entities';
 import { useActions, useDebounce } from 'shared';
 import { setEndOfContentEditable } from 'features/sheets-table/utils/setEndOfContentEditable';
@@ -7,6 +7,9 @@ import styles from './Cell.module.css';
 export interface ICellProps {
   isActive?: boolean;
   isPreSelect?: boolean;
+  isSelectGroup?: boolean;
+  isSelectBorder?: boolean;
+  selectionAreaRect?: { width: number; height: number };
   width: number;
   height: number;
   cell: ICell;
@@ -14,7 +17,19 @@ export interface ICellProps {
   selectCell: (cell: ICell) => void;
 }
 
-export const Cell: FC<ICellProps> = memo(({ isActive, isPreSelect, width, height, cell, selectCell, tableId }) => {
+export const Cell: FC<ICellProps> = memo((props) => {
+  const {
+    isActive,
+    isPreSelect,
+    isSelectGroup,
+    isSelectBorder,
+    selectionAreaRect,
+    width,
+    height,
+    cell,
+    selectCell,
+    tableId,
+  } = props;
   const { changeCellValue } = useActions();
   const emitter = useRef<CellsEventEmitter | null>(null);
   const input = useRef<HTMLDivElement | null>(null);
@@ -66,7 +81,9 @@ export const Cell: FC<ICellProps> = memo(({ isActive, isPreSelect, width, height
       style={{ width, height }}
       onMouseDown={onMouseDown}
       onMouseEnter={onMouseEnter}
-      className={`${styles.cell} ${isActive && styles.active} ${isPreSelect && styles.preselect}`}
+      className={`${styles.cell} ${isActive && styles.active} ${isPreSelect && styles.preselect} ${
+        isSelectGroup && styles.selectGroup
+      }`}
     >
       <div
         data-cell-id={cell.id}
@@ -81,6 +98,7 @@ export const Cell: FC<ICellProps> = memo(({ isActive, isPreSelect, width, height
         {cell.value}
       </div>
 
+      {isSelectBorder && <div style={selectionAreaRect} data-cell-id={cell.id} className={styles.selectBorder} />}
       {isActive && <div data-cell-id={cell.id} className={styles.cell_select} />}
     </div>
   );

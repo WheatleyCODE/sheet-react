@@ -33,3 +33,17 @@
 .cell.preselect {
   background-color: var(--color-light-green);
 }
+
+.selectGroup {
+  background-color: var(--color-light-green);
+}
+
+.selectBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 19;
+  border: 1px solid var(--color-green);
+  width: 10px;
+  height: 10px;
+}
