@@ -40,3 +40,11 @@ export const getIsActive = (selectCells: ICell[], cell: ICell, firstCell: ICell 
 
 export const getSelectionAreaRect = (selectCells: ICell[], cell: ICell, rows: IRow[], cols: ICol[]) =>
   selectCells[0]?.id === cell?.id ? calcSelectionRect(selectCells, rows, cols) : undefined;
+
+export const getIsSelect = (id: number, cell: 'row' | 'col', selectCells: ICell[], preSelectedCells: ICell[]) => {
+  const index = cell === 'row' ? 0 : 1;
+  return (
+    !!selectCells.find((cell) => Number(cell.id.split(':')[index]) === id - 1) ||
+    !!preSelectedCells.find((cell) => Number(cell.id.split(':')[index]) === id - 1)
+  );
+};

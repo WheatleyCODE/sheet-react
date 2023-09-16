@@ -7,10 +7,16 @@ interface ICellColProps {
   value: string;
   width: number;
   id: number;
+  isSelect?: boolean;
+  selectAllCol: (id: number) => void;
 }
 
-export const CellCol: FC<ICellColProps> = memo(({ value, width, id }) => {
+export const CellCol: FC<ICellColProps> = memo(({ value, width, id, selectAllCol, isSelect }) => {
   const { isShow, onMouseEnter, onMouseLeave, onMouseMove } = useDelayHover(false, 300, 0);
+
+  const onClick = () => {
+    selectAllCol(id);
+  };
 
   return (
     <div
@@ -18,7 +24,8 @@ export const CellCol: FC<ICellColProps> = memo(({ value, width, id }) => {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onMouseMove={onMouseMove}
-      className={styles.cell_col}
+      className={`${styles.cell_col} ${isSelect && styles.select}`}
+      onClick={onClick}
     >
       {value}
 

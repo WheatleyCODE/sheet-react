@@ -5,7 +5,7 @@ import { CellsDataTypes, CellsEventEmitter, CellsEventNames, ICell, cellsFocusDe
 import { useTypedSelector, useTypedDispatch } from 'shared';
 import { useTableResize } from './useTableResize';
 import { usePreSelect } from './usePreSelect';
-import { getIsActive, getIsSelectBorder, getSelectionAreaRect } from './sheetsTable.functions';
+import { getIsActive, getIsSelect, getIsSelectBorder, getSelectionAreaRect } from './sheetsTable.functions';
 import styles from './SheetsTable.module.css';
 
 export const SheetsTable: FC = () => {
@@ -53,27 +53,59 @@ export const SheetsTable: FC = () => {
     openContextMenu(e);
   };
 
-  useTableResize();
-
   const onMouseUpHandler = () => {
     const isSuccess = onMouseUp();
     if (!isSuccess) return;
     dispatch(tableActions.setSelectCells(preSelectedCells));
   };
 
+  const selectAllRow = (rowId: number) => {
+    const rowCells = cells[rowId - 1];
+    dispatch(tableActions.setSelectCells(rowCells));
+  };
+
+  const selectAllCol = (colId: number) => {
+    const colCells = [];
+
+    for (const row of cells) {
+      colCells.push(row[colId - 1]);
+    }
+
+    dispatch(tableActions.setSelectCells(colCells));
+  };
+
+  const selectAllCells = () => {
+    dispatch(tableActions.setSelectCells(cells.flat(2)));
+  };
+
+  useTableResize();
+
   return (
     <div onContextMenu={onContextMenu} className={styles.table} onMouseDown={onMouseDown} onMouseUp={onMouseUpHandler}>
       <div className={`${styles.table_row_header}`}>
-        <CellAllSelector />
+        <CellAllSelector selectAllCells={selectAllCells} />
 
         {cols.map((col) => (
-          <CellCol key={col.id} id={col.id} value={col.value} width={col.width} />
+          <CellCol
+            isSelect={getIsSelect(col.id, 'col', selectCells, preSelectedCells)}
+            selectAllCol={selectAllCol}
+            key={col.id}
+            id={col.id}
+            value={col.value}
+            width={col.width}
+          />
         ))}
       </div>
 
       {rows.map((row, i) => (
         <div key={row.id} className={styles.table_row}>
-          <CellRow id={row.id} value={row.value} height={row.height} />
+          <CellRow
+            isSelect={getIsSelect(row.id, 'row', selectCells, preSelectedCells)}
+            selectAllRow={selectAllRow}
+            id={row.id}
+            value={row.value}
+            height={row.height}
+          />
 
           {cells[i].map((cell, j) => (
             <Cell

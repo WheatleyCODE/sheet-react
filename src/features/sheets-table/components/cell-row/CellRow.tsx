@@ -5,11 +5,17 @@ export interface ICellRowProps {
   value: string;
   height: number;
   id: number;
+  selectAllRow: (rowId: number) => void;
+  isSelect?: boolean;
 }
 
-export const CellRow: FC<ICellRowProps> = memo(({ value, height, id }) => {
+export const CellRow: FC<ICellRowProps> = memo(({ value, height, id, selectAllRow, isSelect }) => {
+  const onClick = () => {
+    selectAllRow(id);
+  };
+
   return (
-    <div style={{ height }} className={styles.cell_row}>
+    <div onClick={onClick} style={{ height }} className={`${styles.cell_row}  ${isSelect && styles.select}`}>
       {value}
 
       <div data-row-resize={id} className={styles.resize}>

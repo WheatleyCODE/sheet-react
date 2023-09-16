@@ -1,6 +1,10 @@
 import { FC, memo } from 'react';
 import styles from './CellAllSelector.module.css';
 
-export const CellAllSelector: FC = memo(() => {
-  return <div className={styles.selector}></div>;
+export interface ICellAllSelectorProps {
+  selectAllCells: () => void;
+}
+
+export const CellAllSelector: FC<ICellAllSelectorProps> = memo(({ selectAllCells }) => {
+  return <div onClick={selectAllCells} className={styles.selector}></div>;
 });

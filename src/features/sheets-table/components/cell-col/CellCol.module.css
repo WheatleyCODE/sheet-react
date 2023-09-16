@@ -65,3 +65,7 @@
 .actions:hover {
   background-color: var(--color-light-grey);
 }
+
+.select {
+  background-color: var(--color-light-green);
+}

@@ -46,3 +46,7 @@
 .resize:hover {
   opacity: 1;
 }
+
+.select {
+  background-color: var(--color-light-green);
+}
